@@ -3,10 +3,9 @@ package br.edu.ifg.luziania;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("")
 public class Login {
@@ -14,14 +13,19 @@ public class Login {
 
     public Login(Template login) {
         this.login = login;
-
     }
 
     @GET
-    @Path("/login")
+    @Path("/autenticar")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getLogin(){
         return login.instance();
     }
 
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response autenticar(Autenticacao autenticacao) {
+        return Response.ok().build();
+    }
 }

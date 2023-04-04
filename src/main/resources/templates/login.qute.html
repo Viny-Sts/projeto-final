@@ -1,75 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        body {
-            text-align: center;
-            background-color: #e83e8c;
-        }
-    </style>
-
-    <script>
-        function cadastrar(){
-            if (verificarEntrada()) {
-                autenticar();
-            }
-
-        }
-
-        function verificarEntrada() {
-            if (document.getElementById("email").value == "") {
-                alert("thrice");
-
-                return false;
-            }
-
-            if (document.getElementById("senha").value == "") {
-                alert("twice");
-
-                return false;
-            }
-
-            return true;
-         }
-
-         function autenticar() {
-             //admin
-             if (document.getElementById("email").value === "admin@staff.com" &&
-                 document.getElementById("senha").value === "admin") {
-                 alert("Login de administrador realizado com sucesso");
-
-             } else if (document.getElementById("email").value === "rodrigo@gmail.com" &&
-                        document.getElementById("senha").value === "projeto" ||
-                        document.getElementById("email").value === "vinicius@gmail.com" &&
-                        document.getElementById("senha").value === "123") {
-                 alert("Login de usuário comum realizado com sucesso");
-
-             } else {
-                 alert("Credenciais inválidas");
-             }
-
-            let dados = {
-                "email": document.getElementById("email").value,
-                "senha": document.getElementById("senha").value
-            }
-         }
-
-    </script>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/script.js" type="application/javascript"></script>
 </head>
 <body>
-<h1>teste</h1>
-<form>
-    <label for="email">email</label>
-    <input id="email" type="email"><br>
+    <h1>teste</h1>
+    <form>
+        <label for="email">email</label>
+        <input id="email" type="email"><br>
 
-    <label for="senha">senha</label>
-    <input id="senha" type="password"><br>
+        <label for="senha">senha</label>
+        <input id="senha" type="password"><br>
 
-    <button onclick="cadastrar()">Next</button>
-</form>
+        <button onclick="cadastrar()" type="button">Next</button>
+    </form>
 </body>
 </html>
