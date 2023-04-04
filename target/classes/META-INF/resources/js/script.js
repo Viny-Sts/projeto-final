@@ -2,7 +2,6 @@ function cadastrar(){
     if (verificarEntrada()) {
         autenticar();
     }
-
 }
 
 function verificarEntrada() {
@@ -29,24 +28,21 @@ function verificarEntrada() {
 }
 
 function autenticar() {
-
     location.href = "/principal";
-    /*
 
     var requisicao =
         criarRequisicao(
             document.getElementById("email").value, document.getElementById("senha").value);
 
-    fetch(requisicao)
-    .then(
-        (response) => {
-            if (response == "200") {
-                //
-            }
-        }); {
-
-    }
-*/
+    //fetch(requisicao)
+    //.then(
+        //(response) => {
+            //if (response === "200") {
+                //return response.json();
+            //} else {
+                //throw new Error("Ocorreu um erro");
+            //}
+        //});
 
     //admin
     if (document.getElementById("email").value === "admin@staff.com" &&
@@ -72,16 +68,16 @@ function autenticar() {
     }
 }
 
-function criarRequisicao() {
-    return new fetch("http://localhost:8080/autenticar", {
-        method: "POST",
-        headers: {
-            "Accept": "*/*",
-            "Content-Type": "aplication/json",
-        },
-        body: "{" +
-            "email:" + "+'email'+" +
-            "senha:" + "+'senha'+" +
-            "}"
-    })
-}
+//function criarRequisicao() {
+    //return new fetch("http://localhost:8080/autenticar", {
+        //method: "POST",
+        //headers: {
+            //"Accept": "*/*",
+            //"Content-Type": "aplication/json",
+        //},
+        //body: "{" +
+            //"email:" + "'email'," +
+            //"senha:" + "'senha'" +
+            //"}"
+    //})
+//}
