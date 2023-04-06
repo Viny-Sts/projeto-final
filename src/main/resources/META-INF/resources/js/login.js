@@ -1,3 +1,8 @@
+function clearFields() {
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+}
+
 function register(){
     if (checkInput()) {
         authenticate();
@@ -60,6 +65,12 @@ function authenticate() {
     //              } else {
     //                  throw new Error("Ocorreu um erro");
     //              }});
+}
+
+function disconnect(url) {
+    alert("This action will disconnect you");
+
+    location.href = url;
 }
 
 //function criarRequisicao() {
