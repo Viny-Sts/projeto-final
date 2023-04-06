@@ -7,19 +7,19 @@ function register(){
 function checkInput() {
     if (document.getElementById("email").value === "" &&
         document.getElementById("password").value === "") {
-        alert("Os campos email e senha não podem estar em branco");
+        alert("Email and password fields are blank");
 
         return false;
     }
 
     else if (document.getElementById("email").value === "") {
-        alert("O campo de email não pode estar em branco");
+        alert("Email fields are blank");
 
         return false;
     }
 
     else if (document.getElementById("password").value === "") {
-        alert("O campo de senha não pode estar em branco");
+        alert("Password fields are blank");
 
         return false;
     }
@@ -28,40 +28,38 @@ function checkInput() {
 }
 
 function authenticate() {
-
-    //var requisicao =
-        //criarRequisicao(
-            //document.getElementById("email").value, document.getElementById("senha").value);
-
-    //fetch(requisicao)
-    //.then(
-        //(response) => {
-            //if (response === "200") {
-                //return response.json();
-            //} else {
-                //throw new Error("Ocorreu um erro");
-            //}
-        //});
-
     //admin
     if (document.getElementById("email").value === "admin@staff.com" &&
         document.getElementById("password").value === "123") {
-        alert("Login de administrador realizado com sucesso");
+        alert("Connected as administrator");
 
         location.href = "/admin";
     }
 
-    //usuário comum
+    //user
     else if (document.getElementById("email").value === "rodrigo@gmail.com" &&
         document.getElementById("password").value === "projeto" ||
         document.getElementById("email").value === "vinicius@gmail.com" &&
         document.getElementById("password").value === "123") {
-        alert("Login de usuário comum realizado com sucesso");
+        alert("Connected as user");
 
         location.href = "/main";
+
     } else {
-        alert("Credenciais inválidas");
+        alert("Invalid credentials");
     }
+
+    //var requisicao = criarRequisicao(document.getElementById("email").value,
+    //                                 document.getElementById("password").value);
+
+    //fetch(requisicao)
+
+    //.then(
+    //(response) => {if (response === "200") {
+    //                  return response.json();
+    //              } else {
+    //                  throw new Error("Ocorreu um erro");
+    //              }});
 }
 
 //function criarRequisicao() {
@@ -69,11 +67,11 @@ function authenticate() {
         //method: "POST",
         //headers: {
             //"Accept": "*/*",
-            //"Content-Type": "aplication/json",
+            //"Content-Type": "application/json",
         //},
         //body: "{" +
             //"email:" + "'email'," +
-            //"senha:" + "'senha'" +
+            //"password:" + "'password'" +
             //"}"
     //})
 //}
