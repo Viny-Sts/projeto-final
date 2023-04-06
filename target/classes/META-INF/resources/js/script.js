@@ -28,11 +28,11 @@ function verificarEntrada() {
 }
 
 function autenticar() {
-    location.href = "/principal";
+    location.href = "/main";
 
-    var requisicao =
-        criarRequisicao(
-            document.getElementById("email").value, document.getElementById("senha").value);
+    //var requisicao =
+        //criarRequisicao(
+            //document.getElementById("email").value, document.getElementById("senha").value);
 
     //fetch(requisicao)
     //.then(
