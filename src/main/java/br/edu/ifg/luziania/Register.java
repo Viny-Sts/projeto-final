@@ -9,19 +9,18 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("")
-public class Principal {
-    private final Template principal;
+public class Register {
+    private final Template register;
 
-    public Principal(Template principal) {
-        this.principal = principal;
-
+    public Register(Template register) {
+        this.register = register;
     }
 
     @GET
-    @Path("/principal")
+    @Path("/register")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance getLogin(){
-        return principal.instance();
+    public TemplateInstance getRegister(){
+        return register.instance();
     }
 
 }
