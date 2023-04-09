@@ -3,20 +3,14 @@ function clearFields() {
     document.getElementById("password").value = "";
 }
 
-<<<<<<< HEAD
-=======
 // when it's called, it checks if the user forgot any fields (checkInput) and then verify if the account exists (authenticate)
->>>>>>> origin/master
 function register(){
     if (checkInput()) {
         authenticate();
     }
 }
 
-<<<<<<< HEAD
-=======
 // if any field are blank, the user gets a feedback with a warning, informing which field they forgot
->>>>>>> origin/master
 function checkInput() {
     if (document.getElementById("email").value === "" &&
         document.getElementById("password").value === "") {
@@ -40,12 +34,9 @@ function checkInput() {
     return true;
 }
 
-<<<<<<< HEAD
-=======
 // there are two types of account, admin and user.
 // admin account -> takes you to administration page;
 // user account -> takes you to main page (probably where the API goes);
->>>>>>> origin/master
 function authenticate() {
     //admin
     if (document.getElementById("email").value === "admin@staff.com" &&
@@ -81,10 +72,7 @@ function authenticate() {
     //              }});
 }
 
-<<<<<<< HEAD
-=======
 // just warns the user about the ongoing disconnection
->>>>>>> origin/master
 function disconnect(url) {
     alert("This action will disconnect you");
 
