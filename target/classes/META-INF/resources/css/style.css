@@ -1,4 +1,8 @@
-body {
-    text-align: center;
-    background-color: #4875d9;
+
+::selection {
+    background-color: purple;
+}
+
+::-moz-selection {
+    background-color: purple;
 }

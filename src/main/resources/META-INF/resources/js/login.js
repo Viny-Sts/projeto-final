@@ -1,3 +1,14 @@
+function click(){
+        const inputField = document.getElementById('password');
+        const submitButton = document.getElementById('submit-button');
+
+        inputField.addEventListener('keyup', function(event) {
+            if (event.key === 13) {
+                event.preventDefault();
+                submitButton.register().click();
+            }
+    })}
+
 function clearFields() {
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
@@ -74,10 +85,12 @@ function authenticate() {
 
 // just warns the user about the ongoing disconnection
 function disconnect(url) {
-    alert("This action will disconnect you");
+    alert("This action will disconnect you. Click 'Ok' to proceed.");
 
     location.href = url;
 }
+}
+
 
 //function criarRequisicao() {
     //return new fetch("http://localhost:8080/autenticar", {
