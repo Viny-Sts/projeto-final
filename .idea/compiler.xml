@@ -9,9 +9,6 @@
         <module name="projeto-final" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="projeto-final" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
