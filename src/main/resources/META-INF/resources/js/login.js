@@ -21,15 +21,15 @@ function register(){
             document.getElementById("password").value);
 
         fetch(requisicao)
+        .then((response) => {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                throw new Error("Ocorreu algum erro" + response);
+            }
+        })
 
-            .then((response) => {
-                if (response === "200") {
-                    return response.json();
-                } else {
-                    throw new Error("Ocorreu um erro");
-                }
-            })
-            .then(json => console.log(JSON.stringify(json)));
+        .then(json => console.log(JSON.stringify(json)));
 
         authenticate();
     }
