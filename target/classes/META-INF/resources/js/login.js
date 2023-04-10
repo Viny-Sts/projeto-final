@@ -17,6 +17,20 @@ function clearFields() {
 // when it's called, it checks if the user forgot any fields (checkInput) and then verify if the account exists (authenticate)
 function register(){
     if (checkInput()) {
+        var requisicao = criarRequisicao(document.getElementById("email").value,
+            document.getElementById("password").value);
+
+        fetch(requisicao)
+        .then((response) => {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                throw new Error("Ocorreu algum erro" + response);
+            }
+        })
+
+        .then(json => console.log(JSON.stringify(json)));
+
         authenticate();
     }
 }
@@ -69,18 +83,20 @@ function authenticate() {
     } else {
         alert("Invalid credentials");
     }
+}
 
-    //var requisicao = criarRequisicao(document.getElementById("email").value,
-    //                                 document.getElementById("password").value);
-
-    //fetch(requisicao)
-
-    //.then(
-    //(response) => {if (response === "200") {
-    //                  return response.json();
-    //              } else {
-    //                  throw new Error("Ocorreu um erro");
-    //              }});
+function criarRequisicao(email, password){
+    return new Request("http://localhost:8080/autenticar", {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "email": email,
+            "password": password
+        }),
+    });
 }
 
 // just warns the user about the ongoing disconnection
@@ -89,19 +105,3 @@ function disconnect(url) {
 
     location.href = url;
 }
-}
-
-
-//function criarRequisicao() {
-    //return new fetch("http://localhost:8080/autenticar", {
-        //method: "POST",
-        //headers: {
-            //"Accept": "*/*",
-            //"Content-Type": "application/json",
-        //},
-        //body: "{" +
-            //"email:" + "'email'," +
-            //"password:" + "'password'" +
-            //"}"
-    //})
-//}

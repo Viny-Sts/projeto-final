@@ -23,16 +23,20 @@ public class Login {
         return login.instance();
     }
 
-    //@POST
-    //@Produces(MediaType.APPLICATION_JSON)
-    //@Consumes(MediaType.APPLICATION_JSON)
-    //public Response autenticar(Autenticacao autenticacao) {
-        //if (autenticacao.getEmail().equals("test") &&
-            //autenticacao.getSenha().equals("SenhaTest")) {
-
-            //return Response.ok("{data:\n Usuário inválido \n}", MediaType.APPLICATION_JSON);
-        //}
-
-        //return Response.ok().build();
-    //}
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/autenticar")
+    public Response autenticar(Autenticacao autenticacao){
+        RetornoAutenticacao retorno = new RetornoAutenticacao();
+        if (autenticacao.getEmail().equals("daniel@ifg.edu.br") &&
+            autenticacao.getPassword().equals("123")) {
+            retorno.setMessagem("Usuário autenticado!");
+            return Response.ok(retorno, MediaType.APPLICATION_JSON).build();
+        }
+        else {
+            retorno.setMessagem("Usuário não autenticado!");
+            return Response.ok(retorno, MediaType.APPLICATION_JSON).build();
+        }
+    }
 }
