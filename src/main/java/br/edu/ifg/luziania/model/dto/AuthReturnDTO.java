@@ -1,6 +1,6 @@
-package br.edu.ifg.luziania.model;
+package br.edu.ifg.luziania.model.dto;
 
-public class AuthReturn {
+public class AuthReturnDTO {
 
     private String message;
 

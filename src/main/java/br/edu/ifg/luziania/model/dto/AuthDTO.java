@@ -1,6 +1,6 @@
-package br.edu.ifg.luziania.model;
+package br.edu.ifg.luziania.model.dto;
 
-public class Auth {
+public class AuthDTO {
     private String email;
     private String password;
 

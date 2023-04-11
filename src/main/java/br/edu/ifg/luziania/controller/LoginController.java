@@ -1,7 +1,7 @@
 package br.edu.ifg.luziania.controller;
 
-import br.edu.ifg.luziania.model.Auth;
-import br.edu.ifg.luziania.model.AuthReturn;
+import br.edu.ifg.luziania.model.dto.AuthDTO;
+import br.edu.ifg.luziania.model.dto.AuthReturnDTO;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
@@ -28,26 +28,26 @@ public class LoginController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/autenticar")
-    public Response authenticate(Auth auth){
-        AuthReturn authReturn = new AuthReturn();
+    public Response authenticate(AuthDTO authDTO){
+        AuthReturnDTO authReturnDTO = new AuthReturnDTO();
 
-        if (auth.getEmail().equals("rodrigo@gmail.com") && auth.getPassword().equals("projeto") ||
-                auth.getEmail().equals("vinicius@gmail.com") && auth.getPassword().equals("123")) {
-            authReturn.setMessage("Usuário autenticado!");
+        if (authDTO.getEmail().equals("rodrigo@gmail.com") && authDTO.getPassword().equals("projeto") ||
+                authDTO.getEmail().equals("vinicius@gmail.com") && authDTO.getPassword().equals("123")) {
+            authReturnDTO.setMessage("Usuário autenticado!");
 
-            return Response.ok(authReturn, MediaType.APPLICATION_JSON).build();
+            return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
         }
 
-        else if (auth.getEmail().equals("admin@staff.com") && auth.getPassword().equals("123")) {
-            authReturn.setMessage("Administrador autenticado!");
+        else if (authDTO.getEmail().equals("admin@staff.com") && authDTO.getPassword().equals("123")) {
+            authReturnDTO.setMessage("Administrador autenticado!");
 
-            return Response.ok(authReturn, MediaType.APPLICATION_JSON).build();
+            return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
         }
 
         else {
-            authReturn.setMessage("Usuário não autenticado!");
+            authReturnDTO.setMessage("Usuário não autenticado!");
 
-            return Response.ok(authReturn, MediaType.APPLICATION_JSON).build();
+            return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
         }
     }
 }
