@@ -1,6 +1,6 @@
 package br.edu.ifg.luziania;
 
-public class Autenticacao {
+public class Auth {
     private String email;
     private String password;
 

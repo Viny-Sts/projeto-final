@@ -3,7 +3,6 @@ package br.edu.ifg.luziania;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -27,16 +26,16 @@ public class Login {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/autenticar")
-    public Response autenticar(Autenticacao autenticacao){
-        RetornoAutenticacao retorno = new RetornoAutenticacao();
-        if (autenticacao.getEmail().equals("daniel@ifg.edu.br") &&
-            autenticacao.getPassword().equals("123")) {
-            retorno.setMessagem("Usuário autenticado!");
-            return Response.ok(retorno, MediaType.APPLICATION_JSON).build();
+    public Response authenticate(Auth auth){
+        AuthReturn authReturn = new AuthReturn();
+        if (auth.getEmail().equals("daniel@ifg.edu.br") &&
+            auth.getPassword().equals("123")) {
+            authReturn.setMessage("Usuário autenticado!");
+            return Response.ok(authReturn, MediaType.APPLICATION_JSON).build();
         }
         else {
-            retorno.setMessagem("Usuário não autenticado!");
-            return Response.ok(retorno, MediaType.APPLICATION_JSON).build();
+            authReturn.setMessage("Usuário não autenticado!");
+            return Response.ok(authReturn, MediaType.APPLICATION_JSON).build();
         }
     }
 }
