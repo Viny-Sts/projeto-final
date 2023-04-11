@@ -1,4 +1,4 @@
-package br.edu.ifg.luziania;
+package br.edu.ifg.luziania.controller;
 
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
@@ -9,10 +9,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("")
-public class Index {
+public class IndexController {
     private final Template index;
 
-    public Index(Template index) {
+    public IndexController(Template index) {
         this.index = index;
 
     }

@@ -1,4 +1,4 @@
-package br.edu.ifg.luziania;
+package br.edu.ifg.luziania.model;
 
 public class Auth {
     private String email;

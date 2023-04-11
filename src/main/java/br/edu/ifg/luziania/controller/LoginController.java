@@ -1,5 +1,7 @@
-package br.edu.ifg.luziania;
+package br.edu.ifg.luziania.controller;
 
+import br.edu.ifg.luziania.model.Auth;
+import br.edu.ifg.luziania.model.AuthReturn;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
@@ -8,10 +10,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("")
-public class Login {
+public class LoginController {
     private final Template login;
 
-    public Login(Template login) {
+    public LoginController(Template login) {
         this.login = login;
     }
 
