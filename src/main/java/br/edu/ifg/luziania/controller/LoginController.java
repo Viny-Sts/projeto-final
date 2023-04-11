@@ -33,19 +33,19 @@ public class LoginController {
 
         if (authDTO.getEmail().equals("rodrigo@gmail.com") && authDTO.getPassword().equals("projeto") ||
                 authDTO.getEmail().equals("vinicius@gmail.com") && authDTO.getPassword().equals("123")) {
-            authReturnDTO.setMessage("Usuário autenticado!");
+            authReturnDTO.setMessage("Connected as user");
 
             return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
         }
 
         else if (authDTO.getEmail().equals("admin@staff.com") && authDTO.getPassword().equals("123")) {
-            authReturnDTO.setMessage("Administrador autenticado!");
+            authReturnDTO.setMessage("Connected as administrator");
 
             return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
         }
 
         else {
-            authReturnDTO.setMessage("Usuário não autenticado!");
+            authReturnDTO.setMessage("Invalid credentials");
 
             return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
         }

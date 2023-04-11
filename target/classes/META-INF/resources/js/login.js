@@ -15,6 +15,9 @@ function clearFields() {
 }
 
 // when it's called, it checks if the user forgot any fields (checkInput) and then verify if the account exists (authenticate)
+// there are two types of account, admin and user.
+// admin account -> takes you to administration page;
+// user account -> takes you to main page (probably where the API goes);
 function register() {
     if (checkInput()) {
         var request = newRequest(document.getElementById("email").value,
@@ -29,9 +32,19 @@ function register() {
             }
         })
 
-        .then(json => console.log(JSON.stringify(json)));
+        .then(json => {
+            console.log(JSON.stringify(json));
 
-        authenticate();
+            alert(json.message);
+
+            if (json.message == "Connected as administrator") {
+                location.href = "/admin";
+            }
+
+            if (json.message == "Connected as user") {
+                location.href = "/main";
+            }
+        });
     }
 }
 
@@ -57,32 +70,6 @@ function checkInput() {
     }
 
     return true;
-}
-
-// there are two types of account, admin and user.
-// admin account -> takes you to administration page;
-// user account -> takes you to main page (probably where the API goes);
-function authenticate() {
-    //admin
-    if (document.getElementById("email").value === "admin@staff.com" &&
-        document.getElementById("password").value === "123") {
-        alert("Connected as administrator");
-
-        location.href = "/admin";
-    }
-
-    //user
-    else if (document.getElementById("email").value === "rodrigo@gmail.com" &&
-        document.getElementById("password").value === "projeto" ||
-        document.getElementById("email").value === "vinicius@gmail.com" &&
-        document.getElementById("password").value === "123") {
-        alert("Connected as user");
-
-        location.href = "/main";
-
-    } else {
-        alert("Invalid credentials");
-    }
 }
 
 function newRequest(email, password){
