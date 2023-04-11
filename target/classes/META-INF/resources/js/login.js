@@ -1,13 +1,13 @@
 function click(){
-        const inputField = document.getElementById('password');
-        const submitButton = document.getElementById('submit-button');
+    const inputField = document.getElementById('password');
+    const submitButton = document.getElementById('submit-button');
 
-        inputField.addEventListener('keyup', function(event) {
-            if (event.key === 13) {
-                event.preventDefault();
-                submitButton.register().click();
-            }
-    })}
+    inputField.addEventListener('keyup', function(event) {
+        if (event.key === 13) {
+            event.preventDefault();
+            submitButton.register().click();
+        }
+})}
 
 function clearFields() {
     document.getElementById("email").value = "";
@@ -25,7 +25,7 @@ function register() {
             if (response.status === 200) {
                 return response.json();
             } else {
-                throw new Error("Ocorreu algum erro" + response);
+                throw new Error("An error was occurred" + response.status);
             }
         })
 
@@ -86,7 +86,7 @@ function authenticate() {
 }
 
 function newRequest(email, password){
-    return new Request("http://localhost:8080/autenticar", {
+    return new Request("/autenticar", {
         method: "POST",
         headers: {
             "Accept": "application/json",
