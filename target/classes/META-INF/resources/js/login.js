@@ -15,12 +15,12 @@ function clearFields() {
 }
 
 // when it's called, it checks if the user forgot any fields (checkInput) and then verify if the account exists (authenticate)
-function register(){
+function register() {
     if (checkInput()) {
-        var requisicao = criarRequisicao(document.getElementById("email").value,
+        var request = newRequest(document.getElementById("email").value,
             document.getElementById("password").value);
 
-        fetch(requisicao)
+        fetch(request)
         .then((response) => {
             if (response.status === 200) {
                 return response.json();
@@ -85,7 +85,7 @@ function authenticate() {
     }
 }
 
-function criarRequisicao(email, password){
+function newRequest(email, password){
     return new Request("http://localhost:8080/autenticar", {
         method: "POST",
         headers: {
