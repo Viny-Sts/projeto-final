@@ -5,9 +5,10 @@ function click(){
     inputField.addEventListener('keyup', function(event) {
         if (event.key === 13) {
             event.preventDefault();
-            submitButton.register().click();
+            submitButton.register();
         }
-})}
+    })
+}
 
 function clearFields() {
     document.getElementById("email").value = "";
@@ -20,31 +21,36 @@ function clearFields() {
 // user account -> takes you to main page (probably where the API goes);
 function register() {
     if (checkInput()) {
-        var request = newRequest(document.getElementById("email").value,
+        //fetch api
+        //make a new request
+        let request = newRequest(document.getElementById("email").value,
             document.getElementById("password").value);
 
+        // HTTP codes -> https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status <-
+        //fetch it and verify if the response status code is HTTP 200 (if not, an error appears)
         fetch(request)
-        .then((response) => {
-            if (response.status === 200) {
-                return response.json();
-            } else {
-                throw new Error("An error was occurred" + response.status);
-            }
-        })
+            .then((response) => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    throw new Error("An error was occurred" + response.status);
+                }
+            })
 
-        .then(json => {
-            console.log(JSON.stringify(json));
+            //only then, connect the user on their respective role (admin or user)
+            .then(json => {
+                console.log(JSON.stringify(json));
 
-            alert(json.message);
+                alert(json.message);
 
-            if (json.message == "Connected as administrator") {
-                location.href = "/admin";
-            }
+                if (json.message === "Connected as administrator") {
+                    location.href = "/admin";
+                }
 
-            if (json.message == "Connected as user") {
-                location.href = "/main";
-            }
-        });
+                if (json.message === "Connected as user") {
+                    location.href = "/main";
+                }
+            });
     }
 }
 
@@ -73,7 +79,7 @@ function checkInput() {
 }
 
 function newRequest(email, password){
-    return new Request("/autenticar", {
+    return new Request("/authenticate", {
         method: "POST",
         headers: {
             "Accept": "application/json",
