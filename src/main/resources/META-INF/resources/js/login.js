@@ -1,4 +1,4 @@
-function click(){
+/*function click(){
     const inputField = document.getElementById('password');
     const submitButton = document.getElementById('submit-button');
 
@@ -8,7 +8,7 @@ function click(){
             submitButton.register();
         }
     })
-}
+}*/
 
 function clearFields() {
     document.getElementById("email").value = "";
