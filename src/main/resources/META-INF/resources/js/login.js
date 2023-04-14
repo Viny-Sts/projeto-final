@@ -9,7 +9,7 @@
         }
     })
 }*/
-
+  //JUST KIDDIN'. IT STILL DOESN'T WORK. LMAO. I'M YET TO FIND ENOUGH FREE TIME SOLVE THIS.
 function clearFields() {
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
