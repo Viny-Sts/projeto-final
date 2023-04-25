@@ -1,8 +1,8 @@
-C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\Admin.java
-C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\Auth.java
-C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\Register.java
-C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\Main.java
-C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\AuthReturn.java
-C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\Index.java
-C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\Login.java
-C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\About.java
+C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\controller\AdminController.java
+C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\model\dto\AuthReturnDTO.java
+C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\controller\AboutController.java
+C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\controller\MainController.java
+C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\controller\RegisterController.java
+C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\controller\LoginController.java
+C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\controller\IndexController.java
+C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\model\dto\AuthDTO.java
