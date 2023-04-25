@@ -9,6 +9,7 @@
         }
     })
 }*/
+
 function clearFields() {
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
@@ -78,7 +79,7 @@ function checkInput() {
 }
 
 function newRequest(email, password){
-    return new Request("/authenticate", {
+    return new Request("/login-authenticate", {
         method: "POST",
         headers: {
             "Accept": "application/json",

@@ -27,7 +27,7 @@ public class LoginController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/authenticate")
+    @Path("/login-authenticate")
     public Response authenticate(AuthDTO authDTO){
         AuthReturnDTO authReturnDTO = new AuthReturnDTO();
 

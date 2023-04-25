@@ -11,6 +11,7 @@
 }*/
 
 function clearFields() {
+    document.getElementById("name").value = "";
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
 }
@@ -23,7 +24,8 @@ function register() {
     if (checkInput()) {
         //fetch api
         //make a new request
-        let request = newRequest(document.getElementById("email").value,
+        let request = newRequest(document.getElementById("name").value,
+            document.getElementById("email").value,
             document.getElementById("password").value);
 
         // HTTP codes -> https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status <-
@@ -42,23 +44,22 @@ function register() {
                 console.log(JSON.stringify(json));
 
                 alert(json.message);
-
-                if (json.message === "Connected as administrator") {
-                    location.href = "/admin";
-                }
-
-                if (json.message === "Connected as user") {
-                    location.href = "/main";
-                }
             });
     }
 }
 
 // if any field are blank, the user gets a feedback with a warning, informing which field they forgot
 function checkInput() {
-    if (document.getElementById("email").value === "" &&
+    if (document.getElementById("name").value === "" &&
+        document.getElementById("email").value === "" &&
         document.getElementById("password").value === "") {
         alert("Email and password fields are blank");
+
+        return false;
+    }
+
+    else if (document.getElementById("name").value === "") {
+        alert("Email fields are blank");
 
         return false;
     }
@@ -78,14 +79,15 @@ function checkInput() {
     return true;
 }
 
-function newRequest(email, password){
-    return new Request("/login-authenticate", {
+function newRequest(name, email, password){
+    return new Request("/register-authenticate", {
         method: "POST",
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
+            "name": name,
             "email": email,
             "password": password
         }),
