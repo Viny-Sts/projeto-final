@@ -1,7 +1,6 @@
 package br.edu.ifg.luziania.controller;
 
 import br.edu.ifg.luziania.model.dto.AuthDTO;
-import br.edu.ifg.luziania.model.dto.AuthReturnDTO;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
@@ -12,6 +11,8 @@ import javax.ws.rs.core.Response;
 @Path("")
 public class RegisterController {
     private final Template register;
+
+    private AuthDTO user;
 
     public RegisterController(Template register) {
         this.register = register;
@@ -27,11 +28,21 @@ public class RegisterController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/register-authenticate")
-    public Response authenticate(AuthDTO authDTO){
-        AuthReturnDTO authReturnDTO = new AuthReturnDTO();
+    @Path("/users")
+    public Response authenticate(AuthDTO authDTO) {
+        user = authDTO;
 
-        authReturnDTO.setMessage("Successfully registered. Now you can sign-in");
-        return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
+        return Response.status(Response.Status.CREATED).entity(authDTO).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/users")
+    public Response getUsers() {
+        if (user != null) {
+            return Response.ok().entity(user).build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
     }
 }

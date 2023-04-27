@@ -13,13 +13,11 @@ public class PageController {
     private final Template index;
     private final Template about;
     private final Template main;
-    private final Template admin;
 
-    public PageController(Template index, Template about, Template main, Template admin) {
+    public PageController(Template index, Template about, Template main) {
         this.index = index;
         this.about = about;
         this.main = main;
-        this.admin = admin;
     }
 
     @GET
@@ -41,12 +39,5 @@ public class PageController {
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getMain(){
         return main.instance();
-    }
-
-    @GET
-    @Path("/admin")
-    @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance getAdmin(){
-        return admin.instance();
     }
 }
