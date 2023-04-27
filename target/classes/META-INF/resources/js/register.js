@@ -1,3 +1,5 @@
+let users = []
+
 /*function click(){
     const inputField = document.getElementById('password');
     const submitButton = document.getElementById('submit-button');
@@ -44,6 +46,16 @@ function register() {
             .then(json => {
                 console.log(JSON.stringify(json));
 
+                let user = {
+                    "name": JSON.parse(JSON.stringify(json)).name,
+                    "email": JSON.parse(JSON.stringify(json)).email,
+                    "password": JSON.parse(JSON.stringify(json)).password
+                };
+
+                users.push(user);
+
+                console.log(users);
+
                 alert("Successfully registered. Now you can sign-in");
             });
     }
@@ -65,8 +77,22 @@ function updateTable() {
         .then(json => {
             console.log(JSON.stringify(json));
 
-            alert(json.message);
+            console.log(users);
+
+            let table = document.getElementById("user-table");
+
+            for (let i = 0; i < users.length; i++) {
+                let row = table.insertRow();
+
+                row.insertCell();
+                row.insertCell();
+                row.insertCell().innerText = JSON.parse(JSON.stringify(json)).name;
+                row.insertCell().innerText = JSON.parse(JSON.stringify(json)).email;
+                row.insertCell().innerText = JSON.parse(JSON.stringify(json)).password;
+            }
         });
+
+
 }
 
 // if any field are blank, the user gets a feedback with a warning, informing which field they forgot
