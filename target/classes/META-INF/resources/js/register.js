@@ -42,7 +42,7 @@ function register() {
 
             //only then, connect the user on their respective role (admin or user)
             .then(json => {
-                //console.log(JSON.stringify(json));
+                console.log(JSON.stringify(json));
 
                 alert("Successfully registered. Now you can sign-in");
             });
