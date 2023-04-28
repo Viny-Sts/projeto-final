@@ -1,3 +1,5 @@
+let userIndex = 3;
+
 let users = []
 
 /*function click(){
@@ -29,7 +31,8 @@ function register() {
 
         let request = newRequest(document.getElementById("name").value,
             document.getElementById("email").value,
-            document.getElementById("password").value);
+            document.getElementById("password").value,
+            document.getElementById("admin-yes"));
 
         // HTTP codes -> https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status <-
         //fetch it and verify if the response status code is HTTP 200 (if not, an error appears)
@@ -42,28 +45,34 @@ function register() {
                 }
             })
 
-            //only then, connect the user on their respective role (admin or user)
+            //only then, send that information inside this request
             .then(json => {
                 console.log(JSON.stringify(json));
 
                 let user = {
                     "name": JSON.parse(JSON.stringify(json)).name,
                     "email": JSON.parse(JSON.stringify(json)).email,
-                    "password": JSON.parse(JSON.stringify(json)).password
+                    "password": JSON.parse(JSON.stringify(json)).password,
+                    "admin": JSON.parse(JSON.stringify(json)).admin
                 };
 
                 users.push(user);
 
-                console.log(users);
+                updateTable();
 
                 alert("Successfully registered. Now you can sign-in");
             });
     }
 }
 
+// Create new table entries from HTTP GET Method
 function updateTable() {
+    //fetch api
+    //make a new request
     let getRequest = newGetRequest();
 
+    // HTTP codes -> https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status <-
+    //fetch it and verify if the response status code is HTTP 200 (if not, an error appears)
     fetch(getRequest)
         .then((response) => {
             if (response.status === 200) {
@@ -74,22 +83,24 @@ function updateTable() {
             }
         })
 
+        // and, only then, store the information inside the table
         .then(json => {
-            console.log(JSON.stringify(json));
-
-            console.log(users);
-
             let table = document.getElementById("user-table");
+            let row = table.insertRow();
 
-            for (let i = 0; i < users.length; i++) {
-                let row = table.insertRow();
+            userIndex++;
 
-                row.insertCell();
-                row.insertCell();
-                row.insertCell().innerText = JSON.parse(JSON.stringify(json)).name;
-                row.insertCell().innerText = JSON.parse(JSON.stringify(json)).email;
-                row.insertCell().innerText = JSON.parse(JSON.stringify(json)).password;
+            row.insertCell().innerText = userIndex.toString();
+
+            if (JSON.parse(JSON.stringify(json)).admin) {
+                row.insertCell().innerText = "Staff";
+            } else {
+                row.insertCell().innerText = "User";
             }
+
+            row.insertCell().innerText = JSON.parse(JSON.stringify(json)).name;
+            row.insertCell().innerText = JSON.parse(JSON.stringify(json)).email;
+            row.insertCell().innerText = JSON.parse(JSON.stringify(json)).password;
         });
 
 
@@ -136,7 +147,7 @@ function newGetRequest(){
     });
 }
 
-function newRequest(name, email, password){
+function newRequest(name, email, password, admin){
     return new Request("/users", {
         method: "POST",
         headers: {
@@ -146,14 +157,8 @@ function newRequest(name, email, password){
         body: JSON.stringify({
             "name": name,
             "email": email,
-            "password": password
+            "password": password,
+            "admin": admin.checked
         }),
     });
-}
-
-// just warns the user about the ongoing disconnection
-function disconnect(url) {
-    alert("This action will disconnect you. Click 'Ok' to proceed.");
-
-    location.href = url;
 }

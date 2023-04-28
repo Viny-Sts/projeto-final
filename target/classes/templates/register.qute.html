@@ -8,12 +8,12 @@
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="/js/register.js" type="application/javascript"></script>
 </head>
-<body class="container-fluid text-bg-primary p-5">
+<body class="container-fluid text-bg-dark p-5">
 <div class="container">
     <div class="row">
         <div class="col">
-            <a class="btn btn-outline-primary" href="/">Home</a>
-            <a class="btn btn-outline-danger" href="/login">Go back</a>
+            <a class="btn btn-primary" href="/">Home</a>
+            <a class="btn btn-danger" href="/login">Go back</a>
         </div>
         <div class="col text-end">
             <h1>StormTrack</h1>
@@ -34,6 +34,14 @@
                 <label class="form-label" for="password">Password</label> <br>
                 <input class="form-control-sm" id="password" type="password" placeholder="Insert your password.">
             </div>
+            <div class="mb-3">
+                <label class="form-label">Admin privileges</label> <br>
+
+                <label class="form-label" for="admin-yes">Yes</label>
+                <input class="form-control-sm" id="admin-yes" name="admin" type="radio">
+                <label class="form-label" for="admin-no">No</label>
+                <input class="form-control-sm" id="admin-no" name="admin" type="radio">
+            </div>
 
             <button class="btn btn-success" onclick="register()" type="button">Next</button>
             <button class="btn btn-secondary" onclick="clearFields()" type="button">Clear fields</button>
@@ -41,7 +49,6 @@
     </div>
     <div class="row mt-3">
         <h3>Account Management</h3>
-        <button class="btn btn-secondary" onclick="updateTable()" type="button">Update Table</button>
         <!-- Bootstrap tables -> https://getbootstrap.com/docs/5.3/content/tables/ <- -->
         <div class="table-responsive">
             <!-- small, dark, striped and bordered table with hover effect and margin-top-3 -->

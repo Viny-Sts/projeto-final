@@ -17,6 +17,7 @@ public class LoginController {
         this.login = login;
     }
 
+    // Return login html file and renders it on user screen when they access "/login" url
     @GET
     @Path("/login")
     @Produces(MediaType.TEXT_HTML)
@@ -24,6 +25,7 @@ public class LoginController {
         return login.instance();
     }
 
+    // Don't return any html, instead authenticate verifying user credentials
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
