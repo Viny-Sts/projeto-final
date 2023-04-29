@@ -1,7 +1,5 @@
 let userIndex = 3;
 
-let users = []
-
 /*function click(){
     const inputField = document.getElementById('password');
     const submitButton = document.getElementById('submit-button');
@@ -32,7 +30,7 @@ function register() {
         let request = newRequest(document.getElementById("name").value,
             document.getElementById("email").value,
             document.getElementById("password").value,
-            document.getElementById("admin-yes"));
+            document.getElementById("admin-yes").checked);
 
         // HTTP codes -> https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status <-
         //fetch it and verify if the response status code is HTTP 200 (if not, an error appears)
@@ -48,15 +46,6 @@ function register() {
             //only then, send that information inside this request
             .then(json => {
                 console.log(JSON.stringify(json));
-
-                let user = {
-                    "name": JSON.parse(JSON.stringify(json)).name,
-                    "email": JSON.parse(JSON.stringify(json)).email,
-                    "password": JSON.parse(JSON.stringify(json)).password,
-                    "admin": JSON.parse(JSON.stringify(json)).admin
-                };
-
-                users.push(user);
 
                 updateTable();
 
@@ -158,7 +147,7 @@ function newRequest(name, email, password, admin){
             "name": name,
             "email": email,
             "password": password,
-            "admin": admin.checked
+            "admin": admin
         }),
     });
 }
