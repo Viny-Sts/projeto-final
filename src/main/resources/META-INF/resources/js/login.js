@@ -19,7 +19,7 @@ function clearFields() {
 // there are two types of account, admin and user.
 // admin account -> takes you to administration page;
 // user account -> takes you to main page (probably where the API goes);
-function register() {
+function login() {
     if (checkInput()) {
         //fetch api
         //make a new request
