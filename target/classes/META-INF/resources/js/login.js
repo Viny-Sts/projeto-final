@@ -1,15 +1,3 @@
-/*function click(){
-    const inputField = document.getElementById('password');
-    const submitButton = document.getElementById('submit-button');
-
-    inputField.addEventListener('keyup', function(event) {
-        if (event.key === 13) {
-            event.preventDefault();
-            submitButton.register();
-        }
-    })
-}*/
-
 function clearFields() {
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
@@ -19,7 +7,7 @@ function clearFields() {
 // there are two types of account, admin and user.
 // admin account -> takes you to administration page;
 // user account -> takes you to main page (probably where the API goes);
-function register() {
+function login() {
     if (checkInput()) {
         //fetch api
         //make a new request
@@ -98,6 +86,6 @@ function disconnect(url) {
     if (confirmed) {
         location.href = url;
     } else {
-        // do nothing, user remains connected
+        // the code won't do anything, user remains connected
     }
 }

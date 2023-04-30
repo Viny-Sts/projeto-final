@@ -1,15 +1,3 @@
-/*function click(){
-    const inputField = document.getElementById('password');
-    const submitButton = document.getElementById('submit-button');
-
-    inputField.addEventListener('keyup', function(event) {
-        if (event.key === 13) {
-            event.preventDefault();
-            submitButton.register();
-        }
-    })
-}*/
-
 function clearFields() {
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
@@ -33,7 +21,7 @@ function login() {
                 if (response.status === 200) {
                     return response.json();
                 } else {
-                    throw new Error("An error was occurred" + response.status);
+                    throw new Error("An error has occurred" + response.status);
                 }
             })
 

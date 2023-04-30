@@ -1,17 +1,4 @@
 let users = []
-
-/*function click(){
-    const inputField = document.getElementById('password');
-    const submitButton = document.getElementById('submit-button');
-
-    inputField.addEventListener('keyup', function(event) {
-        if (event.key === 13) {
-            event.preventDefault();
-            submitButton.register();
-        }
-    })
-}*/
-
 function clearFields() {
     document.getElementById("name").value = "";
     document.getElementById("email").value = "";
