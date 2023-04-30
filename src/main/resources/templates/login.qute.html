@@ -10,11 +10,11 @@
 
     <script src="/js/login.js" type="application/javascript"></script>
 </head>
-<body class="container-fluid text-bg-primary p-5">
+<body class="container-fluid text-bg-dark p-5">
     <div class="container">
         <div class="row">
             <div class="col">
-                <a class="btn btn-outline-primary" href="/">Home</a>
+                <a class="btn btn-primary" href="/">Home</a>
             </div>
             <div class="col text-end">
                 <h1>StormTrack</h1>
@@ -22,7 +22,7 @@
         </div>
         <div class="row">
             <!-- forms -> https://www.w3schools.com/html/html_forms.asp <- -->
-            <form class="mt-3">
+            <form class="mt-3 text-center">
                 <h1>Sign in</h1>
                 <!-- margin-bottom-3 -->
                 <div class="mb-3">
@@ -37,12 +37,12 @@
 
                 <!-- non-outline bootstrap "success" and "secondary" buttons -->
                 <!-- the "clearFields()" function just fill all input fields with empty quotation marks -->
-                <button class="btn btn-success" onclick="register()" type="button" id="submit-button">Next</button>
+                <button class="btn btn-success" onclick="login()" type="button" id="submit-button">Next</button>
                 <button class="btn btn-secondary" onclick="clearFields()" type="button">Clear fields</button>
 
                 <!-- here the user can create a brand-new account, if they don't have one -->
-                <!-- currently, we don't have such feature, so the register page works exactly like this file -->
-                <!-- in other words, all the register page does is sign in, rather than creating a new account, as is proposed -->
+                <!-- currently, we don't have such feature, so the login page works exactly like this file -->
+                <!-- in other words, all the login page does is sign in, rather than creating a new account, as is proposed -->
                 <p class="form-text-white">
                     Don't have an account?<br>
                     Click <span onclick="window.location.href='/register';"

@@ -18,6 +18,7 @@ public class RegisterController {
         this.register = register;
     }
 
+    // Return register html file and renders it on user screen when they access "/register" url
     @GET
     @Path("/register")
     @Produces(MediaType.TEXT_HTML)
@@ -25,6 +26,7 @@ public class RegisterController {
         return register.instance();
     }
 
+    // Don't return any html, instead "saves" user credentials in a variable
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -35,6 +37,7 @@ public class RegisterController {
         return Response.status(Response.Status.CREATED).entity(authDTO).build();
     }
 
+    // Don't return any html, instead get user credentials "saved" before
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/users")
