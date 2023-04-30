@@ -1,17 +1,4 @@
 let users = []
-
-/*function click(){
-    const inputField = document.getElementById('password');
-    const submitButton = document.getElementById('submit-button');
-
-    inputField.addEventListener('keyup', function(event) {
-        if (event.key === 13) {
-            event.preventDefault();
-            submitButton.register();
-        }
-    })
-}*/
-
 function clearFields() {
     document.getElementById("name").value = "";
     document.getElementById("email").value = "";
@@ -70,7 +57,7 @@ function updateTable() {
                 return response.json();
 
             } else {
-                throw new Error("An error was occurred" + ". Error " + response.status);
+                throw new Error("An error has occurred" + ". Error " + response.status);
             }
         })
 
@@ -150,14 +137,3 @@ function newRequest(name, email, password){
         }),
     });
 }
-
-// just warns the user about the ongoing disconnection
-function disconnect(url) {
-    const confirmed = window.confirm("This action will disconnect you. Click 'Ok' to sign out or 'Cancel' to remain connected.");
-    if (confirmed) {
-        location.href = url;
-    } else {
-        // the code won't do anything, user remains connected
-    }
-}
-
