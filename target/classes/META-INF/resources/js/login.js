@@ -21,7 +21,7 @@ function login() {
                 if (response.status === 200) {
                     return response.json();
                 } else {
-                    throw new Error("An error was occurred" + response.status);
+                    throw new Error("An error has occurred" + response.status);
                 }
             })
 
@@ -78,14 +78,4 @@ function newRequest(email, password){
             "password": password
         }),
     });
-}
-
-// just warns the user about the ongoing disconnection
-function disconnect(url) {
-    const confirmed = window.confirm("This action will disconnect you. Click 'Ok' to sign out or 'Cancel' to remain connected.");
-    if (confirmed) {
-        location.href = url;
-    } else {
-        // the code won't do anything, user remains connected
-    }
 }
