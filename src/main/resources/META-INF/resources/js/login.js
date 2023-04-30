@@ -98,6 +98,6 @@ function disconnect(url) {
     if (confirmed) {
         location.href = url;
     } else {
-        // do nothing, user remains connected
+        // the code won't do anything, user remains connected
     }
 }
