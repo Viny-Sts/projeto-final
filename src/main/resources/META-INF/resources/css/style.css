@@ -1,3 +1,8 @@
 ::selection {
-    background-color: purple;
+    background-color: black;
+    color: white;
+}
+::-moz-selection {
+    background-color: white;
+    color: black;
 }
