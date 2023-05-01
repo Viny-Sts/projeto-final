@@ -44,6 +44,7 @@ public class RegisterController {
     public Response getUsers() {
         if (user != null) {
             return Response.ok().entity(user).build();
+
         } else {
             return Response.status(Response.Status.NOT_FOUND).build();
         }

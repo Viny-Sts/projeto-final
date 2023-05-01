@@ -1,4 +1,5 @@
-let users = []
+userIndex = 3;
+
 function clearFields() {
     document.getElementById("name").value = "";
     document.getElementById("email").value = "";
@@ -11,16 +12,17 @@ function clearFields() {
 // user account -> takes you to main page (probably where the API goes);
 function register() {
     if (checkInput()) {
+
         //fetch api
         //make a new request
-
-        let request = newRequest(document.getElementById("name").value,
+        let postRequest = newPostRequest(document.getElementById("name").value,
             document.getElementById("email").value,
-            document.getElementById("password").value);
+            document.getElementById("password").value,
+            document.getElementById("admin-yes").checked);
 
         // HTTP codes -> https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status <-
         //fetch it and verify if the response status code is HTTP 200 (if not, an error appears)
-        fetch(request)
+        fetch(postRequest)
             .then((response) => {
                 if (response.status === 201) {
                     return response.json();
@@ -31,17 +33,18 @@ function register() {
 
             //only then, connect the user on their respective role (admin or user)
             .then(json => {
-                console.log(JSON.stringify(json));
 
+                // Just pretending to be saving the information somewhere else (this variable is not used anywhere)
                 let user = {
                     "name": JSON.parse(JSON.stringify(json)).name,
                     "email": JSON.parse(JSON.stringify(json)).email,
-                    "password": JSON.parse(JSON.stringify(json)).password
-                };
+                    "password": JSON.parse(JSON.stringify(json)).password,
+                    "admin": JSON.parse(JSON.stringify(json)).admin
+                }
 
-                users.push(user);
+                console.log("User registered: ", user);
 
-                console.log(users);
+                updateTable();
 
                 alert("Successfully registered. Now you can sign-in");
             });
@@ -62,21 +65,25 @@ function updateTable() {
         })
 
         .then(json => {
-            console.log(JSON.stringify(json));
-
-            console.log(users);
-
             let table = document.getElementById("user-table");
+            let row = table.insertRow();
 
-            for (let i = 0; i < users.length; i++) {
-                let row = table.insertRow();
+            userIndex++;
 
-                row.insertCell();
-                row.insertCell();
-                row.insertCell().innerText = JSON.parse(JSON.stringify(json)).name;
-                row.insertCell().innerText = JSON.parse(JSON.stringify(json)).email;
-                row.insertCell().innerText = JSON.parse(JSON.stringify(json)).password;
+            row.insertCell().innerText = userIndex;
+
+            if (JSON.parse(JSON.stringify(json)).admin) {
+                row.insertCell().innerText = "Staff";
+
+            } else {
+                row.insertCell().innerText = "User";
             }
+
+            row.insertCell().innerText = JSON.parse(JSON.stringify(json)).name;
+            row.insertCell().innerText = JSON.parse(JSON.stringify(json)).email;
+            row.insertCell().innerText = JSON.parse(JSON.stringify(json)).password;
+
+            console.log("Added the entry", userIndex, "in the registered table below");
         });
 
 
@@ -87,25 +94,25 @@ function checkInput() {
     if (document.getElementById("name").value === "" &&
         document.getElementById("email").value === "" &&
         document.getElementById("password").value === "") {
-        alert("Email and password fields are blank");
+        alert("Name, email and password fields is blank");
 
         return false;
     }
 
     else if (document.getElementById("name").value === "") {
-        alert("Email fields are blank");
+        alert("Name field is blank");
 
         return false;
     }
 
     else if (document.getElementById("email").value === "") {
-        alert("Email fields are blank");
+        alert("Email field is blank");
 
         return false;
     }
 
     else if (document.getElementById("password").value === "") {
-        alert("Password fields are blank");
+        alert("Password field is blank");
 
         return false;
     }
@@ -123,7 +130,7 @@ function newGetRequest(){
     });
 }
 
-function newRequest(name, email, password){
+function newPostRequest(name, email, password, admin){
     return new Request("/users", {
         method: "POST",
         headers: {
@@ -133,7 +140,8 @@ function newRequest(name, email, password){
         body: JSON.stringify({
             "name": name,
             "email": email,
-            "password": password
+            "password": password,
+            "admin": admin
         }),
     });
 }

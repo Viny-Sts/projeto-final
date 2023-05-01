@@ -9,17 +9,19 @@ function clearFields() {
 // user account -> takes you to main page (probably where the API goes);
 function login() {
     if (checkInput()) {
+
         //fetch api
         //make a new request
-        let request = newRequest(document.getElementById("email").value,
+        let postRequest = newPostRequest(document.getElementById("email").value,
             document.getElementById("password").value);
 
         // HTTP codes -> https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status <-
         //fetch it and verify if the response status code is HTTP 200 (if not, an error appears)
-        fetch(request)
+        fetch(postRequest)
             .then((response) => {
                 if (response.status === 200) {
                     return response.json();
+
                 } else {
                     throw new Error("An error has occurred" + response.status);
                 }
@@ -66,8 +68,8 @@ function checkInput() {
     return true;
 }
 
-function newRequest(email, password){
-    return new Request("/login-authenticate", {
+function newPostRequest(email, password){
+    return new Request("/authenticate", {
         method: "POST",
         headers: {
             "Accept": "application/json",
