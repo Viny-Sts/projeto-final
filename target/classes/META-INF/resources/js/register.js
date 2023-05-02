@@ -21,13 +21,13 @@ function register() {
             document.getElementById("admin-yes").checked);
 
         // HTTP codes -> https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status <-
-        //fetch it and verify if the response status code is HTTP 200 (if not, an error appears)
+        //fetch it and verify if the response status code is HTTP 201 (if not, an error appears)
         fetch(postRequest)
             .then((response) => {
                 if (response.status === 201) {
                     return response.json();
                 } else {
-                    throw new Error("An error was occurred" + response.status);
+                    throw new Error("An error has occurred" + response.status);
                 }
             })
 
@@ -60,7 +60,7 @@ function updateTable() {
                 return response.json();
 
             } else {
-                throw new Error("An error was occurred" + ". Error " + response.status);
+                throw new Error("An error has occurred" + ". Error " + response.status);
             }
         })
 
@@ -94,7 +94,7 @@ function checkInput() {
     if (document.getElementById("name").value === "" &&
         document.getElementById("email").value === "" &&
         document.getElementById("password").value === "") {
-        alert("Name, email and password fields is blank");
+        alert("Name, email and password fields are blank");
 
         return false;
     }

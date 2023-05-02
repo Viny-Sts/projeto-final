@@ -5,11 +5,6 @@ function clearFields() {
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
 }
-
-// when it's called, it checks if the user forgot any fields (checkInput) and then verify if the account exists (authenticate)
-// there are two types of account, admin and user.
-// admin account -> takes you to administration page;
-// user account -> takes you to main page (probably where the API goes);
 function register() {
     if (checkInput()) {
 
@@ -21,13 +16,13 @@ function register() {
             document.getElementById("admin-yes").checked);
 
         // HTTP codes -> https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status <-
-        //fetch it and verify if the response status code is HTTP 200 (if not, an error appears)
+        //fetch it and verify if the response status code is HTTP 201 (if not, an error appears)
         fetch(postRequest)
             .then((response) => {
                 if (response.status === 201) {
                     return response.json();
                 } else {
-                    throw new Error("An error was occurred" + response.status);
+                    throw new Error("An error has occurred" + response.status);
                 }
             })
 
@@ -89,12 +84,12 @@ function updateTable() {
 
 }
 
-// if any field are blank, the user gets a feedback with a warning, informing which field they forgot
+// if any field is blank, the user gets a feedback with a warning, informing which field they forgot
 function checkInput() {
     if (document.getElementById("name").value === "" &&
         document.getElementById("email").value === "" &&
         document.getElementById("password").value === "") {
-        alert("Name, email and password fields is blank");
+        alert("Name, email and password fields are blank");
 
         return false;
     }

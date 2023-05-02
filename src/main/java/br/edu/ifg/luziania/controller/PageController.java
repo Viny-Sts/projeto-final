@@ -26,14 +26,14 @@ public class PageController {
     public TemplateInstance getIndex(){
         return index.instance();
     }
-
+    //
     @GET
     @Path("/about")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getAbout(){
         return about.instance();
     }
-
+   //
     @GET
     @Path("/main")
     @Produces(MediaType.TEXT_HTML)

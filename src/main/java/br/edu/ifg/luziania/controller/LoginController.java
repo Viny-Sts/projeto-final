@@ -30,7 +30,7 @@ public class LoginController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/authenticate")
-    public Response authenticate(AuthDTO authDTO){
+    public Response authenticate(AuthDTO authDTO) {
         AuthReturnDTO authReturnDTO = new AuthReturnDTO();
 
         if (authDTO.getEmail().equals("rodrigo@gmail.com") && authDTO.getPassword().equals("123") ||

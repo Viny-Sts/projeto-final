@@ -1,5 +1,6 @@
 package br.edu.ifg.luziania.model.dto;
-
+//class made for users, in which they're all objects.
+//everytime someone signs in or up, the class in instanced.
 public class AuthDTO {
     private String name;
     private String email;
