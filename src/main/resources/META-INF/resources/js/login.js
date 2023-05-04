@@ -8,41 +8,57 @@ function clearFields() {
 // admin account -> takes you to administration page;
 // user account -> takes you to main page (probably where the API goes);
 function login() {
-    if (checkInput()) {
+    const passwordInput = document.getElementById("password");
 
-        //fetch api
-        //make a new request
-        let postRequest = newPostRequest(document.getElementById("email").value,
-            document.getElementById("password").value);
+    passwordInput.addEventListener("keyup", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            submitForm();
+        }
+    });
 
-        // HTTP codes -> https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status <-
-        //fetch it and verify if the response status code is HTTP 200 (if not, an error appears)
-        fetch(postRequest)
-            .then((response) => {
-                if (response.status === 200) {
-                    return response.json();
+    function submitForm() {
+        if (checkInput()) {
+            // fetch api
+            // make a new request
+            let postRequest = newPostRequest(document.getElementById("email").value,
+                document.getElementById("password").value);
 
-                } else {
-                    throw new Error("An error has occurred" + response.status);
-                }
-            })
+            // HTTP codes -> https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status <-
+            // fetch it and verify if the response status code is HTTP 200 (if not, an error appears)
+            fetch(postRequest)
+                .then((response) => {
+                    if (response.status === 200) {
+                        return response.json();
 
-            //only then, connect the user on their respective role (admin or user)
-            .then(json => {
-                console.log(JSON.stringify(json));
+                    } else {
+                        throw new Error("An error has occurred" + response.status);
+                    }
+                })
 
-                alert(json.message);
+                //only then, connect the user on their respective role (admin or user)
+                .then(json => {
+                    console.log(JSON.stringify(json));
 
-                if (json.message === "Connected as administrator") {
-                    location.href = "/admin";
-                }
+                    alert(json.message);
 
-                if (json.message === "Connected as user") {
-                    location.href = "/main";
-                }
-            });
+                    if (json.message === "Connected as administrator") {
+                        location.href = "/admin";
+                    }
+
+                    if (json.message === "Connected as user") {
+                        location.href = "/main";
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    alert("An error occurred while trying to log in.");
+                });
+        }
     }
 }
+
+
 
 // if any field are blank, the user gets a feedback with a warning, informing which field they forgot
 function checkInput() {
