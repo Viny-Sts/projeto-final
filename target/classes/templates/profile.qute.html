@@ -18,6 +18,64 @@
             <h1>StormTrack</h1>
         </div>
     </div>
+    <h3>Profiles Management</h3>
+    <h5 class="text-center">User privileges</h5>
+    <div class="table-responsive">
+        <!-- small, dark, striped and bordered table with hover effect and margin-top-3 -->
+        <table class="table table-sm table-dark table-hover table-striped table-bordered mt-3">
+            <thead>
+            <tr>
+                <th>Direct Support</th>
+                <th>Search and filter data</th>
+                <th>Submit reports</th>
+                <th>Manage user account</th>
+                <th>Access and view data</th>
+                <th>Global Climatic Consult</th>
+                <th>Website Management</th>
+                <th>Manage content</th>
+                <th>Manage settings</th>
+                <th>Monitor activity</th>
+                <th>Manage security</th>
+                <th>Manage traffic</th>
+
+            </tr>
+            </thead>
+
+            <!-- table-group-divider -> white line above table header -->
+            <tbody class="table-group-divider">
+            <tr>
+                <th>Staff</th>
+                <td class="text-center">Yes</td>
+                <td class="text-center">Yes</td>
+                <td class="text-center">No</td>
+                <td class="text-center">Yes</td>
+                <td class="text-center">Yes</td>
+                <td class="text-center">Yes</td>
+                <td class="text-center">Yes</td>
+                <td class="text-center">Yes</td>
+                <td class="text-center">Yes</td>
+                <td class="text-center">Yes</td>
+                <td class="text-center">Yes</td>
+
+            </tr>
+            <tr>
+                <th>User</th>
+                <td class="text-center">Yes</td>
+                <td class="text-center">Yes</td>
+                <td class="text-center">Yes</td>
+                <td class="text-center">Yes</td>
+                <td class="text-center">Yes</td>
+                <td class="text-center">No</td>
+                <td class="text-center">No</td>
+                <td class="text-center">No</td>
+                <td class="text-center">No</td>
+                <td class="text-center">No</td>
+                <td class="text-center">No</td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <div class="row mt-3">
             <div class="col-2">
                 <label class="form-label" for="profile-name">Profile Name</label> <br>
@@ -38,6 +96,10 @@
 
                 <label class="form-label" for="climatic-consult">Global Climatic Consult</label>
                 <input class="form-control-sm" id="climatic-consult" type="checkbox"> <br>
+
+                <label class="form-label" for="manage-traffic">Manage traffic</label>
+                <input class="form-control-sm" id="manage-traffic" type="checkbox"><br>
+
             </div>
             <div class="col">
 
@@ -58,18 +120,20 @@
 
                 <input class="form-control-sm" id="manage-security" type="checkbox">
                 <label class="form-label" for="manage-security">Manage security</label> <br>
+
+
             </div>
     </div>
     <div class="row mt-3">
         <div class="col">
-            <button class="btn btn-success" onclick="addProfile()">Add a profile</button>
-            <button class="btn btn-primary">Assign a role</button>
-            <button class="btn btn-danger">Remove a profile</button>
-        </div>
+            <button class="btn btn-success" onclick="addProfile()">Add profile</button>
+            <button class="btn btn-primary">Assign role</button>
+            <button class="btn btn-danger">Remove profile</button>
+        </div><h3>Account Management</h3>
+        <h5 class="text-center">Accounts and privileges</h5>
     </div>
     <div class="row mt-3">
-        <h3>Account Management</h3>
-        <h5 class="text-center">Accounts and privileges</h5>
+
         <!-- Bootstrap tables -> https://getbootstrap.com/docs/5.3/content/tables/ <- -->
         <div class="table-responsive">
             <!-- small, dark, striped and bordered table with hover effect and margin-top-3 -->
@@ -89,6 +153,8 @@
                         <th>Manage settings</th>
                         <th>Monitor activity</th>
                         <th>Manage security</th>
+                        <th>Manage traffic</th>
+
                     </tr>
                 </thead>
 

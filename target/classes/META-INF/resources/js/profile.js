@@ -11,7 +11,8 @@ function addProfile() {
         document.getElementById("manage-content").checked,
         document.getElementById("manage-settings").checked,
         document.getElementById("monitor-activity").checked,
-        document.getElementById("manage-security").checked];
+        document.getElementById("manage-security").checked,
+        document.getElementById("manage-traffic").checked];
 
     let table = document.getElementById("profile-table");
     let row = table.insertRow();
@@ -22,10 +23,12 @@ function addProfile() {
     row.insertCell().innerText = document.getElementById("profile-name").value;
 
     for (let i = 0; i < permissions.length; i++) {
-        if (permissions[i] === true)
-            row.insertCell().innerText = "Yes";
-        else
+        if (permissions[i] === true) {
+            row.insertCell().innerText = "Yes"
+
+        } else {
             row.insertCell().innerText = "No";
+        }
     }
 
     alert("Profile added");
