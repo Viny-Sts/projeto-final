@@ -10,12 +10,9 @@
 <body class="container-fluid text-bg-dark p-5">
 <div class="container">
     <div>
-        <button class="btn btn-success">Add a profile</button>
-        <button class="btn btn-primary">Assign a role</button>
-        <button class="btn btn-danger">Remove a profile</button>
-
-
-
+        <button class="btn btn-success" id="addBtn">Add a profile</button>
+        <button class="btn btn-primary" id="assignBtn">Assign a role</button>
+        <button class="btn btn-danger" id="removeBtn">Remove a profile</button>
     </div>
     <div class="row mt-3">
         <h3>Account Management</h3>
@@ -26,19 +23,17 @@
             <table class="table table-sm table-dark table-hover table-striped table-bordered mt-3">
                 <thead>
                 <tr>
-
                     <th>Direct Support</th>
                     <th>Search and filter data</th>
                     <th>Submit reports</th>
                     <th>Manage user account</th>
-                    <th>Global Climatic Consult</th>
                     <th>Access and view data</th>
+                    <th>Global Climatic Consult</th>
                     <th>Website Management</th>
                     <th>Manage content</th>
                     <th>Manage settings</th>
                     <th>Monitor activity</th>
                     <th>Manage security</th>
-
                 </tr>
                 </thead>
 
@@ -48,20 +43,65 @@
                     <th>Staff</th>
                     <td class="text-center">Yes</td>
                     <td class="text-center">Yes</td>
-                    <td class="text-center">Yes</td>
-                    <td class="text-center">Yes</td>
-                </tr>
-                <tr>
-                    <th>User</th>
                     <td class="text-center">No</td>
                     <td class="text-center">Yes</td>
                     <td class="text-center">Yes</td>
                     <td class="text-center">Yes</td>
+                    <td class="text-center">Yes</td>
+                    <td class="text-center">Yes</td>
+                    <td class="text-center">Yes</td>
+                    <td class="text-center">Yes</td>
+
+
+                </tr>
+                <tr>
+                    <th>User</th>
+                    <td class="text-center">Yes</td>
+                    <td class="text-center">Yes</td>
+                    <td class="text-center">Yes</td>
+                    <td class="text-center">Yes</td>
+                    <td class="text-center">Yes</td>
+                    <td class="text-center">No</td>
+                    <td class="text-center">No</td>
+                    <td class="text-center">No</td>
+                    <td class="text-center">No</td>
+                    <td class="text-center">No</td>
+
+
+
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
+
+    <script>
+        // Get the buttons by their IDs
+        const addBtn = document.getElementById("addBtn");
+        const assignBtn = document.getElementById("assignBtn");
+        const removeBtn = document.getElementById("removeBtn");
+
+        // Add event listeners to the buttons and specify the functions to be executed
+        addBtn.addEventListener("click", addProfile);
+        assignBtn.addEventListener("click", assignRole);
+        removeBtn.addEventListener("click", removeProfile);
+
+        function addProfile() {
+            // Code to add a profile goes here
+            console.log("Profile added");
+        }
+
+        function assignRole() {
+            // Code to assign a role goes here
+            console.log("Role assigned");
+        }
+
+        function removeProfile() {
+            // Code to remove a profile goes here
+            console.log("Profile removed");
+        }
+    </script>
+
 </div>
 </body>
 </html>
