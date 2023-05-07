@@ -90,7 +90,7 @@ function checkInput() {
     if (document.getElementById("name").value === "" &&
         document.getElementById("email").value === "" &&
         document.getElementById("password").value === "") {
-        alert("Name, email and password fields are blank");
+        alert("Name, email and password fields is blank");
 
         return false;
     }
