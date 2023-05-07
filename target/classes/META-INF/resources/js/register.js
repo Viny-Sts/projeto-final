@@ -46,6 +46,7 @@ function register() {
     }
 }
 
+
 function updateTable() {
     let getRequest = newGetRequest();
 

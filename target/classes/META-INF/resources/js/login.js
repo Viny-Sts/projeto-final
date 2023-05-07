@@ -33,16 +33,18 @@ function login() {
 
                 alert(json.message);
 
-                if (json.message === "Connected as administrator") {
+                if (json.message === "Connected as admin!") {
                     location.href = "/admin";
                 }
 
-                if (json.message === "Connected as user") {
+                if (json.message === "Connected as user!") {
                     location.href = "/main";
                 }
             });
     }
 }
+
+
 
 // if any field are blank, the user gets a feedback with a warning, informing which field they forgot
 function checkInput() {
