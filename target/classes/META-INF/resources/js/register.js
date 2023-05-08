@@ -1,12 +1,100 @@
 userIndex = 3;
+// if any field is blank, the user gets a feedback with a warning, informing which field they forgot
 
-function clearFields() {
-    document.getElementById("name").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("password").value = "";
+function checkInput() {
+    if (document.getElementById("name").value === "" &&
+        document.getElementById("email").value === "" &&
+        document.getElementById("password").value === "") {
+        alert("Name, email and password fields are blank");
+
+        return false;
+    }
+
+    else if (document.getElementById("name").value === "") {
+        alert("Name field is blank");
+
+        return false;
+    }
+
+    else if (document.getElementById("email").value === "") {
+        alert("Email field is blank");
+
+        return false;
+    }
+
+    else if (document.getElementById("password").value === "") {
+        alert("Password field is blank");
+
+        return false;
+    }
+
+    return true;
+}
+function newPostRequest(name, email, password, admin){
+    return new Request("/users", {
+        //creates a new http post request to the server to add a new user.
+        //using the POST method
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "name": name,
+            "email": email,
+            "password": password,
+            "admin": admin
+        }),
+    });
+}
+function newGetRequest(){
+    return new Request("/users", {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        }
+    });
+}
+function updateTable() {
+    let getRequest = newGetRequest();
+
+    fetch(getRequest)
+        .then((response) => {
+            if (response.status === 200) {
+                return response.json();
+
+            } else {
+                throw new Error("An error has occurred" + ". Error " + response.status);
+            }
+        })
+
+        .then(json => {
+            let table = document.getElementById("user-table");
+            let row = table.insertRow();
+
+            userIndex++;
+
+            row.insertCell().innerText = userIndex;
+
+            if (JSON.parse(JSON.stringify(json)).admin) {
+                row.insertCell().innerText = "Staff";
+
+            } else {
+                row.insertCell().innerText = "User";
+            }
+
+            row.insertCell().innerText = JSON.parse(JSON.stringify(json)).name;
+            row.insertCell().innerText = JSON.parse(JSON.stringify(json)).email;
+            row.insertCell().innerText = JSON.parse(JSON.stringify(json)).password;
+
+            console.log("Added the entry", userIndex, "in the registered table below");
+        });
+
+
 }
 function register() {
-    if (checkInput()) {
+    if (checkInput() === true) {
 
         //fetch api
         //make a new request
@@ -47,97 +135,8 @@ function register() {
 }
 
 
-function updateTable() {
-    let getRequest = newGetRequest();
-
-    fetch(getRequest)
-        .then((response) => {
-            if (response.status === 200) {
-                return response.json();
-
-            } else {
-                throw new Error("An error has occurred" + ". Error " + response.status);
-            }
-        })
-
-        .then(json => {
-            let table = document.getElementById("user-table");
-            let row = table.insertRow();
-
-            userIndex++;
-
-            row.insertCell().innerText = userIndex;
-
-            if (JSON.parse(JSON.stringify(json)).admin) {
-                row.insertCell().innerText = "Staff";
-
-            } else {
-                row.insertCell().innerText = "User";
-            }
-
-            row.insertCell().innerText = JSON.parse(JSON.stringify(json)).name;
-            row.insertCell().innerText = JSON.parse(JSON.stringify(json)).email;
-            row.insertCell().innerText = JSON.parse(JSON.stringify(json)).password;
-
-            console.log("Added the entry", userIndex, "in the registered table below");
-        });
-
-
-}
-
-// if any field is blank, the user gets a feedback with a warning, informing which field they forgot
-function checkInput() {
-    if (document.getElementById("name").value === "" &&
-        document.getElementById("email").value === "" &&
-        document.getElementById("password").value === "") {
-        alert("Name, email and password fields is blank");
-
-        return false;
-    }
-
-    else if (document.getElementById("name").value === "") {
-        alert("Name field is blank");
-
-        return false;
-    }
-
-    else if (document.getElementById("email").value === "") {
-        alert("Email field is blank");
-
-        return false;
-    }
-
-    else if (document.getElementById("password").value === "") {
-        alert("Password field is blank");
-
-        return false;
-    }
-
-    return true;
-}
-
-function newGetRequest(){
-    return new Request("/users", {
-        method: "GET",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        }
-    });
-}
-
-function newPostRequest(name, email, password, admin){
-    return new Request("/users", {
-        method: "POST",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            "name": name,
-            "email": email,
-            "password": password,
-            "admin": admin
-        }),
-    });
+function clearFields() {
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
 }

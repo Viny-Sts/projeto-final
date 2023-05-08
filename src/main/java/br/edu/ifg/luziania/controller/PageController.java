@@ -14,12 +14,15 @@ public class PageController {
     private final Template about;
     private final Template main;
     private final Template profile;
-    //esse constrututor receber parametros do tipo tamplate e os atribui às variaveis de instancia abaixo.
-    public PageController(Template index, Template about, Template main, Template profile) {
+    private final Template admin;
+
+    //esse constrututor abaixo recebe cinco parametros do tipo tamplate e os atribui às variaveis de instancia acima.
+    public PageController(Template index, Template about, Template main, Template profile, Template admin) {
         this.index = index;
         this.about = about;
         this.main = main;
         this.profile = profile;
+        this.admin = admin;
     }
     //A classe PageController possui três métodos anotados com @GET e @Path para atender as solicitações HTTP GET para as rotas /, /about e main. Cada um desses métodos retorna uma instância do modelo de página correspondente através do método instance() da variável de instância correspondente.
 
@@ -50,5 +53,12 @@ public class PageController {
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getProfile(){
         return profile.instance();
+    }
+
+    @GET
+    @Path("/admin")
+    @Produces(MediaType.TEXT_HTML)
+    public TemplateInstance getAdmin(){
+        return admin.instance();
     }
 }
