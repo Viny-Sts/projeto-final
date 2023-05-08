@@ -12,11 +12,14 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <a class="btn btn-primary" href="/">Home</a>
+            <button class="btn btn-primary" onclick="window.location.href='/'" type="button">Home</button>
+            <button class="btn btn-warning" onclick="window.location.href='/admin'" type="button">Admin</button>
         </div>
+
         <div class="col text-end">
             <h1>StormTrack</h1>
         </div>
+
     </div>
     <h3>Profiles Management</h3>
     <h5 class="text-center">User privileges</h5>
@@ -25,6 +28,7 @@
         <table class="table table-sm table-dark table-hover table-striped table-bordered mt-3">
             <thead>
             <tr>
+                <th>User Type</th>
                 <th>Direct Support</th>
                 <th>Search and filter data</th>
                 <th>Submit reports</th>
@@ -56,6 +60,8 @@
                 <td class="text-center">Yes</td>
                 <td class="text-center">Yes</td>
                 <td class="text-center">Yes</td>
+                <td class="text-center">Yes</td>
+
 
             </tr>
             <tr>
@@ -71,6 +77,8 @@
                 <td class="text-center">No</td>
                 <td class="text-center">No</td>
                 <td class="text-center">No</td>
+                <td class="text-center">No</td>
+
 
             </tr>
             </tbody>

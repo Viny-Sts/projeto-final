@@ -33,11 +33,11 @@ function login() {
 
                 alert(json.message);
 
-                if (json.message === "Connected as admin!") {
+                if (json.message === "Connected as administrator") {
                     location.href = "/admin";
                 }
 
-                if (json.message === "Connected as user!") {
+                if (json.message === "Connected as user") {
                     location.href = "/main";
                 }
             });

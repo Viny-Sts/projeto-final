@@ -1,7 +1,8 @@
 let profileIndex = 0;
 
 function addProfile() {
-    let permissions = [document.getElementById("direct-support").checked,
+    let permissions = [
+        document.getElementById("direct-support").checked,
         document.getElementById("search-filter-data").checked,
         document.getElementById("submit-reports").checked,
         document.getElementById("manage-user-account").checked,
@@ -12,7 +13,9 @@ function addProfile() {
         document.getElementById("manage-settings").checked,
         document.getElementById("monitor-activity").checked,
         document.getElementById("manage-security").checked,
-        document.getElementById("manage-traffic").checked];
+        document.getElementById("manage-traffic").checked
+    ];
+
 
     let table = document.getElementById("profile-table");
     let row = table.insertRow();
@@ -31,5 +34,5 @@ function addProfile() {
         }
     }
 
-    alert("Profile added");
+    window.alert("Profile added.");
 }

@@ -31,5 +31,5 @@ function addProfile() {
         }
     }
 
-    alert("Profile added");
+    window.alert("Profile added.");
 }
