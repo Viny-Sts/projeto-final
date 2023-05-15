@@ -56,9 +56,6 @@ function login() {
                 if (json.message === "Connected as user") {
                     location.href = "/main";
                 }
-                if (json.message === "Invalid Credentials") {
-                    alert("Invalid cradentials")
-                }
             });
     }
 }
