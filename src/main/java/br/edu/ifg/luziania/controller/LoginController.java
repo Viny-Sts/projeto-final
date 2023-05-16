@@ -5,10 +5,11 @@ import br.edu.ifg.luziania.model.dto.AuthReturnDTO;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
+//@Inject
 @Path("")
 public class LoginController {
     private final Template login;
@@ -33,23 +34,25 @@ public class LoginController {
     public Response authenticate(AuthDTO authDTO) {
         AuthReturnDTO authReturnDTO = new AuthReturnDTO();
 
-        if (authDTO.getEmail().equals("rodrigo@gmail.com") && authDTO.getPassword().equals("123") ||
-                authDTO.getEmail().equals("vinicius@gmail.com") && authDTO.getPassword().equals("123")) {
-            authReturnDTO.setMessage("Connected as user");
+        //if (authDTO.getEmail().equals("rodrigo@gmail.com") && authDTO.getPassword().equals("123") ||
+                //authDTO.getEmail().equals("vinicius@gmail.com") && authDTO.getPassword().equals("123")) {
+            //authReturnDTO.setMessage("Connected as user");
 
-            return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
-        }
+            //return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
+        //}
 
-        else if (authDTO.getEmail().equals("admin@staff.com") && authDTO.getPassword().equals("123")) {
-            authReturnDTO.setMessage("Connected as administrator");
+        //else if (authDTO.getEmail().equals("admin@staff.com") && authDTO.getPassword().equals("123")) {
+            //authReturnDTO.setMessage("Connected as administrator");
 
-            return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
-        }
+            //return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
+        //}
 
-        else {
-            authReturnDTO.setMessage("Invalid credentials");
+        //else {
+            //authReturnDTO.setMessage("Invalid credentials");
 
-            return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
-        }
+            //return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
+        //}
+
+        // >>return Response.ok();
     }
 }

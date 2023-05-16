@@ -1,6 +1,11 @@
-C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\model\dto\AuthReturnDTO.java
-C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\controller\PageController.java
-C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\controller\RegisterController.java
-C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\controller\LoginController.java
-C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\RunThisClass.java
-C:\Users\vinic\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\model\dto\AuthDTO.java
+C:\Users\20211080030049\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\RunThisClass.java
+C:\Users\20211080030049\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\controller\AboutController.java
+C:\Users\20211080030049\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\controller\MainController.java
+C:\Users\20211080030049\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\model\entity\User.java
+C:\Users\20211080030049\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\model\dto\AuthDTO.java
+C:\Users\20211080030049\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\controller\ProfileController.java
+C:\Users\20211080030049\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\model\dto\AuthReturnDTO.java
+C:\Users\20211080030049\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\controller\PageController.java
+C:\Users\20211080030049\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\controller\AdminController.java
+C:\Users\20211080030049\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\controller\LoginController.java
+C:\Users\20211080030049\IdeaProjects\projeto-final\src\main\java\br\edu\ifg\luziania\controller\RegisterController.java
