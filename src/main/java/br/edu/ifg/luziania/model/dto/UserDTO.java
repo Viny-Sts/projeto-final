@@ -1,11 +1,20 @@
 package br.edu.ifg.luziania.model.dto;
 //class made for users, in which they're all objects.
 //everytime someone signs in or up, the class in instanced.
-public class AuthDTO {
+public class UserDTO {
+    private String name;
     private String email;
     private String password;
 
     private Boolean admin;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getEmail() {
         return email;

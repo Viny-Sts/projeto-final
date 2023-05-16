@@ -1,6 +1,53 @@
 userIndex = 3;
 // if any field is blank, the user gets a feedback with a warning, informing which field they forgot
 
+function register() {
+    if (checkInput() === true) {
+        //fetch api
+        //make a new request
+        var userDTO = getUserDTO();
+        let postRequest = newPostRequest(userDTO);
+
+        // HTTP codes -> https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status <-
+        //fetch it and verify if the response status code is HTTP 201 (if not, an error appears)
+        fetch(postRequest)
+            .then((response) => {
+                if (response.status === 201) {
+                    return response.json();
+                } else {
+                    throw new Error("An error has occurred" + response.status);
+                }
+            })
+
+            //only then, connect the user on their respective role (admin or user)
+            .then(json => {
+
+                // Just pretending to be saving the information somewhere else (this variable is not used anywhere)
+                let user = {
+                    "name": JSON.parse(JSON.stringify(json)).name,
+                    "email": JSON.parse(JSON.stringify(json)).email,
+                    "password": JSON.parse(JSON.stringify(json)).password,
+                    "admin": JSON.parse(JSON.stringify(json)).admin
+                }
+
+                console.log("User registered: ", user);
+
+                updateTable();
+
+                alert("Successfully registered. Now you can sign-in");
+            });
+    }
+}
+
+function getUserDTO() {
+    return {
+        "name": document.getElementById("name").value,
+        "email": document.getElementById("email").value,
+        "password": document.getElementById("password").value,
+        "admin-yes": document.getElementById("admin-yes").checked
+    }
+}
+
 function checkInput() {
     if (document.getElementById("name").value === "" &&
         document.getElementById("email").value === "" &&
@@ -39,12 +86,7 @@ function newPostRequest(name, email, password, admin){
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-            "name": name,
-            "email": email,
-            "password": password,
-            "admin": admin
-        }),
+        body: JSON.stringify(userDTO),
     });
 }
 function newGetRequest(){
@@ -93,47 +135,6 @@ function updateTable() {
 
 
 }
-function register() {
-    if (checkInput() === true) {
-
-        //fetch api
-        //make a new request
-        let postRequest = newPostRequest(document.getElementById("name").value,
-            document.getElementById("email").value,
-            document.getElementById("password").value,
-            document.getElementById("admin-yes").checked);
-
-        // HTTP codes -> https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status <-
-        //fetch it and verify if the response status code is HTTP 201 (if not, an error appears)
-        fetch(postRequest)
-            .then((response) => {
-                if (response.status === 201) {
-                    return response.json();
-                } else {
-                    throw new Error("An error has occurred" + response.status);
-                }
-            })
-
-            //only then, connect the user on their respective role (admin or user)
-            .then(json => {
-
-                // Just pretending to be saving the information somewhere else (this variable is not used anywhere)
-                let user = {
-                    "name": JSON.parse(JSON.stringify(json)).name,
-                    "email": JSON.parse(JSON.stringify(json)).email,
-                    "password": JSON.parse(JSON.stringify(json)).password,
-                    "admin": JSON.parse(JSON.stringify(json)).admin
-                }
-
-                console.log("User registered: ", user);
-
-                updateTable();
-
-                alert("Successfully registered. Now you can sign-in");
-            });
-    }
-}
-
 
 function clearFields() {
     document.getElementById("name").value = "";

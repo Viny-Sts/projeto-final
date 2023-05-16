@@ -16,8 +16,8 @@ public class UserDAO {
         entityManager.persist(entity);
     }
 
-    public User getById(String email, String senha, Integer id) {
-        Query query = entityManager.createQuery("from User where email = :email and senha = :senha and id = :id");
+    public User getById(String email, String password, Integer id) {
+        Query query = entityManager.createQuery("from User where email = :email and password = :password and id = :id");
         query.setParameter("id", id);
         return (User) query.getSingleResult();
     }

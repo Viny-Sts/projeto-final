@@ -1,6 +1,8 @@
 package br.edu.ifg.luziania.controller;
 
 import br.edu.ifg.luziania.model.dto.AuthDTO;
+import br.edu.ifg.luziania.model.dto.UserDTO;
+import br.edu.ifg.luziania.model.entity.User;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
@@ -12,7 +14,7 @@ import javax.ws.rs.core.Response;
 public class RegisterController {
     private final Template register;
 
-    private AuthDTO user;
+    private UserDTO user;
 
     public RegisterController(Template register) {
         this.register = register;
@@ -32,10 +34,10 @@ public class RegisterController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/users")
-    public Response authenticate(AuthDTO authDTO) {
-        user = authDTO;
+    public Response authenticate(UserDTO userDTO) {
+        user = userDTO;
 
-        return Response.status(Response.Status.CREATED).entity(authDTO).build();
+        return Response.status(Response.Status.CREATED).entity(userDTO).build();
     }
 
     // Don't return any html, instead get user credentials "saved" before
