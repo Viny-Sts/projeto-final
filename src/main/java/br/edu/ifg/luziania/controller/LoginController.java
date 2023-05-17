@@ -34,24 +34,24 @@ public class LoginController {
     public Response authenticate(AuthDTO authDTO) {
         AuthReturnDTO authReturnDTO = new AuthReturnDTO();
 
-        //if (authDTO.getEmail().equals("rodrigo@gmail.com") && authDTO.getPassword().equals("123") ||
-                //authDTO.getEmail().equals("vinicius@gmail.com") && authDTO.getPassword().equals("123")) {
-            //authReturnDTO.setMessage("Connected as user");
+        if (authDTO.getEmail().equals("rodrigo@gmail.com") && authDTO.getPassword().equals("123") ||
+                authDTO.getEmail().equals("vinicius@gmail.com") && authDTO.getPassword().equals("123")) {
+            authReturnDTO.setMessage("Connected as user");
 
-            //return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
-        //}
+            return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
+        }
 
-        //else if (authDTO.getEmail().equals("admin@staff.com") && authDTO.getPassword().equals("123")) {
-            //authReturnDTO.setMessage("Connected as administrator");
+        else if (authDTO.getEmail().equals("admin@staff.com") && authDTO.getPassword().equals("123")) {
+            authReturnDTO.setMessage("Connected as administrator");
 
-            //return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
-        //}
+            return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
+        }
 
-        //else {
-            //authReturnDTO.setMessage("Invalid credentials");
+        else {
+            authReturnDTO.setMessage("Invalid credentials");
 
-            //return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
-        //}
+            return Response.ok(authReturnDTO, MediaType.APPLICATION_JSON).build();
+        }
 
         // >>return Response.ok();
     }

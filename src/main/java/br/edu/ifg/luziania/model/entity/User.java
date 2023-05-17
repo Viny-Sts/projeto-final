@@ -5,9 +5,6 @@ import javax.validation.Constraint;
 
 @Entity
 @Table
-@Constraint(uniqueConstraints = {
-        Constraint
-})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
