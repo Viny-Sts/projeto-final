@@ -16,9 +16,16 @@ public class UserDAO {
         entityManager.persist(entity);
     }
 
-    public User getById(String email, String password, Integer id) {
-        Query query = entityManager.createQuery("from User where email = :email and password = :password and id = :id");
+    public User getById(Integer id) {
+        Query query = entityManager.createQuery("from User where id = :id");
         query.setParameter("id", id);
+        return (User) query.getSingleResult();
+    }
+
+    public User getByEmailAndPassword(String email, String password){
+        Query query = entityManager.createQuery("from User where email = :email and password = :password");
+        query.setParameter("email", email);
+        query.setParameter("password", password);
         return (User) query.getSingleResult();
     }
 }

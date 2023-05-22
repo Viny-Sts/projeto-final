@@ -4,6 +4,7 @@ public class UserReturnDTO {
     private Integer status;
 
     private String message;
+    private String url;
 
     private Boolean isAuth;
 
@@ -21,6 +22,14 @@ public class UserReturnDTO {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Boolean getAuth() {

@@ -8,17 +8,18 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-public class MainController {
-    private final Template main;
+@Path("")
+public class IndexController {
+    private final Template index;
 
-    public MainController(Template main) {
-        this.main = main;
+    public IndexController(Template index) {
+        this.index = index;
     }
 
     @GET
-    @Path("/main")
+    @Path("/")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance getMain(){
-        return main.instance();
+    public TemplateInstance getIndex(){
+        return index.instance();
     }
 }
