@@ -1,53 +1,3 @@
-userIndex = 3;
-// if any field is blank, the user gets a feedback with a warning, informing which field they forgot
-
-function register() {
-    if (checkInput() === true) {
-        //fetch api
-        //make a new request
-        var userDTO = getUserDTO();
-        let postRequest = newPostRequest(userDTO);
-
-        // HTTP codes -> https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status <-
-        //fetch it and verify if the response status code is HTTP 201 (if not, an error appears)
-        fetch(postRequest)
-            .then((response) => {
-                if (response.status === 201) {
-                    return response.json();
-                } else {
-                    throw new Error("An error has occurred" + response.status);
-                }
-            })
-
-            //only then, connect the user on their respective role (admin or user)
-            .then(json => {
-
-                // Just pretending to be saving the information somewhere else (this variable is not used anywhere)
-                let user = {
-                    "name": JSON.parse(JSON.stringify(json)).name,
-                    "email": JSON.parse(JSON.stringify(json)).email,
-                    "password": JSON.parse(JSON.stringify(json)).password,
-                    "admin": JSON.parse(JSON.stringify(json)).admin
-                }
-
-                console.log("User registered: ", user);
-
-                updateTable();
-
-                alert("Successfully registered. Now you can sign-in");
-            });
-    }
-}
-
-function getUserDTO() {
-    return {
-        "name": document.getElementById("name").value,
-        "email": document.getElementById("email").value,
-        "password": document.getElementById("password").value,
-        "admin-yes": document.getElementById("admin-yes").checked
-    }
-}
-
 function checkInput() {
     if (document.getElementById("name").value === "" &&
         document.getElementById("email").value === "" &&
@@ -77,10 +27,44 @@ function checkInput() {
 
     return true;
 }
-function newPostRequest(name, email, password, admin){
+
+function register() {
+    if (checkInput() === true) {
+        var userDTO = getUserDTO();
+        let postRequest = newPostRequest(userDTO);
+
+        fetch(postRequest)
+            .then((response) => {
+                if (response.status === 200) {
+                    return response.json();
+
+                } else {
+                    throw new Error("An error has occurred " + response.status);
+                }
+            })
+
+            //only then, connect the user on their respective role (admin or user)
+            .then(json => {
+                alert(json.message);
+
+                window.location.href = window.location.origin + json.url;
+
+                //updateTable();
+            });
+    }
+}
+
+function getUserDTO() {
+    return {
+        "name": document.getElementById("name").value,
+        "email": document.getElementById("email").value,
+        "password": document.getElementById("password").value
+    }
+}
+
+
+function newPostRequest(userDTO){
     return new Request("/users", {
-        //creates a new http post request to the server to add a new user.
-        //using the POST method
         method: "POST",
         headers: {
             "Accept": "application/json",
@@ -89,6 +73,14 @@ function newPostRequest(name, email, password, admin){
         body: JSON.stringify(userDTO),
     });
 }
+
+function clearFields() {
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+}
+
+/*
 function newGetRequest(){
     return new Request("/users", {
         method: "GET",
@@ -98,6 +90,8 @@ function newGetRequest(){
         }
     });
 }
+*/
+/*
 function updateTable() {
     let getRequest = newGetRequest();
 
@@ -134,10 +128,4 @@ function updateTable() {
         });
 
 
-}
-
-function clearFields() {
-    document.getElementById("name").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("password").value = "";
-}
+} */

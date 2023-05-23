@@ -35,15 +35,6 @@
                 <label class="form-label" for="password">Password</label> <br>
                 <input class="form-control-sm" id="password" type="password" placeholder="Insert your password.">
             </div>
-            <div class="mb-3">
-                <label class="form-label">Admin privileges</label> <br>
-
-                <label class="form-label" for="admin-yes">Yes</label>
-                <input class="form-control-sm" id="admin-yes" name="admin" type="radio">
-                <label class="form-label" for="admin-no">No</label>
-                <input class="form-control-sm" id="admin-no" name="admin" type="radio">
-            </div>
-
             <button class="btn btn-success" onclick="register()" type="button">Next</button>
             <button class="btn btn-secondary" onclick="clearFields()" type="button">Clear fields</button>
             <p class="form-text-white">
@@ -69,7 +60,7 @@
                 </tr>
                 </thead>
                 <!-- table-group-divider -> white line above table header -->
-                <tbody class="table-group-divider" id="user-table">
+                <tbody class="table-group-divider" id="users-table">
                 <tr>
                     <td>1</td>
                     <td>Staff</td>
@@ -95,7 +86,6 @@
             </table>
         </div>
     </div>
-
 </div>
 </body>
 </html>

