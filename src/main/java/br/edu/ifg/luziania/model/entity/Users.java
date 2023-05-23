@@ -1,13 +1,12 @@
 package br.edu.ifg.luziania.model.entity;
 
 import javax.persistence.*;
-import javax.validation.Constraint;
 
 @Entity
 @Table(uniqueConstraints = {
         @UniqueConstraint(columnNames = {"email", "password"})
 })
-public class User {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;

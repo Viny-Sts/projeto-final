@@ -5,8 +5,6 @@ public class AuthDTO {
     private String email;
     private String password;
 
-    private Boolean admin;
-
     public String getEmail() {
         return email;
     }
@@ -21,13 +19,5 @@ public class AuthDTO {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Boolean getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Boolean admin) {
-        this.admin = admin;
     }
 }

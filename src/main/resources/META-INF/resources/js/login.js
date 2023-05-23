@@ -21,19 +21,11 @@ function checkInput() {
     return true;
 }
 
-// when it's called, it checks if the user forgot any fields (checkInput) and then verify if the account exists (authenticate)
-// there are two types of account, admin and user.
-// admin account -> takes you to administration page;
-// user account -> takes you to main page (probably where the API goes);
-
 function login() {
     if (checkInput() === true) {
-        //fetch api
-        //make a new request
         let postRequest = newPostRequest(document.getElementById("email").value,
             document.getElementById("password").value);
-        // HTTP codes -> https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status <-
-        //fetch it and verify if the response status code is HTTP 200 (if not, an error appears)
+
         fetch(postRequest)
             .then((response) => {
                 if (response.status === 200) {
@@ -45,17 +37,9 @@ function login() {
             })
             //only then, connect the user on their respective role (admin or user)
             .then(json => {
-                console.log(JSON.stringify(json));
-
                 alert(json.message);
 
-                if (json.message === "Connected as administrator") {
-                    location.href = "/admin";
-                }
-
-                if (json.message === "Connected as user") {
-                    location.href = "/main";
-                }
+                window.location.href = window.location.origin + json.url;
             });
     }
 }

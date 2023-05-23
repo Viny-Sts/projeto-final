@@ -4,7 +4,7 @@ import br.edu.ifg.luziania.model.dao.UserDAO;
 import br.edu.ifg.luziania.model.dto.AuthReturnDTO;
 import br.edu.ifg.luziania.model.dto.UserDTO;
 import br.edu.ifg.luziania.model.dto.UserReturnDTO;
-import br.edu.ifg.luziania.model.entity.User;
+import br.edu.ifg.luziania.model.entity.Users;
 import br.edu.ifg.luziania.model.util.Session;
 
 import javax.enterprise.context.Dependent;
@@ -22,19 +22,22 @@ public class UserBO {
     Session session;
     
     public AuthReturnDTO authenticate(String email, String password) {
-        User user = userDAO.getByEmailAndPassword(email, password);
+        Users users = userDAO.getByEmailAndPassword(email, password);
         AuthReturnDTO authReturnDTO = new AuthReturnDTO();
         
-        if (isNull(user)) {
+        if (isNull(users)) {
             authReturnDTO.setUrl("/");
-            authReturnDTO.setAuth(false);
             authReturnDTO.setMessage("Invalid Credentials");
 
+            authReturnDTO.setAuth(false);
+
         } else {
-            authReturnDTO.setUrl("/principal");
+            authReturnDTO.setUrl("/main");
+            authReturnDTO.setMessage("Hello " + users.getName() + "!");
+
             authReturnDTO.setAuth(true);
-            authReturnDTO.setMessage("Hello "+user.getName()+"!");
-            session.setName(user.getName());
+
+            session.setName(users.getName());
         }
 
         return authReturnDTO;
@@ -43,7 +46,7 @@ public class UserBO {
     @Transactional
     public UserReturnDTO save(UserDTO userDTO) {
         UserReturnDTO userReturnDTO = new UserReturnDTO();
-        User entity = new User();
+        Users entity = new Users();
 
         entity.setName(userDTO.getName());
         entity.setEmail(userDTO.getEmail());
@@ -53,13 +56,13 @@ public class UserBO {
             userDAO.save(entity);
 
             userReturnDTO.setStatus(200);
-            userReturnDTO.setMessage("Usuário salvo com sucesso!");
-            userReturnDTO.setUrl("/");
+            userReturnDTO.setUrl("/login");
+            userReturnDTO.setMessage("Successfully registered!");
 
         } catch (Exception exception) {
             userReturnDTO.setStatus(500);
-            userReturnDTO.setMessage("Falha ao salvar usuário!");
-            userReturnDTO.setUrl("/usuario");
+            userReturnDTO.setUrl("/register");
+            userReturnDTO.setMessage("An error has occurred when registering");
         }
 
         return userReturnDTO;
