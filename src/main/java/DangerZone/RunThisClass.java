@@ -1,4 +1,4 @@
-package br.edu.ifg.luziania;
+package DangerZone;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
