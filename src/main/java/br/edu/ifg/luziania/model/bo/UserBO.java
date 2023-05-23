@@ -11,8 +11,6 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-import static java.util.Objects.isNull;
-
 @Dependent
 public class UserBO {
     @Inject
@@ -23,45 +21,27 @@ public class UserBO {
     
     public AuthReturnDTO authenticate(String email, String password) {
         Users users = userDAO.getByEmailAndPassword(email, password);
-        AuthReturnDTO authReturnDTO = new AuthReturnDTO();
         
-        if (isNull(users)) {
-            authReturnDTO.setUrl("/");
-            authReturnDTO.setMessage("Invalid Credentials");
+        if (users.getName().isEmpty())
+            return new AuthReturnDTO("/login", "Invalid Credentials", false);
 
-            authReturnDTO.setAuth(false);
+        session.setName(users.getName());
 
-        } else {
-            authReturnDTO.setUrl("/main");
-            authReturnDTO.setMessage("Hello " + users.getName() + "!");
+        return new AuthReturnDTO("/main", "Hello " + users.getName() + "!", true);
 
-            authReturnDTO.setAuth(true);
-
-            session.setName(users.getName());
-        }
-
-        return authReturnDTO;
     }
 
     @Transactional
     public UserReturnDTO save(UserDTO userDTO) {
-        UserReturnDTO userReturnDTO = new UserReturnDTO();
-
         Users entity = new Users(userDTO.getName(), userDTO.getEmail(), userDTO.getPassword());
 
         try {
             userDAO.save(entity);
 
-            userReturnDTO.setStatus(200);
-            userReturnDTO.setUrl("/login");
-            userReturnDTO.setMessage("Successfully registered!");
+            return new UserReturnDTO(200, "/login", "Successfully registered!");
 
         } catch (Exception exception) {
-            userReturnDTO.setStatus(500);
-            userReturnDTO.setUrl("/register");
-            userReturnDTO.setMessage("An error has occurred when registering");
+            return new UserReturnDTO(500, "/register", "An error has occurred when registering");
         }
-
-        return userReturnDTO;
     }
 }

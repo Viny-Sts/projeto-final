@@ -25,11 +25,16 @@ public class UserDAO {
     }
 
     public Users getByEmailAndPassword(String email, String password){
-        Query query = entityManager.createQuery("from Users where email = :email and password = :password");
+        try {
+            Query query = entityManager.createQuery("from Users where email = :email and password = :password");
 
-        query.setParameter("email", email);
-        query.setParameter("password", password);
+            query.setParameter("email", email);
+            query.setParameter("password", password);
 
-        return (Users) query.getSingleResult();
+            return (Users) query.getSingleResult();
+            
+        } catch (Exception exception) {
+            return new Users("", "", "");
+        }
     }
 }

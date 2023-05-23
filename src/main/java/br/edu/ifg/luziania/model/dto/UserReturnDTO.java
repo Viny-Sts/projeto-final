@@ -3,10 +3,14 @@ package br.edu.ifg.luziania.model.dto;
 public class UserReturnDTO {
     private Integer status;
 
-    private String message;
     private String url;
+    private String message;
 
-    private Boolean isAuth;
+    public UserReturnDTO(Integer status, String url, String message) {
+        this.status = status;
+        this.url = url;
+        this.message = message;
+    }
 
     public Integer getStatus() {
         return status;
@@ -30,13 +34,5 @@ public class UserReturnDTO {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public Boolean getAuth() {
-        return isAuth;
-    }
-
-    public void setAuth(Boolean auth) {
-        isAuth = auth;
     }
 }

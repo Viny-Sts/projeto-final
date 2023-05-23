@@ -6,6 +6,12 @@ public class AuthReturnDTO {
 
     private Boolean isAuth;
 
+    public AuthReturnDTO(String url, String message, Boolean isAuth) {
+        this.url = url;
+        this.message = message;
+        this.isAuth = isAuth;
+    }
+
     public String getUrl() {
         return url;
     }
