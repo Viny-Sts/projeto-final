@@ -1,4 +1,4 @@
-package br.edu.ifg.luziania;
+package DangerZone;
 import java.io.IOException;
 //clica em run class. não é pra rodar o programa.
 public class RunThisClass {
