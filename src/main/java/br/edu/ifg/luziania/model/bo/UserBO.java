@@ -46,11 +46,8 @@ public class UserBO {
     @Transactional
     public UserReturnDTO save(UserDTO userDTO) {
         UserReturnDTO userReturnDTO = new UserReturnDTO();
-        Users entity = new Users();
 
-        entity.setName(userDTO.getName());
-        entity.setEmail(userDTO.getEmail());
-        entity.setPassword(userDTO.getPassword());
+        Users entity = new Users(userDTO.getName(), userDTO.getEmail(), userDTO.getPassword());
 
         try {
             userDAO.save(entity);
