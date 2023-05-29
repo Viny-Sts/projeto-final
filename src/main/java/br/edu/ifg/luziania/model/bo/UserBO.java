@@ -15,28 +15,31 @@ import javax.transaction.Transactional;
 public class UserBO {
     @Inject
     UserDAO userDAO;
-
     @Inject
     Session session;
     
     public AuthReturnDTO authenticate(String email, String password) {
-        Users users = userDAO.getByEmailAndPassword(email, password);
-        
-        if (users.getName().isEmpty())
+        if (userDAO.getByEmailAndPassword(email, password) == null)
             return new AuthReturnDTO("/login", "Invalid Credentials", false);
 
+        Users users = userDAO.getByEmailAndPassword(email, password);
         session.setName(users.getName());
 
         return new AuthReturnDTO("/main", "Hello " + users.getName() + "!", true);
+    }
 
+    public UserReturnDTO list() {
+        if (userDAO.getAllUsers() == null)
+            return new UserReturnDTO(200, "/admin", "There's no account registered");
+
+        return new UserReturnDTO(500, "/admin", "Users: " + userDAO.getAllUsers() + ";");
     }
 
     @Transactional
     public UserReturnDTO save(UserDTO userDTO) {
-        Users entity = new Users(userDTO.getName(), userDTO.getEmail(), userDTO.getPassword());
-
         try {
-            userDAO.save(entity);
+            Users user = new Users(userDTO.getName(), userDTO.getEmail(), userDTO.getPassword());
+            userDAO.save(user);
 
             return new UserReturnDTO(200, "/login", "Successfully registered!");
 

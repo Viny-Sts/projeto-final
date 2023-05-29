@@ -41,8 +41,8 @@ public class RegisterController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/users")
+    @Path("/list-users")
     public Response getUsers() {
-        return null;
+        return Response.ok(userBO.list(), MediaType.APPLICATION_JSON).build();
     }
 }

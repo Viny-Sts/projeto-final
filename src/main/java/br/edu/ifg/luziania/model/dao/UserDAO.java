@@ -12,8 +12,8 @@ public class UserDAO {
     @Inject
     EntityManager entityManager;
 
-    public void save(Users entity) {
-        entityManager.persist(entity);
+    public void save(Users user) {
+        entityManager.persist(user);
     }
 
     public Users getById(Integer id) {
@@ -32,9 +32,20 @@ public class UserDAO {
             query.setParameter("password", password);
 
             return (Users) query.getSingleResult();
-            
-        } catch (Exception exception) {
-            return new Users("", "", "");
+
+        } catch (Exception ignored) {
+            return null;
+        }
+    }
+
+    public Users getAllUsers(){
+        try {
+            Query query = entityManager.createQuery("from Users");
+
+            return (Users) query.getSingleResult();
+
+        } catch (Exception ignored) {
+            return null;
         }
     }
 }

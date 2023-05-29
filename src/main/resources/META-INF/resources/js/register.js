@@ -74,15 +74,8 @@ function newPostRequest(userDTO){
     });
 }
 
-function clearFields() {
-    document.getElementById("name").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("password").value = "";
-}
-
-/*
 function newGetRequest(){
-    return new Request("/users", {
+    return new Request("/list-users", {
         method: "GET",
         headers: {
             "Accept": "application/json",
@@ -90,9 +83,15 @@ function newGetRequest(){
         }
     });
 }
-*/
-/*
-function updateTable() {
+
+function clearFields() {
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+}
+
+
+function listUsers() {
     let getRequest = newGetRequest();
 
     fetch(getRequest)
@@ -103,29 +102,8 @@ function updateTable() {
             } else {
                 throw new Error("An error has occurred" + ". Error " + response.status);
             }
-        })
 
-        .then(json => {
-            let table = document.getElementById("user-table");
-            let row = table.insertRow();
-
-            userIndex++;
-
-            row.insertCell().innerText = userIndex;
-
-            if (JSON.parse(JSON.stringify(json)).admin) {
-                row.insertCell().innerText = "Staff";
-
-            } else {
-                row.insertCell().innerText = "User";
-            }
-
-            row.insertCell().innerText = JSON.parse(JSON.stringify(json)).name;
-            row.insertCell().innerText = JSON.parse(JSON.stringify(json)).email;
-            row.insertCell().innerText = JSON.parse(JSON.stringify(json)).password;
-
-            console.log("Added the entry", userIndex, "in the registered table below");
+        }).then(json => {
+            console.log(json);
         });
-
-
-} */
+}
