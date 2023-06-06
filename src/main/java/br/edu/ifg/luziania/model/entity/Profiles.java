@@ -58,6 +58,14 @@ public class Profiles {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Boolean getPermissionLevel1() {
         return permissionLevel1;
     }
