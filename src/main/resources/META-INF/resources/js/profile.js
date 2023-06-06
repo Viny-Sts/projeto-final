@@ -17,6 +17,24 @@ function addProfile() {
         });
 }
 
+function listProfiles() {
+    let getRequest = newGetRequest();
+
+    fetch(getRequest)
+        .then((response) => {
+            if (response.status === 200) {
+                return response.json();
+
+            } else {
+                throw new Error("An error has occurred" + ". Error " + response.status);
+            }
+
+        }).then(json => {
+
+        console.log(json);
+    });
+}
+
 function getPermissionDTO() {
     return {
         "name": document.getElementById("profile-name").value,
@@ -36,7 +54,17 @@ function getPermissionDTO() {
     }
 }
 
-function newPostRequest(permissionDTO){
+function newGetRequest() {
+    return new Request("/list-permissions", {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        }
+    });
+}
+
+function newPostRequest(permissionDTO) {
     return new Request("/permissions", {
         method: "POST",
         headers: {

@@ -29,6 +29,13 @@ public class ProfileController {
         return profile.instance();
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/list-permissions")
+    public Response getPermissions() {
+        return Response.ok(profileBO.list(), MediaType.APPLICATION_JSON).build();
+    }
+
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)

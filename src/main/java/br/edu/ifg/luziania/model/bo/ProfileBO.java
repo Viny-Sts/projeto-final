@@ -3,6 +3,7 @@ package br.edu.ifg.luziania.model.bo;
 import br.edu.ifg.luziania.model.dao.ProfileDAO;
 import br.edu.ifg.luziania.model.dto.ProfileDTO;
 import br.edu.ifg.luziania.model.dto.ProfileReturnDTO;
+import br.edu.ifg.luziania.model.dto.UserReturnDTO;
 import br.edu.ifg.luziania.model.entity.Profiles;
 
 import javax.enterprise.context.Dependent;
@@ -38,5 +39,12 @@ public class ProfileBO {
         } catch (Exception exception) {
             return new ProfileReturnDTO(500, "An error has occurred when registering");
         }
+    }
+
+    public ProfileReturnDTO list() {
+        if (profileDAO.getAllProfiles() == null)
+            return new ProfileReturnDTO(200, "There's no account registered");
+
+        return new ProfileReturnDTO(500, "Users: " + profileDAO.getAllProfiles() + ";");
     }
 }

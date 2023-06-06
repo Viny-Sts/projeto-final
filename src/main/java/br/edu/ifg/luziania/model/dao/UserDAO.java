@@ -6,6 +6,7 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.util.List;
 
 @Dependent
 public class UserDAO {
@@ -40,7 +41,7 @@ public class UserDAO {
 
     public Users getAllUsers(){
         try {
-            Query query = entityManager.createQuery("from Users");
+            Query query = entityManager.createQuery("from Users where name = '123'");
 
             return (Users) query.getSingleResult();
 

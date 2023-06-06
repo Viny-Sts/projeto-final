@@ -30,9 +30,9 @@ public class UserBO {
 
     public UserReturnDTO list() {
         if (userDAO.getAllUsers() == null)
-            return new UserReturnDTO(200, "/admin", "There's no account registered");
+            return new UserReturnDTO(500, "/admin", "There's no account registered");
 
-        return new UserReturnDTO(500, "/admin", "Users: " + userDAO.getAllUsers() + ";");
+        return new UserReturnDTO(200, "/admin", "Users: " + userDAO.getAllUsers() + ";");
     }
 
     @Transactional

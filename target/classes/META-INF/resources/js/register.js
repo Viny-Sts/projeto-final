@@ -43,15 +43,29 @@ function register() {
                 }
             })
 
-            //only then, connect the user on their respective role (admin or user)
             .then(json => {
                 alert(json.message);
 
                 window.location.href = window.location.origin + json.url;
-
-                //updateTable();
             });
     }
+}
+
+function listUsers() {
+    let getRequest = newGetRequest();
+
+    fetch(getRequest)
+        .then((response) => {
+            if (response.status === 200) {
+                return response.json();
+
+            } else {
+                throw new Error("An error has occurred" + ". Error " + response.status);
+            }
+
+        }).then(json => {
+        console.log(json);
+    });
 }
 
 function getUserDTO() {
@@ -88,22 +102,4 @@ function clearFields() {
     document.getElementById("name").value = "";
     document.getElementById("email").value = "";
     document.getElementById("password").value = "";
-}
-
-
-function listUsers() {
-    let getRequest = newGetRequest();
-
-    fetch(getRequest)
-        .then((response) => {
-            if (response.status === 200) {
-                return response.json();
-
-            } else {
-                throw new Error("An error has occurred" + ". Error " + response.status);
-            }
-
-        }).then(json => {
-            console.log(json);
-        });
 }
