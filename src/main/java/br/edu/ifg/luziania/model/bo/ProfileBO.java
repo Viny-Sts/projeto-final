@@ -18,6 +18,7 @@ public class ProfileBO {
     public ProfileReturnDTO save(ProfileDTO profileDTO) {
         try {
             Profiles profile = new Profiles(
+                    profileDTO.getName(),
                     profileDTO.getPermissionLevel1(),
                     profileDTO.getPermissionLevel2(),
                     profileDTO.getPermissionLevel3(),

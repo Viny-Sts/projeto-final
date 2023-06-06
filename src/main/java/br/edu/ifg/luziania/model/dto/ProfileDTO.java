@@ -1,6 +1,8 @@
 package br.edu.ifg.luziania.model.dto;
 
 public class ProfileDTO {
+    private String name;
+
     private Boolean permissionLevel1;
     private Boolean permissionLevel2;
     private Boolean permissionLevel3;
@@ -13,6 +15,14 @@ public class ProfileDTO {
     private Boolean permissionLevel10;
     private Boolean permissionLevel11;
     private Boolean permissionLevel12;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Boolean getPermissionLevel1() {
         return permissionLevel1;

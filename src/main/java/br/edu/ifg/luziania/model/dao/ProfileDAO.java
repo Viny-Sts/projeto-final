@@ -24,7 +24,7 @@ public class ProfileDAO {
         return (Profiles) query.getSingleResult();
     }
 
-    public Profiles getAllProfiles(){
+    public Profiles getAllProfiles() {
         try {
             Query query = entityManager.createQuery("from Profiles");
 

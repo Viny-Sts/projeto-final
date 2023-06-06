@@ -1,7 +1,6 @@
 package br.edu.ifg.luziania.controller;
 
 import br.edu.ifg.luziania.model.bo.ProfileBO;
-import br.edu.ifg.luziania.model.bo.UserBO;
 import br.edu.ifg.luziania.model.dto.ProfileDTO;
 import br.edu.ifg.luziania.model.dto.ProfileReturnDTO;
 import io.quarkus.qute.Template;

@@ -4,12 +4,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"id"})
+        @UniqueConstraint(columnNames = {"name"})
 })
 public class Profiles {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
+
+    private String name;
 
     private Boolean permissionLevel1;
     private Boolean permissionLevel2;
@@ -28,10 +30,12 @@ public class Profiles {
 
     }
 
-    public Profiles(Boolean permissionLevel1, Boolean permissionLevel2, Boolean permissionLevel3,
+    public Profiles(String name, Boolean permissionLevel1, Boolean permissionLevel2, Boolean permissionLevel3,
                     Boolean permissionLevel4, Boolean permissionLevel5, Boolean permissionLevel6,
                     Boolean permissionLevel7, Boolean permissionLevel8, Boolean permissionLevel9,
                     Boolean permissionLevel10, Boolean permissionLevel11, Boolean permissionLevel12) {
+        this.name = name;
+
         this.permissionLevel1 = permissionLevel1;
         this.permissionLevel2 = permissionLevel2;
         this.permissionLevel3 = permissionLevel3;
