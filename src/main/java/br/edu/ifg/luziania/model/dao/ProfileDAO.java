@@ -6,6 +6,7 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.util.List;
 
 @Dependent
 public class ProfileDAO {
@@ -24,11 +25,11 @@ public class ProfileDAO {
         return (Profiles) query.getSingleResult();
     }
 
-    public Profiles getAllProfiles() {
+    public List<Profiles> getAllProfiles() {
         try {
-            Query query = entityManager.createQuery("from Profiles");
+            Query query = entityManager.createQuery("from Profiles", Profiles.class);
 
-            return (Profiles) query.getSingleResult();
+            return query.getResultList();
 
         } catch (Exception ignored) {
             return null;
