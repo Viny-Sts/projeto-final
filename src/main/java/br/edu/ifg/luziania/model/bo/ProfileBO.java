@@ -44,6 +44,6 @@ public class ProfileBO {
         if (profileDAO.getAllProfiles() == null)
             return new ProfileReturnDTO(500, "There's no profile registered");
 
-        return new ProfileReturnDTO(200, "Profiles successfully retrieved!");
+        return new ProfileReturnDTO(200, "Profiles successfully retrieved!", profileDAO.getAllProfiles());
     }
 }
