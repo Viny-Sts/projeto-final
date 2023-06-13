@@ -33,7 +33,9 @@ public class ProfileController {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/list-permissions")
     public Response getPermissions() {
-        return Response.ok(profileBO.list(), MediaType.APPLICATION_JSON).build();
+        ProfileReturnDTO profileReturnDTO = profileBO.list();
+
+        return Response.status(profileReturnDTO.getStatus()).entity(profileReturnDTO).build();
     }
 
     @POST
