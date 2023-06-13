@@ -10,25 +10,25 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 @Path("")
-public class AdminController {
+public class MainController {
     @Inject
     Session session;
-    private final Template admin;
 
-    public AdminController(Template admin) {
-        this.admin = admin;
+    private final Template main;
+
+    public MainController(Template main) {
+        this.main = main;
     }
 
     @GET
-    @Path("/admin")
+    @Path("/main")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance getAdmin(){
+    public TemplateInstance getMain(){
         if (session.getName().isEmpty())
             return ErrorTemplate.forbidden();
 
-        return admin.instance();
+        return main.instance();
     }
 }

@@ -13,7 +13,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <a class="btn btn-primary" href="/">Home</a>
+            <button class="btn btn-primary" onclick="window.location.href='/'" type="button">Home</button>
             <a class="btn btn-danger" href="/login">Go back</a>
         </div>
         <div class="col text-end">
@@ -35,17 +35,9 @@
                 <label class="form-label" for="password">Password</label> <br>
                 <input class="form-control-sm" id="password" type="password" placeholder="Insert your password.">
             </div>
-            <div class="mb-3">
-                <label class="form-label">Admin privileges</label> <br>
-
-                <label class="form-label" for="admin-yes">Yes</label>
-                <input class="form-control-sm" id="admin-yes" name="admin" type="radio">
-                <label class="form-label" for="admin-no">No</label>
-                <input class="form-control-sm" id="admin-no" name="admin" type="radio">
-            </div>
-
             <button class="btn btn-success" onclick="register()" type="button">Next</button>
             <button class="btn btn-secondary" onclick="clearFields()" type="button">Clear fields</button>
+            <button class="btn btn-success" onclick="listUsers()" type="button">List Users</button>
             <p class="form-text-white">
                 Already have an account?<br>
                 Click <span onclick="window.location.href='/login';"
@@ -53,49 +45,6 @@
             </p>
         </form>
     </div>
-    <div class="row mt-3">
-        <!-- Bootstrap tables -> https://getbootstrap.com/docs/5.3/content/tables/ <- -->
-        <div class="table-responsive">
-            <!-- small, dark, striped and bordered table with hover effect and margin-top-3 -->
-            <table class="table table-sm table-dark table-hover table-striped table-bordered mt-3">
-                <caption class="text-white">List of accounts registered in our website</caption>
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                </tr>
-                </thead>
-                <!-- table-group-divider -> white line above table header -->
-                <tbody class="table-group-divider" id="user-table">
-                <tr>
-                    <td>1</td>
-                    <td>Staff</td>
-                    <td>Administrator</td>
-                    <td>admin@staff.com</td>
-                    <td>123</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>User</td>
-                    <td>Rodrigo</td>
-                    <td>rodrigo@gmail.com</td>
-                    <td>projeto</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>User</td>
-                    <td>Vinicius</td>
-                    <td>vinicius@gmail.com</td>
-                    <td>123</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
 </div>
 </body>
 </html>
