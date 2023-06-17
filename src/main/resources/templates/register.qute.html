@@ -35,9 +35,15 @@
                 <label class="form-label" for="password">Password</label> <br>
                 <input class="form-control-sm" id="password" type="password" placeholder="Insert your password.">
             </div>
-            <button class="btn btn-success" onclick="register()" type="button">Next</button>
-            <button class="btn btn-secondary" onclick="clearFields()" type="button">Clear fields</button>
-            <button class="btn btn-success" onclick="listUsers()" type="button">List Users</button>
+            <div class="mb-3">
+                <label for="profiles">Profile</label> <br>
+                <select name="profiles" id="profiles">
+                </select>
+            </div>
+            <div>
+                <button class="btn btn-success" onclick="register()" type="button">Next</button>
+                <button class="btn btn-secondary" onclick="clearFields()" type="button">Clear fields</button>
+            </div>
             <p class="form-text-white">
                 Already have an account?<br>
                 Click <span onclick="window.location.href='/login';"

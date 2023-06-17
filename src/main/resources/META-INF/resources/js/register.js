@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', function updateProfiles() {
+    listProfiles();
+});
+
 function checkInput() {
     if (document.getElementById("name").value === "" &&
         document.getElementById("email").value === "" &&
@@ -52,7 +56,7 @@ function register() {
 }
 
 function listUsers() {
-    let getRequest = newGetRequest();
+    let getRequest = newGetRequest("/list-users");
 
     fetch(getRequest)
         .then((response) => {
@@ -65,6 +69,31 @@ function listUsers() {
 
         }).then(json => {
         console.log(json);
+    });
+}
+
+function listProfiles() {
+    let getRequest = newGetRequest("/list-permissions");
+
+    fetch(getRequest)
+        .then((response) => {
+            if (response.status === 200) {
+                return response.json();
+
+            } else {
+                throw new Error("An error has occurred" + ". Error " + response.status);
+            }
+
+        }).then(json => {
+
+            let profilesList = document.getElementById("profiles");
+
+            for (let i = 0; i < json.profiles.length; i++) {
+                let profile = document.createElement('option');
+                profile.text = json.profiles[i].name;
+
+                profilesList.appendChild(profile);
+            }
     });
 }
 
@@ -88,8 +117,8 @@ function newPostRequest(userDTO){
     });
 }
 
-function newGetRequest(){
-    return new Request("/list-users", {
+function newGetRequest(url){
+    return new Request(url, {
         method: "GET",
         headers: {
             "Accept": "application/json",

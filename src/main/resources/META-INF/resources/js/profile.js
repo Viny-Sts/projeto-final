@@ -17,24 +17,6 @@ function addProfile() {
         });
 }
 
-function listProfiles() {
-    let getRequest = newGetRequest();
-
-    fetch(getRequest)
-        .then((response) => {
-            if (response.status === 200) {
-                return response.json();
-
-            } else {
-                throw new Error("An error has occurred" + ". Error " + response.status);
-            }
-
-        }).then(json => {
-
-        console.log(json);
-    });
-}
-
 function getPermissionDTO() {
     return {
         "name": document.getElementById("profile-name").value,
@@ -52,16 +34,6 @@ function getPermissionDTO() {
         "permissionLevel11": document.getElementById("manage-security").checked,
         "permissionLevel12": document.getElementById("manage-traffic").checked
     }
-}
-
-function newGetRequest() {
-    return new Request("/list-permissions", {
-        method: "GET",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        }
-    });
 }
 
 function newPostRequest(permissionDTO) {
