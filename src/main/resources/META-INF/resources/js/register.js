@@ -101,10 +101,10 @@ function getUserDTO() {
     return {
         "name": document.getElementById("name").value,
         "email": document.getElementById("email").value,
-        "password": document.getElementById("password").value
+        "password": document.getElementById("password").value,
+        "profile": document.getElementById("profiles").value
     }
 }
-
 
 function newPostRequest(userDTO){
     return new Request("/users", {

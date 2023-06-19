@@ -13,15 +13,17 @@ public class Users {
     private String name;
     private String email;
     private String password;
+    private String profile;
 
     public Users() {
 
     }
 
-    public Users(String name, String email, String password) {
+    public Users(String name, String email, String password, String profile) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.profile = profile;
     }
 
     public Integer getId() {
@@ -54,5 +56,13 @@ public class Users {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 }

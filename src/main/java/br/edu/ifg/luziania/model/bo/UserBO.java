@@ -38,7 +38,7 @@ public class UserBO {
     @Transactional
     public UserReturnDTO save(UserDTO userDTO) {
         try {
-            Users user = new Users(userDTO.getName(), userDTO.getEmail(), userDTO.getPassword());
+            Users user = new Users(userDTO.getName(), userDTO.getEmail(), userDTO.getPassword(), userDTO.getProfile());
             userDAO.save(user);
 
             return new UserReturnDTO(200, "/login", "Successfully registered!");

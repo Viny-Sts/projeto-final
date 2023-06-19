@@ -5,6 +5,7 @@ public class UserDTO {
     private String name;
     private String email;
     private String password;
+    private String profile;
 
     public String getName() {
         return name;
@@ -28,5 +29,13 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 }
