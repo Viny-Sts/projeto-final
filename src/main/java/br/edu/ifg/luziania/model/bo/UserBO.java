@@ -1,20 +1,26 @@
 package br.edu.ifg.luziania.model.bo;
 
+import br.edu.ifg.luziania.model.dao.ProfileDAO;
 import br.edu.ifg.luziania.model.dao.UserDAO;
 import br.edu.ifg.luziania.model.dto.AuthReturnDTO;
 import br.edu.ifg.luziania.model.dto.UserDTO;
 import br.edu.ifg.luziania.model.dto.UserReturnDTO;
+import br.edu.ifg.luziania.model.entity.Profiles;
 import br.edu.ifg.luziania.model.entity.Users;
 import br.edu.ifg.luziania.model.util.Session;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Dependent
 public class UserBO {
     @Inject
     UserDAO userDAO;
+    @Inject
+    ProfileDAO profileDAO;
     @Inject
     Session session;
     
@@ -23,6 +29,8 @@ public class UserBO {
             return new AuthReturnDTO("/login", "Invalid Credentials", false);
 
         Users users = userDAO.getByEmailAndPassword(email, password);
+        Profiles profiles = profileDAO.getByName(users.getProfile());
+        
         session.setName(users.getProfile());
 
         return new AuthReturnDTO("/main", "Hello " + users.getName() + "!", true);
