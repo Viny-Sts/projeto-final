@@ -23,7 +23,7 @@ public class UserBO {
             return new AuthReturnDTO("/login", "Invalid Credentials", false);
 
         Users users = userDAO.getByEmailAndPassword(email, password);
-        session.setName(users.getName());
+        session.setName(users.getProfile());
 
         return new AuthReturnDTO("/main", "Hello " + users.getName() + "!", true);
     }
