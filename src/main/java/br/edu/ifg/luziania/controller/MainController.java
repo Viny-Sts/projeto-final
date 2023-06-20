@@ -29,6 +29,7 @@ public class MainController {
         if (session.getName().isEmpty())
             return ErrorTemplate.forbidden();
 
+        System.out.println(session.getPermissions());
         return main.instance();
     }
 }

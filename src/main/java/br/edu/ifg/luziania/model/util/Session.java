@@ -7,7 +7,7 @@ import java.util.List;
 @SessionScoped
 public class Session {
     private String name;
-    private List<String> permissions;
+    private List<Boolean> permissions;
 
     public Session() {
         this.permissions = new ArrayList<>();
@@ -22,11 +22,11 @@ public class Session {
         this.name = name;
     }
 
-    public List<String> getPermissions() {
+    public List<Boolean> getPermissions() {
         return permissions;
     }
 
-    public void setPermissions(List<String> permissions) {
+    public void setPermissions(List<Boolean> permissions) {
         this.permissions = permissions;
     }
 }

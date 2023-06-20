@@ -33,6 +33,23 @@ public class UserBO {
         
         session.setName(users.getProfile());
 
+        List<Boolean> permissions = new ArrayList<>();
+
+        permissions.add(profiles.getPermissionLevel1());
+        permissions.add(profiles.getPermissionLevel2());
+        permissions.add(profiles.getPermissionLevel3());
+        permissions.add(profiles.getPermissionLevel4());
+        permissions.add(profiles.getPermissionLevel5());
+        permissions.add(profiles.getPermissionLevel6());
+        permissions.add(profiles.getPermissionLevel7());
+        permissions.add(profiles.getPermissionLevel8());
+        permissions.add(profiles.getPermissionLevel9());
+        permissions.add(profiles.getPermissionLevel10());
+        permissions.add(profiles.getPermissionLevel11());
+        permissions.add(profiles.getPermissionLevel12());
+
+        session.setPermissions(permissions);
+
         return new AuthReturnDTO("/main", "Hello " + users.getName() + "!", true);
     }
 
