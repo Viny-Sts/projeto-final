@@ -1,6 +1,8 @@
 function addProfile() {
-    var permissionDTO = getPermissionDTO();
+    let permissionDTO = getPermissionDTO();
     let postRequest = newPostRequest(permissionDTO);
+
+    console.log(permissionDTO);
 
     fetch(postRequest)
         .then((response) => {
@@ -21,18 +23,10 @@ function getPermissionDTO() {
     return {
         "name": document.getElementById("profile-name").value,
 
-        "permissionLevel1": document.getElementById("direct-support").checked,
-        "permissionLevel2": document.getElementById("search-filter-data").checked,
-        "permissionLevel3": document.getElementById("submit-reports").checked,
-        "permissionLevel4": document.getElementById("manage-users-account").checked,
-        "permissionLevel5": document.getElementById("climatic-consult").checked,
-        "permissionLevel6": document.getElementById("view-data").checked,
-        "permissionLevel7": document.getElementById("website-management").checked,
-        "permissionLevel8": document.getElementById("manage-content").checked,
-        "permissionLevel9": document.getElementById("manage-settings").checked,
-        "permissionLevel10": document.getElementById("monitor-activity").checked,
-        "permissionLevel11": document.getElementById("manage-security").checked,
-        "permissionLevel12": document.getElementById("manage-traffic").checked
+        "mainAccess": document.getElementById("main-access").checked,
+        "activityAccess": document.getElementById("activity-access").checked,
+        "userManagement": document.getElementById("user-management").checked,
+        "profileManagement": document.getElementById("profile-management").checked
     }
 }
 

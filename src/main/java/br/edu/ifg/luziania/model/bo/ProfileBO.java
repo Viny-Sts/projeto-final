@@ -17,20 +17,8 @@ public class ProfileBO {
     @Transactional
     public ProfileReturnDTO save(ProfileDTO profileDTO) {
         try {
-            Profiles profile = new Profiles(
-                    profileDTO.getName(),
-                    profileDTO.getPermissionLevel1(),
-                    profileDTO.getPermissionLevel2(),
-                    profileDTO.getPermissionLevel3(),
-                    profileDTO.getPermissionLevel4(),
-                    profileDTO.getPermissionLevel5(),
-                    profileDTO.getPermissionLevel6(),
-                    profileDTO.getPermissionLevel7(),
-                    profileDTO.getPermissionLevel8(),
-                    profileDTO.getPermissionLevel9(),
-                    profileDTO.getPermissionLevel10(),
-                    profileDTO.getPermissionLevel11(),
-                    profileDTO.getPermissionLevel12());
+            Profiles profile = new Profiles(profileDTO.getName(), profileDTO.getMainAccess(),
+                    profileDTO.getActivityAccess(), profileDTO.getUserManagement(), profileDTO.getProfileManagement());
             profileDAO.save(profile);
 
             return new ProfileReturnDTO(200, "Profile successfully registered!");
