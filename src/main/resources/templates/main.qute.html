@@ -27,6 +27,17 @@
                 <br>
             We have not set a deadline for the maintenance, but we will come back soon! </p>
         </div>
+        <div class="text-center">
+            {#if activityAccess}
+                <button class="btn btn-info" onclick="disconnect('/')" type="button">Activity (Log)</button>
+            {/if}
+            {#if userManagement}
+                <button class="btn btn-success" onclick="disconnect('/')" type="button">User Management</button>
+            {/if}
+            {#if profileManagement}
+                <button class="btn btn-success" onclick="disconnect('/profile')" type="button">Profile Management</button>
+            {/if}
+        </div>
     </div>
 </body>
 </html>

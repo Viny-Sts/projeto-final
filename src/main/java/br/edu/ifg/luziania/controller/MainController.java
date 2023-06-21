@@ -26,10 +26,11 @@ public class MainController {
     @Path("/main")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getMain(){
-        if (session.getName().isEmpty())
+        if (!session.getPermissions().get(0))
             return ErrorTemplate.forbidden();
 
-        System.out.println(session.getPermissions());
-        return main.instance();
+        return main.data("activityAccess", session.getPermissions().get(1),
+                "userManagement", session.getPermissions().get(2),
+                "profileManagement", session.getPermissions().get(3));
     }
 }
