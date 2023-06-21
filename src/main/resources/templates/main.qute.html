@@ -28,6 +28,11 @@
             We have not set a deadline for the maintenance, but we will come back soon! </p>
         </div>
         <div class="text-center">
+            {#if mainAccess}
+                <div class="text-danger">
+                    API Content Here
+                </div>
+            {/if}
             {#if activityAccess}
                 <button class="btn btn-info" onclick="disconnect('/')" type="button">Activity (Log)</button>
             {/if}

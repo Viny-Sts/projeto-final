@@ -25,8 +25,15 @@ public class RegisterController {
     @GET
     @Path("/register")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance getRegister(){
+    public TemplateInstance getRegister() {
         return register.instance();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/list-users")
+    public Response getUsers() {
+        return Response.ok(userBO.list(), MediaType.APPLICATION_JSON).build();
     }
 
     @POST
@@ -37,12 +44,5 @@ public class RegisterController {
         UserReturnDTO userReturnDTO = userBO.save(userDTO);
 
         return Response.status(userReturnDTO.getStatus()).entity(userReturnDTO).build();
-    }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/list-users")
-    public Response getUsers() {
-        return Response.ok(userBO.list(), MediaType.APPLICATION_JSON).build();
     }
 }

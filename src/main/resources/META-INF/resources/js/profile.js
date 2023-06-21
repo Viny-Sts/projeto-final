@@ -31,7 +31,7 @@ function getPermissionDTO() {
 }
 
 function newPostRequest(permissionDTO) {
-    return new Request("/permissions", {
+    return new Request("/profiles", {
         method: "POST",
         headers: {
             "Accept": "application/json",

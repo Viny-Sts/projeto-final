@@ -3,6 +3,8 @@ package br.edu.ifg.luziania.controller;
 import br.edu.ifg.luziania.model.bo.ProfileBO;
 import br.edu.ifg.luziania.model.dto.ProfileDTO;
 import br.edu.ifg.luziania.model.dto.ProfileReturnDTO;
+import br.edu.ifg.luziania.model.util.ErrorTemplate;
+import br.edu.ifg.luziania.model.util.Session;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
@@ -13,6 +15,9 @@ import javax.ws.rs.core.Response;
 
 @Path("")
 public class ProfileController {
+    @Inject
+    Session session;
+
     @Inject
     ProfileBO profileBO;
 
@@ -25,13 +30,16 @@ public class ProfileController {
     @GET
     @Path("/profile")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance getProfile(){
-        return profile.instance();
+    public TemplateInstance getProfile() {
+        if (!session.getPermissions().isEmpty() && session.getPermissions().get(3))
+            return profile.instance();
+
+        return ErrorTemplate.forbidden();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/list-permissions")
+    @Path("/list-profiles")
     public Response getPermissions() {
         ProfileReturnDTO profileReturnDTO = profileBO.list();
 
@@ -41,8 +49,8 @@ public class ProfileController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/permissions")
-    public Response authenticate(ProfileDTO profileDTO){
+    @Path("/profiles")
+    public Response authenticate(ProfileDTO profileDTO) {
         ProfileReturnDTO profileReturnDTO = profileBO.save(profileDTO);
 
         return Response.status(profileReturnDTO.getStatus()).entity(profileReturnDTO).build();

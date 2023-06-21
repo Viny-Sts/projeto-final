@@ -73,7 +73,7 @@ function listUsers() {
 }
 
 function listProfiles() {
-    let getRequest = newGetRequest("/list-permissions");
+    let getRequest = newGetRequest("/list-profiles");
 
     fetch(getRequest)
         .then((response) => {

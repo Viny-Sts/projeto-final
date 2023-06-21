@@ -19,7 +19,7 @@ public class AboutController {
     @GET
     @Path("/about")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance getAbout(){
+    public TemplateInstance getAbout() {
         return about.instance();
     }
 }
