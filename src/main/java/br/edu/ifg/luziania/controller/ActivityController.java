@@ -12,8 +12,8 @@ import javax.ws.rs.core.MediaType;
 public class ActivityController {
     private final Template activity;
 
-    public ActivityController(Template about) {
-        this.activity = about;
+    public ActivityController(Template activity) {
+        this.activity = activity;
     }
 
     @GET
