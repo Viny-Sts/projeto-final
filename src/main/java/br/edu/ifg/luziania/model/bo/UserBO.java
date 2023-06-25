@@ -1,22 +1,32 @@
 package br.edu.ifg.luziania.model.bo;
 
+import br.edu.ifg.luziania.model.dao.ActivityDAO;
 import br.edu.ifg.luziania.model.dao.ProfileDAO;
 import br.edu.ifg.luziania.model.dao.UserDAO;
 import br.edu.ifg.luziania.model.dto.AuthReturnDTO;
 import br.edu.ifg.luziania.model.dto.UserDTO;
 import br.edu.ifg.luziania.model.dto.UserReturnDTO;
+import br.edu.ifg.luziania.model.entity.Activity;
 import br.edu.ifg.luziania.model.entity.Profiles;
 import br.edu.ifg.luziania.model.entity.Users;
 import br.edu.ifg.luziania.model.util.Session;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Dependent
 public class UserBO {
+    @Inject
+    HttpServletRequest request;
+
+    @Inject
+    ActivityDAO activityDAO;
     @Inject
     UserDAO userDAO;
     @Inject
@@ -54,13 +64,28 @@ public class UserBO {
 
     @Transactional
     public UserReturnDTO save(UserDTO userDTO) {
+        LocalDateTime dateTime = LocalDateTime.now();
+        Activity registerLog = new Activity();
+
         try {
             Users user = new Users(userDTO.getName(), userDTO.getEmail(), userDTO.getPassword(), userDTO.getProfile());
+
+            registerLog.setActivityLog("(" + dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + ") "
+                    + request.getRemoteAddr() + ": " + "Account registered successfully");
+            registerLog.setActivityDetails("Account: " +
+                    "(" + user.getProfile() + ") " + user.getName() + " '" + user.getEmail() + "'");
+
             userDAO.save(user);
+            activityDAO.save(registerLog);
 
             return new UserReturnDTO(200, "/login", "Successfully registered!");
 
         } catch (Exception exception) {
+            registerLog.setActivityLog("An error occurred when registering.");
+            registerLog.setActivityDetails("Account not registered");
+
+            activityDAO.save(registerLog);
+
             return new UserReturnDTO(500, "/register", "An error has occurred when registering");
         }
     }
