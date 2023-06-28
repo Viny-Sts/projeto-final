@@ -1,7 +1,7 @@
 package br.edu.ifg.luziania.model.bo;
 
-import br.edu.ifg.luziania.model.dao.ActivityDAO;
 import br.edu.ifg.luziania.model.dao.ProfileDAO;
+import br.edu.ifg.luziania.model.dto.ActivityDTO;
 import br.edu.ifg.luziania.model.dto.ProfileDTO;
 import br.edu.ifg.luziania.model.dto.ProfileReturnDTO;
 import br.edu.ifg.luziania.model.entity.Activity;
@@ -17,16 +17,17 @@ import java.time.format.DateTimeFormatter;
 @Dependent
 public class ProfileBO {
     @Inject
-    HttpServletRequest request;
-    @Inject
-    ActivityDAO activityDAO;
+    ActivityBO activityBO;
     @Inject
     ProfileDAO profileDAO;
+
+    @Inject
+    HttpServletRequest request;
 
     @Transactional
     public ProfileReturnDTO save(ProfileDTO profileDTO) {
         LocalDateTime dateTime = LocalDateTime.now();
-        Activity profileRegisterLog = new Activity();
+        ActivityDTO profileRegisterLog = new ActivityDTO();
 
         try {
             Profiles profile = new Profiles(profileDTO.getName(), profileDTO.getMainAccess(),
@@ -41,7 +42,7 @@ public class ProfileBO {
                     "; Profile Management = " + profile.getProfileManagement() + ")");
 
             profileDAO.save(profile);
-            activityDAO.save(profileRegisterLog);
+            activityBO.save(profileRegisterLog);
 
             return new ProfileReturnDTO(200, "Profile successfully registered!");
 

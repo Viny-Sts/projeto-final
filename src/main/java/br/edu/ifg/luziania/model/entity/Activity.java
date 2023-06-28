@@ -12,8 +12,15 @@ public class Activity {
     private Integer id;
 
     private String activityLog;
-
     private String activityDetails;
+
+    public Activity() {
+    }
+
+    public Activity(String activityLog, String activityDetails) {
+        this.activityLog = activityLog;
+        this.activityDetails = activityDetails;
+    }
 
     public String getActivityLog() {
         return activityLog;
