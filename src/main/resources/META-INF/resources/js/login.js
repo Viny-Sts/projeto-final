@@ -21,48 +21,38 @@ function checkInput() {
     return true;
 }
 
-function login() {
-    if (checkInput() === true) {
-        let postRequest = newPostRequest(document.getElementById("email").value,
-            document.getElementById("password").value);
-
-        fetch(postRequest)
-            .then((response) => {
-                if (response.status === 200) {
-                    return response.json();
-
-                } else {
-                    throw new Error("An error has occurred" + response.status);
-                }
-            })
-            //only then, connect the user on their respective role (admin or user)
-            .then(json => {
-                alert(json.message);
-
-                window.location.href = window.location.origin + json.url;
-            });
-    }
-}
-
-
-
-// if any field are blank, the user gets a feedback with a warning, informing which field they forgot
-
-
-function newPostRequest(email, password){
-    return new Request("/authenticate", {
+function newPostRequest(url, body){
+    return new Request(url, {
         method: "POST",
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-            "email": email,
-            "password": password
-        }),
-    });
+        body: body
+    })
 }
 
+function login() {
+    if (checkInput()) {
+        let postRequest = newPostRequest("/authenticate", JSON.stringify({
+            "email": document.getElementById("email").value,
+            "password": document.getElementById("password").value
+        }));
+
+        fetch(postRequest).then((response) => {
+            if (response.ok)
+                return response.json();
+            else
+                throw new Error("An error has occurred" + response.status);
+
+        }).then(json => {
+            alert(json.message);
+            //updateLog();
+
+            window.location.href = window.location.origin + json.url;
+        });
+    }
+}
 
 function clearFields() {
     document.getElementById("email").value = "";

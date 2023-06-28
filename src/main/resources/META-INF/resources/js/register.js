@@ -2,6 +2,27 @@ document.addEventListener('DOMContentLoaded', function updateProfiles() {
     listProfiles();
 });
 
+function newPostRequest(url, body){
+    return new Request(url, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: body,
+    });
+}
+
+function newGetRequest(url){
+    return new Request(url, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        }
+    });
+}
+
 function checkInput() {
     if (document.getElementById("name").value === "" &&
         document.getElementById("email").value === "" &&
@@ -33,59 +54,38 @@ function checkInput() {
 }
 
 function register() {
-    if (checkInput() === true) {
-        var userDTO = getUserDTO();
-        let postRequest = newPostRequest(userDTO);
+    if (checkInput()) {
+        let postRequest = newPostRequest("/users", JSON.stringify({
+            "name": document.getElementById("name").value,
+            "email": document.getElementById("email").value,
+            "password": document.getElementById("password").value,
+            "profile": document.getElementById("profiles").value
+        }));
 
-        fetch(postRequest)
-            .then((response) => {
-                if (response.status === 200) {
-                    return response.json();
-
-                } else {
-                    throw new Error("An error has occurred " + response.status);
-                }
-            })
-
-            .then(json => {
-                alert(json.message);
-
-                window.location.href = window.location.origin + json.url;
-            });
-    }
-}
-
-function listUsers() {
-    let getRequest = newGetRequest("/list-users");
-
-    fetch(getRequest)
-        .then((response) => {
-            if (response.status === 200) {
+        fetch(postRequest).then((response) => {
+            if (response.ok)
                 return response.json();
-
-            } else {
-                throw new Error("An error has occurred" + ". Error " + response.status);
-            }
+            else
+                throw new Error("An error has occurred " + response.status);
 
         }).then(json => {
-        console.log(json);
-    });
+            alert(json.message);
+
+            window.location.href = window.location.origin + json.url;
+        });
+    }
 }
 
 function listProfiles() {
     let getRequest = newGetRequest("/list-profiles");
 
-    fetch(getRequest)
-        .then((response) => {
-            if (response.status === 200) {
-                return response.json();
-
-            } else {
-                throw new Error("An error has occurred" + ". Error " + response.status);
-            }
+    fetch(getRequest).then((response) => {
+        if (response.ok)
+            return response.json();
+        else
+            throw new Error("An error has occurred" + ". Error " + response.status);
 
         }).then(json => {
-
             let profilesList = document.getElementById("profiles");
 
             for (let i = 0; i < json.profiles.length; i++) {
@@ -94,36 +94,6 @@ function listProfiles() {
 
                 profilesList.appendChild(profile);
             }
-    });
-}
-
-function getUserDTO() {
-    return {
-        "name": document.getElementById("name").value,
-        "email": document.getElementById("email").value,
-        "password": document.getElementById("password").value,
-        "profile": document.getElementById("profiles").value
-    }
-}
-
-function newPostRequest(userDTO){
-    return new Request("/users", {
-        method: "POST",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(userDTO),
-    });
-}
-
-function newGetRequest(url){
-    return new Request(url, {
-        method: "GET",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        }
     });
 }
 
