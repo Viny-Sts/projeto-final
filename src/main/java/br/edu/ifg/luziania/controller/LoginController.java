@@ -10,7 +10,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("")
+@Path("/login")
 public class LoginController {
     @Inject
     UserBO userBO;
@@ -22,7 +22,7 @@ public class LoginController {
     }
 
     @GET
-    @Path("/login")
+    @Path("/")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getLogin() {
         return login.instance();
@@ -31,7 +31,7 @@ public class LoginController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/authenticate")
+    @Path("/auth")
     public Response authenticate(AuthDTO authDTO) {
         return Response.ok(userBO.authenticate(authDTO.getEmail(), authDTO.getPassword()),
                 MediaType.APPLICATION_JSON).build();

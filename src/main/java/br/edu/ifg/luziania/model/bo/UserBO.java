@@ -72,13 +72,6 @@ public class UserBO {
         return new AuthReturnDTO("/main", "Hello " + user.getName() + "!", true);
     }
 
-    public UserReturnDTO list() {
-        if (userDAO.getAllUsers() == null)
-            return new UserReturnDTO(500, "/admin", "There's no account registered");
-
-        return new UserReturnDTO(200, "/admin", "Users: " + userDAO.getAllUsers() + ";");
-    }
-
     @Transactional
     public UserReturnDTO save(UserDTO userDTO) {
         LocalDateTime dateTime = LocalDateTime.now();
@@ -104,7 +97,7 @@ public class UserBO {
 
             activityBO.save(registerLog);
 
-            return new UserReturnDTO(500, "/register", "An error has occurred when registering");
+            return new UserReturnDTO(500, "/sign-up", "An error has occurred when registering");
         }
     }
 }

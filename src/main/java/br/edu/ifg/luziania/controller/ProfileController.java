@@ -13,7 +13,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("")
+@Path("/profile")
 public class ProfileController {
     @Inject
     Session session;
@@ -28,7 +28,7 @@ public class ProfileController {
     }
 
     @GET
-    @Path("/profile")
+    @Path("/")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getProfile() {
         if (!session.getPermissions().isEmpty() && session.getPermissions().get(3))
@@ -39,7 +39,7 @@ public class ProfileController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/list-profiles")
+    @Path("/list")
     public Response getPermissions() {
         ProfileReturnDTO profileReturnDTO = profileBO.list();
 
@@ -49,7 +49,7 @@ public class ProfileController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/profiles")
+    @Path("/register")
     public Response authenticate(ProfileDTO profileDTO) {
         ProfileReturnDTO profileReturnDTO = profileBO.save(profileDTO);
 

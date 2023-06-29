@@ -34,7 +34,7 @@ function newPostRequest(url, body){
 
 function login() {
     if (checkInput()) {
-        let postRequest = newPostRequest("/authenticate", JSON.stringify({
+        let postRequest = newPostRequest("/login/auth", JSON.stringify({
             "email": document.getElementById("email").value,
             "password": document.getElementById("password").value
         }));

@@ -55,7 +55,7 @@ function checkInput() {
 
 function register() {
     if (checkInput()) {
-        let postRequest = newPostRequest("/users", JSON.stringify({
+        let postRequest = newPostRequest("/sign-up/register", JSON.stringify({
             "name": document.getElementById("name").value,
             "email": document.getElementById("email").value,
             "password": document.getElementById("password").value,
@@ -77,7 +77,7 @@ function register() {
 }
 
 function listProfiles() {
-    let getRequest = newGetRequest("/list-profiles");
+    let getRequest = newGetRequest("/profile/list");
 
     fetch(getRequest).then((response) => {
         if (response.ok)

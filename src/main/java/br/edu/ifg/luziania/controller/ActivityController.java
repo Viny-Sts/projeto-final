@@ -12,7 +12,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("")
+@Path("/activity")
 public class ActivityController {
     @Inject
     ActivityBO activityBO;
@@ -24,14 +24,14 @@ public class ActivityController {
     }
 
     @GET
-    @Path("/activity")
+    @Path("/")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getActivity() {
         return activity.instance();
     }
 
     @POST
-    @Path("/activities")
+    @Path("/register")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response setActivity(ActivityDTO activityDTO) {

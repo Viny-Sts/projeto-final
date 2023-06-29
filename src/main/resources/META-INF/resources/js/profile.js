@@ -10,7 +10,7 @@ function newPostRequest(url, body) {
 }
 
 function addProfile() {
-    let postRequest = newPostRequest("/profiles", JSON.stringify({
+    let postRequest = newPostRequest("/profile/register", JSON.stringify({
         "name": document.getElementById("profile-name").value,
 
         "mainAccess": document.getElementById("main-access").checked,

@@ -38,15 +38,4 @@ public class UserDAO {
             return null;
         }
     }
-
-    public Users getAllUsers(){
-        try {
-            Query query = entityManager.createQuery("from Users where name = '123'");
-
-            return (Users) query.getSingleResult();
-
-        } catch (Exception ignored) {
-            return null;
-        }
-    }
 }

@@ -17,7 +17,6 @@ public class ActivityDAO {
         entityManager.persist(activity);
     }
 
-
     public List<Activity> getAllActivity() {
         try {
             Query query = entityManager.createQuery("from Activity", Activity.class);
