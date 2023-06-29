@@ -24,7 +24,7 @@ public class LoginController {
     @GET
     @Path("/")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance getLogin() {
+    public TemplateInstance getLoginTemplate() {
         return login.instance();
     }
 
@@ -32,7 +32,7 @@ public class LoginController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/auth")
-    public Response authenticate(AuthDTO authDTO) {
+    public Response authUser(AuthDTO authDTO) {
         return Response.ok(userBO.authenticate(authDTO.getEmail(), authDTO.getPassword()),
                 MediaType.APPLICATION_JSON).build();
     }

@@ -30,7 +30,7 @@ public class ProfileController {
     @GET
     @Path("/")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance getProfile() {
+    public TemplateInstance getProfileTemplate() {
         if (!session.getPermissions().isEmpty() && session.getPermissions().get(3))
             return profile.instance();
 
@@ -40,7 +40,7 @@ public class ProfileController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/list")
-    public Response getPermissions() {
+    public Response getProfiles() {
         ProfileReturnDTO profileReturnDTO = profileBO.list();
 
         return Response.status(profileReturnDTO.getStatus()).entity(profileReturnDTO).build();
@@ -50,7 +50,7 @@ public class ProfileController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/register")
-    public Response authenticate(ProfileDTO profileDTO) {
+    public Response saveProfile(ProfileDTO profileDTO) {
         ProfileReturnDTO profileReturnDTO = profileBO.save(profileDTO);
 
         return Response.status(profileReturnDTO.getStatus()).entity(profileReturnDTO).build();

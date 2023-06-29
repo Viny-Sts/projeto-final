@@ -26,7 +26,7 @@ public class ActivityController {
     @GET
     @Path("/")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance getActivity() {
+    public TemplateInstance getActivityTemplate() {
         return activity.instance();
     }
 
@@ -34,7 +34,7 @@ public class ActivityController {
     @Path("/register")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response setActivity(ActivityDTO activityDTO) {
+    public Response saveActivity(ActivityDTO activityDTO) {
         ActivityReturnDTO activityReturnDTO = activityBO.save(activityDTO);
 
         return Response.status(activityReturnDTO.getStatus()).entity(activityReturnDTO).build();

@@ -59,7 +59,8 @@ function register() {
             "name": document.getElementById("name").value,
             "email": document.getElementById("email").value,
             "password": document.getElementById("password").value,
-            "profile": document.getElementById("profiles").value
+            "profile": document.getElementById("profiles") ?
+                document.getElementById("profiles").value : "user"
         }));
 
         fetch(postRequest).then((response) => {

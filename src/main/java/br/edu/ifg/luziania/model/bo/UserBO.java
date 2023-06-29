@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Dependent
 public class UserBO {
@@ -50,15 +51,25 @@ public class UserBO {
         }
 
         Users user = userDAO.getByEmailAndPassword(email, password);
-        Profiles profiles = profileDAO.getByName(user.getProfile());
-        
+
         session.setName(user.getProfile());
 
         List<Boolean> permissions = new ArrayList<>();
-        permissions.add(profiles.getMainAccess());
-        permissions.add(profiles.getActivityAccess());
-        permissions.add(profiles.getUserManagement());
-        permissions.add(profiles.getProfileManagement());
+
+        if (Objects.equals(session.getName(), "user")) {
+            permissions.add(true);
+            permissions.add(false);
+            permissions.add(false);
+            permissions.add(false);
+
+        } else {
+            Profiles profiles = profileDAO.getByName(user.getProfile());
+
+            permissions.add(profiles.getMainAccess());
+            permissions.add(profiles.getActivityAccess());
+            permissions.add(profiles.getUserManagement());
+            permissions.add(profiles.getProfileManagement());
+        }
 
         session.setPermissions(permissions);
 

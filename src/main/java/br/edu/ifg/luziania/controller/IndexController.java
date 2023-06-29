@@ -19,7 +19,7 @@ public class IndexController {
     @GET
     @Path("/")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance getIndex() {
+    public TemplateInstance getIndexTemplate() {
         return index.instance();
     }
 }

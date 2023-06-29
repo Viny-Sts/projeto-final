@@ -25,13 +25,14 @@ public class MainController {
     @GET
     @Path("/main")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance getMain() {
+    public TemplateInstance getMainTemplate() {
         if (!session.getPermissions().isEmpty()) {
             return main.data("mainAccess", session.getPermissions().get(0),
                     "activityAccess", session.getPermissions().get(1),
                     "userManagement", session.getPermissions().get(2),
                     "profileManagement", session.getPermissions().get(3));
         }
-            return ErrorTemplate.forbidden();
+
+        return ErrorTemplate.forbidden();
     }
 }
