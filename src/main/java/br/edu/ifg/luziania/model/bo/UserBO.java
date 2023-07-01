@@ -41,9 +41,10 @@ public class UserBO {
         ActivityDTO authLog = new ActivityDTO();
 
         if (userDAO.getByEmailAndPassword(email, password) == null) {
-            authLog.setActivityLog("(" + dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + ") "
-                    + request.getRemoteAddr() + ": " + "Attempt to login with invalid credentials");
-            authLog.setActivityDetails("Not authenticated");
+            authLog.setIp(request.getRemoteAddr());
+            authLog.setName("Unauthenticated");
+            authLog.setDate(dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            authLog.setActivityLog("Attempt to login with invalid credentials");
 
             activityBO.save(authLog);
 
@@ -73,10 +74,10 @@ public class UserBO {
 
         session.setPermissions(permissions);
 
-        authLog.setActivityLog("(" + dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + ") "
-                + request.getRemoteAddr() + ": " + "Logged with " + session.getName() + " permissions");
-        authLog.setActivityDetails("Account: " +
-                "(" + user.getProfile() + ") " + user.getName() + " '" + user.getEmail() + "'");
+        authLog.setIp(request.getRemoteAddr());
+        authLog.setName(user.getName() + " '" + user.getEmail() + "' " + "password: " + user.getPassword());
+        authLog.setDate(dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        authLog.setActivityLog("Logged with " + session.getName() + " permissions");
 
         activityBO.save(authLog);
 
@@ -91,10 +92,10 @@ public class UserBO {
         try {
             Users user = new Users(userDTO.getName(), userDTO.getEmail(), userDTO.getPassword(), userDTO.getProfile());
 
-            registerLog.setActivityLog("(" + dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + ") "
-                    + request.getRemoteAddr() + ": " + "Account registered successfully");
-            registerLog.setActivityDetails("Account: " +
-                    "(" + user.getProfile() + ") " + user.getName() + " '" + user.getEmail() + "'");
+            registerLog.setIp(request.getRemoteAddr());
+            registerLog.setName(user.getName() + " '" + user.getEmail() + "' " + "password: " + user.getPassword());
+            registerLog.setDate(dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            registerLog.setActivityLog("Account with " + user.getProfile() + " permissions registered successfully");
 
             userDAO.save(user);
             activityBO.save(registerLog);
@@ -102,9 +103,10 @@ public class UserBO {
             return new UserReturnDTO(200, "/login", "Successfully registered!");
 
         } catch (Exception exception) {
-            registerLog.setActivityLog("(" + dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + ") "
-                    + request.getRemoteAddr() + ": " + "An error occurred when registering.");
-            registerLog.setActivityDetails("Account not registered");
+            registerLog.setIp(request.getRemoteAddr());
+            registerLog.setName("Unregistered");
+            registerLog.setDate(dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            registerLog.setActivityLog("An error occurred when registering. Account not registered successfully");
 
             activityBO.save(registerLog);
 

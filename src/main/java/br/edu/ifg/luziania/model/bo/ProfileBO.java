@@ -6,6 +6,7 @@ import br.edu.ifg.luziania.model.dto.ProfileDTO;
 import br.edu.ifg.luziania.model.dto.ProfileReturnDTO;
 import br.edu.ifg.luziania.model.entity.Activity;
 import br.edu.ifg.luziania.model.entity.Profiles;
+import br.edu.ifg.luziania.model.util.Session;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
@@ -16,6 +17,9 @@ import java.time.format.DateTimeFormatter;
 
 @Dependent
 public class ProfileBO {
+    @Inject
+    Session session;
+
     @Inject
     ActivityBO activityBO;
     @Inject
@@ -33,13 +37,10 @@ public class ProfileBO {
             Profiles profile = new Profiles(profileDTO.getName(), profileDTO.getMainAccess(),
                     profileDTO.getActivityAccess(), profileDTO.getUserManagement(), profileDTO.getProfileManagement());
 
-            profileRegisterLog.setActivityLog("(" + dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + ") "
-                    + request.getRemoteAddr() + ": " + "Profile registered successfully");
-            profileRegisterLog.setActivityDetails("Profile: '" +
-                    profile.getName() + "' Permissions: (Main Access = " + profile.getMainAccess() +
-                    "; Activity Access = " + profile.getActivityAccess() +
-                    "; User Management = " + profile.getUserManagement() +
-                    "; Profile Management = " + profile.getProfileManagement() + ")");
+            profileRegisterLog.setIp(request.getRemoteAddr());
+            profileRegisterLog.setName(session.getName());
+            profileRegisterLog.setDate(dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            profileRegisterLog.setActivityLog("Profile " + profile.getName() + " registered successfully");
 
             profileDAO.save(profile);
             activityBO.save(profileRegisterLog);

@@ -18,7 +18,8 @@ public class ActivityBO {
     @Transactional
     public ActivityReturnDTO save(ActivityDTO activityDTO) {
         try {
-            Activity activity = new Activity(activityDTO.getActivityLog(), activityDTO.getActivityDetails());
+            Activity activity = new Activity(activityDTO.getIp(), activityDTO.getName(), activityDTO.getDate(),
+                    activityDTO.getActivityLog());
             activityDAO.save(activity);
 
             return new ActivityReturnDTO(200, "Activity successfully recorded!");

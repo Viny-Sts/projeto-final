@@ -11,15 +11,51 @@ public class Activity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
+    private String ip;
+    private String name;
+    private String date;
     private String activityLog;
-    private String activityDetails;
 
     public Activity() {
     }
 
-    public Activity(String activityLog, String activityDetails) {
+        public Activity(String ip, String name, String date, String activityLog) {
+        this.ip = ip;
+        this.name = name;
+        this.date = date;
         this.activityLog = activityLog;
-        this.activityDetails = activityDetails;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getActivityLog() {
@@ -28,13 +64,5 @@ public class Activity {
 
     public void setActivityLog(String activityLog) {
         this.activityLog = activityLog;
-    }
-
-    public String getActivityDetails() {
-        return activityDetails;
-    }
-
-    public void setActivityDetails(String activityDetails) {
-        this.activityDetails = activityDetails;
     }
 }
