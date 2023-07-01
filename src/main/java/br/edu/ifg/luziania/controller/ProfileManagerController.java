@@ -2,6 +2,8 @@ package br.edu.ifg.luziania.controller;
 
 import br.edu.ifg.luziania.model.bo.ProfileBO;
 import br.edu.ifg.luziania.model.dto.ProfileReturnDTO;
+import br.edu.ifg.luziania.model.util.ErrorTemplate;
+import br.edu.ifg.luziania.model.util.Session;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
@@ -12,6 +14,8 @@ import javax.ws.rs.core.Response;
 
 @Path("/profileManager")
 public class ProfileManagerController {
+    @Inject
+    Session session;
     @Inject
     ProfileBO profileBO;
 
@@ -25,7 +29,10 @@ public class ProfileManagerController {
     @Path("/")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getProfileManagerTemplate() {
-        return profileManager.instance();
+        if (!session.getPermissions().isEmpty() && session.getPermissions().get(3))
+            return profileManager.instance();
+
+        return ErrorTemplate.forbidden();
     }
 
     @GET

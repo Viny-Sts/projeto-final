@@ -12,27 +12,27 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/sign-up")
-public class SignupController {
+@Path("/signup")
+public class UserController {
     @Inject
     Session session;
     @Inject
     UserBO userBO;
 
-    private final Template signup;
+    private final Template user;
 
-    public SignupController(Template signup) {
-        this.signup = signup;
+    public UserController(Template user) {
+        this.user = user;
     }
 
     @GET
     @Path("/")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance getSignupTemplate() {
+    public TemplateInstance getUserTemplate() {
         if (!session.getPermissions().isEmpty())
-            return signup.data("userManagement", session.getPermissions().get(2));
+            return user.data("userManagement", session.getPermissions().get(2));
 
-        return signup.data("userManagement", false);
+        return user.data("userManagement", false);
     }
 
     @POST

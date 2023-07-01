@@ -2,6 +2,8 @@ package br.edu.ifg.luziania.controller;
 
 import br.edu.ifg.luziania.model.bo.UserBO;
 import br.edu.ifg.luziania.model.dto.UserReturnDTO;
+import br.edu.ifg.luziania.model.util.ErrorTemplate;
+import br.edu.ifg.luziania.model.util.Session;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
@@ -10,8 +12,10 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/user")
+@Path("/userManager")
 public class UserManagerController {
+    @Inject
+    Session session;
     @Inject
     UserBO userBO;
 
@@ -24,8 +28,11 @@ public class UserManagerController {
     @GET
     @Path("/")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance getUserTemplate() {
-        return userManager.instance();
+    public TemplateInstance getUserManagerTemplate() {
+        if (!session.getPermissions().isEmpty() && session.getPermissions().get(2))
+            return userManager.instance();
+
+        return ErrorTemplate.forbidden();
     }
 
     @GET
