@@ -13,7 +13,8 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <button class="btn btn-primary" onclick="window.location.href='/'" type="button">Home</button>
+            <a class="btn btn-primary" href="/">Home</a>
+
             {#if userManagement}
                 <a class="btn btn-warning" href="/userManager">User management</a>
             {/if}
@@ -49,10 +50,9 @@
                 <button class="btn btn-success" onclick="register()" type="button">Next</button>
                 <button class="btn btn-secondary" onclick="clearFields()" type="button">Clear fields</button>
             </div>
-            <p class="form-text-white">
-                Already have an account?<br>
-                Click <span onclick="window.location.href='/login';"
-                            style="cursor: pointer; color: deepskyblue">here</span> to sign in.
+            <p class="form-text-white mt-4">
+                Already have an account? <br>
+                Click <a href="/login">here</a> to sign in.
             </p>
         </form>
     </div>

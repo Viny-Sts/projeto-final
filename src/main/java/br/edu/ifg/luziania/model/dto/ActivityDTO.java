@@ -6,6 +6,13 @@ public class ActivityDTO {
     private String date;
     private String activityLog;
 
+    public ActivityDTO(String ip, String name, String date, String activityLog) {
+        this.ip = ip;
+        this.name = name;
+        this.date = date;
+        this.activityLog = activityLog;
+    }
+
     public String getIp() {
         return ip;
     }

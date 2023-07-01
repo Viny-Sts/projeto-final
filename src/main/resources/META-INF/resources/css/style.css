@@ -1,8 +1,13 @@
 ::selection {
-    background-color: black;
-    color: white;
+    background-color: purple;
+    color: deeppink;
 }
+
 ::-moz-selection {
     background-color: purple;
     color: deeppink;
+}
+
+a {
+    color: deepskyblue;
 }

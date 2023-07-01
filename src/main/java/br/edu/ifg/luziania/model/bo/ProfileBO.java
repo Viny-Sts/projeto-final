@@ -30,19 +30,15 @@ public class ProfileBO {
     @Transactional
     public ProfileReturnDTO save(ProfileDTO profileDTO) {
         LocalDateTime dateTime = LocalDateTime.now();
-        ActivityDTO profileRegisterLog = new ActivityDTO();
 
         try {
             Profiles profile = new Profiles(profileDTO.getName(), profileDTO.getMainAccess(),
                     profileDTO.getActivityAccess(), profileDTO.getUserManagement(), profileDTO.getProfileManagement());
 
-            profileRegisterLog.setIp(request.getRemoteAddr());
-            profileRegisterLog.setName(session.getName());
-            profileRegisterLog.setDate(dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-            profileRegisterLog.setActivityLog("Profile " + profile.getName() + " registered successfully");
-
             profileDAO.save(profile);
-            activityBO.save(profileRegisterLog);
+            activityBO.save(new ActivityDTO(request.getRemoteAddr(), session.getName(),
+                    dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+                    "Profile " + profile.getName() + " registered successfully"));
 
             return new ProfileReturnDTO(200, "Profile successfully registered!");
 

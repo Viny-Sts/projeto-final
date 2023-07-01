@@ -3,6 +3,8 @@ package br.edu.ifg.luziania.controller;
 import br.edu.ifg.luziania.model.bo.ActivityBO;
 import br.edu.ifg.luziania.model.dto.ActivityDTO;
 import br.edu.ifg.luziania.model.dto.ActivityReturnDTO;
+import br.edu.ifg.luziania.model.util.ErrorTemplate;
+import br.edu.ifg.luziania.model.util.Session;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
@@ -13,6 +15,8 @@ import javax.ws.rs.core.Response;
 
 @Path("/activity")
 public class ActivityController {
+    @Inject
+    Session session;
     @Inject
     ActivityBO activityBO;
 
@@ -26,7 +30,10 @@ public class ActivityController {
     @Path("/")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getActivityTemplate() {
-        return activity.instance();
+        if (!session.getPermissions().isEmpty() && session.getPermissions().get(1))
+            return activity.instance();
+
+        return ErrorTemplate.forbidden();
     }
 
     @GET

@@ -19,7 +19,7 @@ public class Activity {
     public Activity() {
     }
 
-        public Activity(String ip, String name, String date, String activityLog) {
+    public Activity(String ip, String name, String date, String activityLog) {
         this.ip = ip;
         this.name = name;
         this.date = date;

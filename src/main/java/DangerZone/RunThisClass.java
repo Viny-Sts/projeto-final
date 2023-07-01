@@ -1,3 +1,5 @@
+// This is just an inside joke!
+
 package DangerZone;
 
 import javax.ws.rs.GET;
