@@ -38,6 +38,20 @@ public class UserBO {
         ActivityDTO authLog = new ActivityDTO();
 
         if (userDAO.getByEmailAndPassword(email, password) == null) {
+            if (!session.getName().isEmpty() && Objects.equals(email, "logout") && Objects.equals(password, "logout")) {
+                List<Boolean> permissions = new ArrayList<>();
+                session.setPermissions(permissions);
+
+                authLog.setIp(request.getRemoteAddr());
+                authLog.setName(session.getName());
+                authLog.setDate(dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                authLog.setActivityLog("Logout successfully");
+
+                activityBO.save(authLog);
+
+                return new AuthReturnDTO("/", "Successfully logout", false);
+            }
+
             authLog.setIp(request.getRemoteAddr());
             authLog.setName("Unauthenticated");
             authLog.setDate(dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
