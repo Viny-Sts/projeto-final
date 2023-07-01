@@ -14,8 +14,11 @@
                 <h1>StormTrack</h1>
             </div>
             <div class="col text-end">
+                {#if mainAccess}
+                    <a class="btn btn-warning" href="/main">Main</a>
+                {/if}
                 <a class="btn btn-success" href="/login">Sign in</a>
-                <a class="btn btn-primary" href="/sign-up">Sign up</a>
+                <a class="btn btn-primary" href="/signup">Sign up</a>
 
                 <a class="btn btn-info" href="/about">About</a>
             </div>

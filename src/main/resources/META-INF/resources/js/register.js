@@ -72,7 +72,10 @@ function register() {
         }).then(json => {
             alert(json.message);
 
-            window.location.href = window.location.origin + json.url;
+            if (!document.getElementById("profiles"))
+                window.location.href = window.location.origin + json.url;
+            else
+                clearFields();
         });
     }
 }
