@@ -33,6 +33,7 @@ public class ActivityBO {
         if (activityDAO.getAllActivity() == null)
             return new ActivityReturnDTO(500, "There's no activity recorded");
 
-        return new ActivityReturnDTO(200, "Activity successfully retrieved!", activityDAO.getAllActivity());
+        return new ActivityReturnDTO(200, "Activity successfully retrieved!",
+                activityDAO.getAllActivity());
     }
 }

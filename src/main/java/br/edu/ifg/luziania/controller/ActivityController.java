@@ -3,7 +3,6 @@ package br.edu.ifg.luziania.controller;
 import br.edu.ifg.luziania.model.bo.ActivityBO;
 import br.edu.ifg.luziania.model.dto.ActivityDTO;
 import br.edu.ifg.luziania.model.dto.ActivityReturnDTO;
-import br.edu.ifg.luziania.model.dto.UserReturnDTO;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
@@ -28,6 +27,15 @@ public class ActivityController {
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getActivityTemplate() {
         return activity.instance();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/list")
+    public Response getActivities() {
+        ActivityReturnDTO activityReturnDTO = activityBO.list();
+
+        return Response.status(activityReturnDTO.getStatus()).entity(activityReturnDTO).build();
     }
 
     @POST
