@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function updateProfiles() {
+document.addEventListener('DOMContentLoaded', function updateActivityTable() {
     listActivities();
 });
 

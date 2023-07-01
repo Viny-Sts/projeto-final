@@ -2,10 +2,7 @@ package br.edu.ifg.luziania.model.bo;
 
 import br.edu.ifg.luziania.model.dao.ProfileDAO;
 import br.edu.ifg.luziania.model.dao.UserDAO;
-import br.edu.ifg.luziania.model.dto.ActivityDTO;
-import br.edu.ifg.luziania.model.dto.AuthReturnDTO;
-import br.edu.ifg.luziania.model.dto.UserDTO;
-import br.edu.ifg.luziania.model.dto.UserReturnDTO;
+import br.edu.ifg.luziania.model.dto.*;
 import br.edu.ifg.luziania.model.entity.Profiles;
 import br.edu.ifg.luziania.model.entity.Users;
 import br.edu.ifg.luziania.model.util.Session;
@@ -112,5 +109,13 @@ public class UserBO {
 
             return new UserReturnDTO(500, "/sign-up", "An error has occurred when registering");
         }
+    }
+
+    public UserReturnDTO list() {
+        if (userDAO.getAllUsers() == null)
+            return new UserReturnDTO(500, "There's no activity recorded");
+
+        return new UserReturnDTO(200, "User successfully retrieved!",
+                userDAO.getAllUsers());
     }
 }

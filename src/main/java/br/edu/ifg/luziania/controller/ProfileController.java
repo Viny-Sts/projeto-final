@@ -37,15 +37,6 @@ public class ProfileController {
         return ErrorTemplate.forbidden();
     }
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/list")
-    public Response getProfiles() {
-        ProfileReturnDTO profileReturnDTO = profileBO.list();
-
-        return Response.status(profileReturnDTO.getStatus()).entity(profileReturnDTO).build();
-    }
-
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)

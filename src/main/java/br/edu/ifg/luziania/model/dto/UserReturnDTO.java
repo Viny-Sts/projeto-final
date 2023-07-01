@@ -1,10 +1,27 @@
 package br.edu.ifg.luziania.model.dto;
 
+import br.edu.ifg.luziania.model.entity.Users;
+
+import java.util.List;
+
 public class UserReturnDTO {
     private Integer status;
 
     private String url;
     private String message;
+
+    private List<Users> users;
+
+    public UserReturnDTO(Integer status, String message) {
+        this.status = status;
+        this.message = message;
+    }
+
+    public UserReturnDTO(Integer status, String message, List<Users> users) {
+        this.status = status;
+        this.message = message;
+        this.users = users;
+    }
 
     public UserReturnDTO(Integer status, String url, String message) {
         this.status = status;
@@ -20,6 +37,14 @@ public class UserReturnDTO {
         this.status = status;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public String getMessage() {
         return message;
     }
@@ -28,11 +53,11 @@ public class UserReturnDTO {
         this.message = message;
     }
 
-    public String getUrl() {
-        return url;
+    public List<Users> getUsers() {
+        return users;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUsers(List<Users> users) {
+        this.users = users;
     }
 }

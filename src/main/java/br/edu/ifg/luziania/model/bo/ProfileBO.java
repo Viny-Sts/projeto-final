@@ -4,7 +4,6 @@ import br.edu.ifg.luziania.model.dao.ProfileDAO;
 import br.edu.ifg.luziania.model.dto.ActivityDTO;
 import br.edu.ifg.luziania.model.dto.ProfileDTO;
 import br.edu.ifg.luziania.model.dto.ProfileReturnDTO;
-import br.edu.ifg.luziania.model.entity.Activity;
 import br.edu.ifg.luziania.model.entity.Profiles;
 import br.edu.ifg.luziania.model.util.Session;
 

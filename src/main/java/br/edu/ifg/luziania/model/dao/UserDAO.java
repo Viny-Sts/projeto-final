@@ -25,7 +25,7 @@ public class UserDAO {
         return (Users) query.getSingleResult();
     }
 
-    public Users getByEmailAndPassword(String email, String password){
+    public Users getByEmailAndPassword(String email, String password) {
         try {
             Query query = entityManager.createQuery("from Users where email = :email and password = :password");
 
@@ -33,6 +33,17 @@ public class UserDAO {
             query.setParameter("password", password);
 
             return (Users) query.getSingleResult();
+
+        } catch (Exception ignored) {
+            return null;
+        }
+    }
+
+    public List<Users> getAllUsers() {
+        try {
+            Query query = entityManager.createQuery("from Users", Users.class);
+
+            return query.getResultList();
 
         } catch (Exception ignored) {
             return null;
