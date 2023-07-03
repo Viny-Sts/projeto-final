@@ -7,6 +7,7 @@
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
     <script src="/js/warning.js"></script>
+    <script src="/js/script.js"></script>
 </head>
 <body class="container-fluid text-bg-dark p-5">
     <div class="container">
@@ -21,15 +22,11 @@
         </div>
         <div class="row mt-3">
             <h1>Welcome to our system, users!</h1>
-            <p>StormTrack is currently under maintenance :/
-                <br>
-            We have not set a deadline for the maintenance, but we will come back soon! </p>
         </div>
         <div class="text-center">
             {#if mainAccess}
-                <div class="text-danger">
-                    API Content Here
-                </div>
+                <label for="city">Digite o nome de uma cidade<input type="text" id="city"></label>
+                    <button onclick="getOpenWheatherData()">Mostrar dados</button>
             {/if}
             {#if activityAccess}
                 <a class="btn btn-info" href="/activity">Activity (Log)</a>
