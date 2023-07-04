@@ -9,10 +9,7 @@ import br.edu.ifg.luziania.model.util.Session;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Dependent
 public class ProfileBO {
@@ -24,20 +21,14 @@ public class ProfileBO {
     @Inject
     ProfileDAO profileDAO;
 
-    @Inject
-    HttpServletRequest request;
-
     @Transactional
     public ProfileReturnDTO save(ProfileDTO profileDTO) {
-        LocalDateTime dateTime = LocalDateTime.now();
-
         try {
             Profiles profile = new Profiles(profileDTO.getName(), profileDTO.getMainAccess(),
                     profileDTO.getActivityAccess(), profileDTO.getUserManagement(), profileDTO.getProfileManagement());
 
             profileDAO.save(profile);
-            activityBO.save(new ActivityDTO(request.getRemoteAddr(), session.getName(),
-                    dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+            activityBO.save(new ActivityDTO(session.getName(),
                     "Profile " + profile.getName() + " registered successfully"));
 
             return new ProfileReturnDTO(200, "Profile successfully registered!");

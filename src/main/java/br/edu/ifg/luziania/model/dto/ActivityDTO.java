@@ -1,24 +1,12 @@
 package br.edu.ifg.luziania.model.dto;
 
 public class ActivityDTO {
-    private String ip;
     private String name;
-    private String date;
     private String activityLog;
 
-    public ActivityDTO(String ip, String name, String date, String activityLog) {
-        this.ip = ip;
+    public ActivityDTO(String name, String activityLog) {
         this.name = name;
-        this.date = date;
         this.activityLog = activityLog;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
     }
 
     public String getName() {
@@ -27,14 +15,6 @@ public class ActivityDTO {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getActivityLog() {

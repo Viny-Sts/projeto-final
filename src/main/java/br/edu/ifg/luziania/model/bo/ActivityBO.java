@@ -7,18 +7,26 @@ import br.edu.ifg.luziania.model.entity.Activity;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 @Dependent
 public class ActivityBO {
     @Inject
     ActivityDAO activityDAO;
+    @Inject
+    HttpServletRequest httpServletRequest;
 
     @Transactional
     public ActivityReturnDTO save(ActivityDTO activityDTO) {
         try {
-            Activity activity = new Activity(activityDTO.getIp(), activityDTO.getName(), activityDTO.getDate(),
+            LocalDateTime localDateTime = LocalDateTime.now();
+
+            Activity activity = new Activity(httpServletRequest.getRemoteAddr(), activityDTO.getName(),
+                    localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                     activityDTO.getActivityLog());
             activityDAO.save(activity);
 

@@ -1,7 +1,6 @@
 package br.edu.ifg.luziania.controller;
 
 import br.edu.ifg.luziania.model.bo.ActivityBO;
-import br.edu.ifg.luziania.model.dto.ActivityDTO;
 import br.edu.ifg.luziania.model.dto.ActivityReturnDTO;
 import br.edu.ifg.luziania.model.util.ErrorTemplate;
 import br.edu.ifg.luziania.model.util.Session;
@@ -41,16 +40,6 @@ public class ActivityController {
     @Path("/list")
     public Response getActivities() {
         ActivityReturnDTO activityReturnDTO = activityBO.list();
-
-        return Response.status(activityReturnDTO.getStatus()).entity(activityReturnDTO).build();
-    }
-
-    @POST
-    @Path("/register")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response saveActivity(ActivityDTO activityDTO) {
-        ActivityReturnDTO activityReturnDTO = activityBO.save(activityDTO);
 
         return Response.status(activityReturnDTO.getStatus()).entity(activityReturnDTO).build();
     }
