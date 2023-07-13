@@ -1,5 +1,22 @@
-document.addEventListener('DOMContentLoaded', function updateProfiles() {
-    listProfiles();
+document.addEventListener('DOMContentLoaded', () => {
+    let getRequest = newGetRequest("/profileManager/list");
+
+    fetch(getRequest).then((response) => {
+        if (response.ok)
+            return response.json();
+        else
+            throw new Error("An error has occurred" + ". Error " + response.status);
+
+    }).then(json => {
+        let profilesList = document.getElementById("profiles");
+
+        for (let i = 0; i < json.profiles.length; i++) {
+            let profile = document.createElement('option');
+            profile.text = json.profiles[i].name;
+
+            profilesList.appendChild(profile);
+        }
+    });
 });
 
 function newPostRequest(url, body){
@@ -78,27 +95,6 @@ function register() {
                 clearFields();
         });
     }
-}
-
-function listProfiles() {
-    let getRequest = newGetRequest("/profileManager/list");
-
-    fetch(getRequest).then((response) => {
-        if (response.ok)
-            return response.json();
-        else
-            throw new Error("An error has occurred" + ". Error " + response.status);
-
-        }).then(json => {
-            let profilesList = document.getElementById("profiles");
-
-            for (let i = 0; i < json.profiles.length; i++) {
-                let profile = document.createElement('option');
-                profile.text = json.profiles[i].name;
-
-                profilesList.appendChild(profile);
-            }
-    });
 }
 
 function clearFields() {

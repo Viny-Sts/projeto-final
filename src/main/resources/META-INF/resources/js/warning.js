@@ -1,14 +1,3 @@
-function newPostRequest(url, body){
-    return new Request(url, {
-        method: "POST",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        body: body
-    })
-}
-
 function disconnect() {
     if (window.confirm("This action will disconnect you. Click 'Ok' to sign out or 'Cancel' to remain connected.")) {
         let postRequest = newPostRequest("/logout", JSON.stringify({
@@ -28,4 +17,15 @@ function disconnect() {
             window.location.href = window.location.origin + json.url;
         });
     }
+}
+
+function newPostRequest(url, body){
+    return new Request(url, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: body
+    })
 }

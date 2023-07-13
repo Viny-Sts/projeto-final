@@ -1,18 +1,4 @@
-document.addEventListener('DOMContentLoaded', function updateProfileTable() {
-    listProfiles();
-});
-
-function newGetRequest(url){
-    return new Request(url, {
-        method: "GET",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        }
-    });
-}
-
-function listProfiles() {
+document.addEventListener('DOMContentLoaded', () => {
     let getRequest = newGetRequest("/profileManager/list");
 
     fetch(getRequest).then((response) => {
@@ -32,6 +18,16 @@ function listProfiles() {
             row.insertCell().innerText = json.profiles[i].activityAccess;
             row.insertCell().innerText = json.profiles[i].userManagement;
             row.insertCell().innerText = json.profiles[i].profileManagement;
+        }
+    });
+});
+
+function newGetRequest(url){
+    return new Request(url, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
         }
     });
 }

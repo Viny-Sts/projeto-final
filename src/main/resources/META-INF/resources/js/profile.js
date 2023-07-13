@@ -1,14 +1,3 @@
-function newPostRequest(url, body) {
-    return new Request(url, {
-        method: "POST",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        body: body
-    });
-}
-
 function addProfile() {
     let postRequest = newPostRequest("/profile/register", JSON.stringify({
         "name": document.getElementById("profile-name").value,
@@ -27,5 +16,16 @@ function addProfile() {
 
     }).then(json => {
         alert(json.message);
+    });
+}
+
+function newPostRequest(url, body) {
+    return new Request(url, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: body
     });
 }
