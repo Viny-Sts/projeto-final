@@ -21,25 +21,13 @@ function checkInput() {
     return true;
 }
 
-function newPostRequest(url, body){
-    return new Request(url, {
-        method: "POST",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        body: body
-    })
-}
-
 function login() {
     if (checkInput()) {
-        let postRequest = newPostRequest("/login/auth", JSON.stringify({
+        fetch(newPostRequest("/login/auth", JSON.stringify({
             "email": document.getElementById("email").value,
             "password": document.getElementById("password").value
-        }));
 
-        fetch(postRequest).then((response) => {
+        }))).then((response) => {
             if (response.ok)
                 return response.json();
             else
@@ -47,7 +35,6 @@ function login() {
 
         }).then(json => {
             alert(json.message);
-            //updateLog();
 
             window.location.href = window.location.origin + json.url;
         });

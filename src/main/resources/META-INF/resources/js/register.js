@@ -19,27 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-function newPostRequest(url, body){
-    return new Request(url, {
-        method: "POST",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        body: body,
-    });
-}
-
-function newGetRequest(url){
-    return new Request(url, {
-        method: "GET",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        }
-    });
-}
-
 function checkInput() {
     if (document.getElementById("name").value === "" &&
         document.getElementById("email").value === "" &&
@@ -72,15 +51,14 @@ function checkInput() {
 
 function register() {
     if (checkInput()) {
-        let postRequest = newPostRequest("/signup/register", JSON.stringify({
+        fetch(newPostRequest("/signup/register", JSON.stringify({
             "name": document.getElementById("name").value,
             "email": document.getElementById("email").value,
             "password": document.getElementById("password").value,
-            "profile": document.getElementById("profiles") ?
-                document.getElementById("profiles").value : "user"
-        }));
+            "profile": document.getElementById("profiles")
+                    ? document.getElementById("profiles").value : "user"
 
-        fetch(postRequest).then((response) => {
+        }))).then((response) => {
             if (response.ok)
                 return response.json();
             else

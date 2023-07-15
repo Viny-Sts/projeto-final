@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let getRequest = newGetRequest("/profileManager/list");
-
-    fetch(getRequest).then((response) => {
+    fetch(newGetRequest("/profileManager/list")).then((response) => {
         if (response.ok)
             return response.json();
         else
@@ -21,13 +19,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
-function newGetRequest(url){
-    return new Request(url, {
-        method: "GET",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        }
-    });
-}
