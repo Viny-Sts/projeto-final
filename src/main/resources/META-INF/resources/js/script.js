@@ -26,7 +26,7 @@ function getOpenWeatherData() {
             weatherTemp.innerHTML = "Temperature: " + json.main.temp + " C°";
             weatherFeelsLike.innerHTML = "Feels Like: " + json.main.feels_like + " C°";
             weatherMin.innerHTML = "Min: " + json.main.temp_min + " C°";
-            weatherMax.innerHTML = "max: " + json.main.temp_max + " C°";
+            weatherMax.innerHTML = "Max: " + json.main.temp_max + " C°";
             weatherHumidity.innerHTML = "Humidity: " + json.main.humidity;
 
             weatherPanel.appendChild(cityInfo);

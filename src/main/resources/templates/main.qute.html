@@ -56,21 +56,20 @@
 </nav>
 <div class="container">
     <div class="row mt-3">
-        <h1>Welcome to StormTrack!</h1>
+        <h1 class="display-4">Welcome to StormTrack</h1>
+        <p>Just insert the city name below, and we'll show you weather-related data</p>
     </div>
-    <div>
+    <div class="row mt-3">
         {#if mainAccess}
-            <div class="row">
-                <div class="col">
-                    <label class="form-label" for="city">City</label>
-                    <input class="form-control" id="city" type="text" placeholder="Search for a city's name here."> <br>
+            <div class="col">
+                <label class="form-label" for="city">City</label>
+                <input class="form-control" id="city" type="text" placeholder="Search for a city's name here."> <br>
 
-                    <button class="btn btn-success mt-3" onclick="getOpenWeatherData()" type="button">Continue</button>
-                    <button class="btn btn-secondary mt-3" onclick="clearFields()" type="button">Clear field</button>
-                </div>
-                <div class="col">
-                    <div id="weatherPanel">
-                    </div>
+                <button class="btn btn-success mt-3" onclick="getOpenWeatherData()" type="button">Continue</button>
+                <button class="btn btn-secondary mt-3" onclick="clearFields()" type="button">Clear field</button>
+            </div>
+            <div class="col">
+                <div id="weatherPanel">
                 </div>
             </div>
         {/if}
