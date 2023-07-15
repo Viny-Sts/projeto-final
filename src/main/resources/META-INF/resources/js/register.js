@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let getRequest = newGetRequest("/profileManager/list");
-
-    fetch(getRequest).then((response) => {
+    fetch(newGetRequest("/profileManager/list")).then((response) => {
         if (response.ok)
             return response.json();
         else
