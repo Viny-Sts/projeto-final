@@ -9,28 +9,52 @@
     <script src="/js/script.js" type="application/javascript"></script>
     <script src="/js/warning.js" type="application/javascript"></script>
 </head>
-<body class="container-fluid text-bg-dark p-5">
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <a class="btn btn-primary" href="/">Home</a>
+<body class="text-bg-dark">
+<nav class="navbar navbar-dark navbar-expand-md" style="background-color: #121212;">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/">StormTrack</a>
 
-            {#if activityAccess}
-                <a class="btn btn-info" href="/activity">Activity</a>
-            {/if}
-            {#if userManagement}
-                <a class="btn btn-success" href="/userManager">User Manager</a>
-            {/if}
-            {#if profileManagement}
-                <a class="btn btn-success" href="/profileManager">Profile Manager</a>
-            {/if}
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
-            <button class="btn btn-danger" onclick="disconnect()" type="button">Sign out</button>
-        </div>
-        <div class="col text-end">
-            <h1>StormTrack</h1>
+                {#if activityAccess}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/activity">Activity</a>
+                    </li>
+                {/if}
+                {#if userManagement}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/userManager">User Manager</a>
+                    </li>
+                {#else}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Sign in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup/">Sign up</a>
+                    </li>
+                {/if}
+                {#if profileManagement}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profileManager">Profile Manager</a>
+                    </li>
+                {/if}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" onclick="disconnect()" type="button">Sign out</button>
+                </li>
+            </ul>
         </div>
     </div>
+</nav>
+<div class="container">
     <div class="row mt-3">
         <h1>Welcome to StormTrack!</h1>
     </div>
@@ -53,4 +77,13 @@
     </div>
 </div>
 </body>
+
+<!-- bootstrap dependencies import -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
+<!-- bootstrap js import -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
 </html>
