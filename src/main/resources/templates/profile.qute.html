@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
     <script src="/js/request.js" type="application/javascript"></script>
     <script src="/js/profile.js" type="application/javascript"></script>
+    <script src="/js/warning.js" type="application/javascript"></script>
 </head>
 <body class="text-bg-dark">
-<nav class="navbar navbar-dark navbar-expand-md" style="background-color: #121212;">
+<nav class="navbar sticky-top navbar-dark navbar-expand-md nav-underline" style="background-color: #121212;">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,9 +21,9 @@
         <a class="navbar-brand" href="/">StormTrack</a>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-center">
                 <li class="nav-item">
-                    <a class="nav-link" href="/profileManager">Go back</a>
+                    <a class="nav-link" href="/profileManager">Go back to profile management</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Sign in</a>
@@ -33,27 +35,32 @@
                     <a class="nav-link" href="/about">About</a>
                 </li>
             </ul>
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                <li class="nav-item text-end">
+                    <button class="btn btn-outline-danger" onclick="disconnect()" type="button">Sign out</button>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
 <div class="container">
     <div class="row mt-3">
         <h1>Register a new profile</h1>
-        <h4>Insert the name and the permissions of the new profile below</h4>
+        <p>Insert the name and the permissions of the new profile below</p>
     </div>
     <div class="row mt-3">
-        <div class="col-3">
+        <div class="col-md">
             <label class="form-label" for="profile-name">Profile Name</label> <br>
             <input class="form-control-sm" id="profile-name" type="text" placeholder="Insert the profile name."> <br>
         </div>
-        <div class="col-2">
+        <div class="col-md">
             <input class="form-control-sm" id="main-access" type="checkbox">
             <label class="form-label" for="main-access">Main Access</label> <br>
 
             <input class="form-control-sm" id="activity-access" type="checkbox">
             <label class="form-label" for="activity-access">Activity Access</label> <br>
         </div>
-        <div class="col-2">
+        <div class="col-md">
             <input class="form-control-sm" id="user-management" type="checkbox">
             <label class="form-label" for="user-management">User Management</label> <br>
 

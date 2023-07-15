@@ -1,15 +1,11 @@
 ::selection {
-    background-color: purple;
+    background-color: #bababb;
     color: deeppink;
 }
 
 ::-moz-selection {
     background-color: purple;
     color: deeppink;
-}
-
-a {
-    color: deepskyblue;
 }
 
 p {

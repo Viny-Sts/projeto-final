@@ -2,6 +2,7 @@ package br.edu.ifg.luziania.controller;
 
 import br.edu.ifg.luziania.model.bo.UserBO;
 import br.edu.ifg.luziania.model.dto.AuthDTO;
+import br.edu.ifg.luziania.model.util.Session;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
@@ -12,6 +13,8 @@ import javax.ws.rs.core.Response;
 
 @Path("/login")
 public class LoginController {
+    @Inject
+    Session session;
     @Inject
     UserBO userBO;
 
@@ -25,7 +28,8 @@ public class LoginController {
     @Path("/")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getLoginTemplate() {
-        return login.instance();
+        return login.data("mainAccess", !session.getPermissions().isEmpty() &&
+                session.getPermissions().get(0));
     }
 
     @POST

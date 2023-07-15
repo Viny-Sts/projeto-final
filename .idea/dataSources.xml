@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:h2:file:~/terceiro-ano-jpa;AUTO_SERVER=true;DB_CLOSE_DELAY=-1</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="storm-track-data" uuid="19d253cf-f32e-4fd6-92d3-702218a0008a">
+      <driver-ref>h2.unified</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.h2.Driver</jdbc-driver>
+      <jdbc-url>jdbc:h2:file:~/storm-track-data;AUTO_SERVER=true;DB_CLOSE_DELAY=-1</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
