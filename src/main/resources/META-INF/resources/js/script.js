@@ -39,6 +39,39 @@ function getOpenWeatherData() {
     });
 }
 
+function getFutureOpenWeatherData() {
+    let city = document.getElementById("city").value
+
+    fetch("https://api.openweathermap.org/data/2.5/forecast?q="+city+"&appid="+apiKey)
+        .then((response) => {
+            if (response.status === 200)
+                return response.json();
+            else
+                throw new Error("An error has occurred" + response.status);
+
+        }).then(json => {
+            let data1 = "";
+
+            const forecasts = json.list.filter((forecast, index) => index % 8 === 0);
+
+            let weatherPanel = document.getElementById("weatherPanel");
+            let info = document.createElement("p");
+
+            forecasts.forEach(forecast => {
+                const dataHora = forecast.dt_txt;
+                const temperatura = forecast.main.temp;
+                const descricao = forecast.weather[0].description;
+
+                console.log(`Data e Hora: ${dataHora}, Temperatura: ${temperatura} K, Descrição: ${descricao}`);
+                data1 += `Data e Hora: ${dataHora}, Temperatura: ${temperatura} K, Descrição: ${descricao} \n`
+            });
+
+            info.innerHTML = data1;
+
+            weatherPanel.appendChild(info);
+    });
+}
+
 function clearFields() {
     document.getElementById("city").value = "";
 }
