@@ -1,21 +1,5 @@
-document.addEventListener('DOMContentLoaded', function updateProfileTable() {
-    listProfiles();
-});
-
-function newGetRequest(url){
-    return new Request(url, {
-        method: "GET",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        }
-    });
-}
-
-function listProfiles() {
-    let getRequest = newGetRequest("/profileManager/list");
-
-    fetch(getRequest).then((response) => {
+document.addEventListener('DOMContentLoaded', () => {
+    fetch(newGetRequest("/profileManager/list")).then((response) => {
         if (response.ok)
             return response.json();
         else
@@ -34,4 +18,4 @@ function listProfiles() {
             row.insertCell().innerText = json.profiles[i].profileManagement;
         }
     });
-}
+});

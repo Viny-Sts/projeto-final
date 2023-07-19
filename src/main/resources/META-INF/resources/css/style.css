@@ -1,5 +1,5 @@
 ::selection {
-    background-color: purple;
+    background-color: #bababb;
     color: deeppink;
 }
 
@@ -8,6 +8,6 @@
     color: deeppink;
 }
 
-a {
-    color: deepskyblue;
+p {
+    text-align: justify;
 }

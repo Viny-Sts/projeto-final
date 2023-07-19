@@ -1,27 +1,21 @@
-document.addEventListener('DOMContentLoaded', function updateProfiles() {
-    listProfiles();
-});
+document.addEventListener('DOMContentLoaded', () => {
+    fetch(newGetRequest("/profileManager/list")).then((response) => {
+        if (response.ok)
+            return response.json();
+        else
+            throw new Error("An error has occurred" + ". Error " + response.status);
 
-function newPostRequest(url, body){
-    return new Request(url, {
-        method: "POST",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        body: body,
-    });
-}
+    }).then(json => {
+        let profilesList = document.getElementById("profiles");
 
-function newGetRequest(url){
-    return new Request(url, {
-        method: "GET",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
+        for (let i = 0; i < json.profiles.length; i++) {
+            let profile = document.createElement('option');
+            profile.text = json.profiles[i].name;
+
+            profilesList.appendChild(profile);
         }
     });
-}
+});
 
 function checkInput() {
     if (document.getElementById("name").value === "" &&
@@ -55,15 +49,14 @@ function checkInput() {
 
 function register() {
     if (checkInput()) {
-        let postRequest = newPostRequest("/signup/register", JSON.stringify({
+        fetch(newPostRequest("/signup/register", JSON.stringify({
             "name": document.getElementById("name").value,
             "email": document.getElementById("email").value,
             "password": document.getElementById("password").value,
-            "profile": document.getElementById("profiles") ?
-                document.getElementById("profiles").value : "user"
-        }));
+            "profile": document.getElementById("profiles")
+                    ? document.getElementById("profiles").value : "user"
 
-        fetch(postRequest).then((response) => {
+        }))).then((response) => {
             if (response.ok)
                 return response.json();
             else
@@ -78,27 +71,6 @@ function register() {
                 clearFields();
         });
     }
-}
-
-function listProfiles() {
-    let getRequest = newGetRequest("/profileManager/list");
-
-    fetch(getRequest).then((response) => {
-        if (response.ok)
-            return response.json();
-        else
-            throw new Error("An error has occurred" + ". Error " + response.status);
-
-        }).then(json => {
-            let profilesList = document.getElementById("profiles");
-
-            for (let i = 0; i < json.profiles.length; i++) {
-                let profile = document.createElement('option');
-                profile.text = json.profiles[i].name;
-
-                profilesList.appendChild(profile);
-            }
-    });
 }
 
 function clearFields() {

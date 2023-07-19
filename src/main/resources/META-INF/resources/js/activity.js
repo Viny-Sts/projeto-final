@@ -1,21 +1,5 @@
-document.addEventListener('DOMContentLoaded', function updateActivityTable() {
-    listActivities();
-});
-
-function newGetRequest(url){
-    return new Request(url, {
-        method: "GET",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        }
-    });
-}
-
-function listActivities() {
-    let getRequest = newGetRequest("/activity/list");
-
-    fetch(getRequest).then((response) => {
+document.addEventListener('DOMContentLoaded', () => {
+    fetch(newGetRequest("/activity/list")).then((response) => {
         if (response.ok)
             return response.json();
         else
@@ -33,4 +17,4 @@ function listActivities() {
             row.insertCell().innerText = json.activities[i].activityLog;
         }
     });
-}
+});

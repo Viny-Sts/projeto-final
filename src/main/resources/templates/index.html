@@ -2,51 +2,82 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StormTrack</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/request.js" type="application/javascript"></script>
+    <script src="/js/warning.js" type="application/javascript"></script>
 </head>
-<body class="container-fluid p-5 text-bg-dark">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>StormTrack</h1>
-            </div>
-            <div class="col text-end">
+<body class="text-bg-dark">
+<nav class="navbar sticky-top navbar-dark navbar-expand-md nav-underline" style="background-color: #121212;">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/">StormTrack</a>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-center">
+
                 {#if mainAccess}
-                    <a class="btn btn-warning" href="/main">Main</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/main">Go back to main</a>
+                    </li>
                 {/if}
-                <a class="btn btn-success" href="/login">Sign in</a>
-                <a class="btn btn-primary" href="/signup">Sign up</a>
 
-                <a class="btn btn-info" href="/about">About</a>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="text-justify">
-                <p>
-                    This website provides you up-to-date weather data for any location you search for. You just need to
-                    have an account to use it anytime, and anywhere you want!
-                </p>
-            </div>
-            <div>
-                <!-- makes image border rounded (and responsive) -->
-                <img class="img-fluid rounded" src="/img/TemperatureMapDemo.png" alt="Temperature Map">
-            </div>
-            <div class="text-justify">
-                <p>
-                    Please consider that we are currently running a pre-alfa version, which
-                    means there are still a lot of work to be done.
-                </p>
-                <p>
-                    In case you need help to get started, we have this
-
-                    <a class="" href="https://trollface.dk/" style="color: deepskyblue">
-                        step-by-step guide on how to navigate on our website.</a>
-                </p>
-            </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Sign in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Sign up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                {#if mainAccess}
+                    <li class="nav-item text-end">
+                        <button class="btn btn-outline-danger" onclick="disconnect()" type="button">Sign out</button>
+                    </li>
+                {/if}
+            </ul>
         </div>
     </div>
+</nav>
+<div class="container">
+    <div class="row mt-3">
+        <h1 class="display-5">Welcome to StormTrack</h1>
+        <h4>The most easy to use weather web service</h4>
+    </div>
+    <div class="row mt-3">
+        <p>
+            This website provides you up-to-date weather data for any location you search for. You just need to
+            have an account to use it anytime, and anywhere you want!
+        </p>
+    </div>
+    <div class="row mt-3">
+        <!-- makes image border rounded (and responsive) -->
+        <img class="img-fluid rounded" src="/img/map.png" alt="Temperature Map">
+    </div>
+    <div class="row mt-3">
+        <p>
+            Please consider that we are currently running a pre-alfa version, which means there are still a lot of
+            work to be done.
+        </p>
+    </div>
+</div>
+
+<!-- bootstrap dependencies import -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
+<!-- bootstrap js import -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
 </body>
 </html>

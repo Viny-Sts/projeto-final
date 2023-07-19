@@ -29,8 +29,8 @@ public class UserController {
     @Path("/")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getUserTemplate() {
-        return user.data("userManagement", !session.getPermissions().isEmpty() &&
-                session.getPermissions().get(2));
+        return user.data("mainAccess", !session.getPermissions().isEmpty() && session.getPermissions().get(0),
+                "userManagement", !session.getPermissions().isEmpty() && session.getPermissions().get(2));
     }
 
     @POST

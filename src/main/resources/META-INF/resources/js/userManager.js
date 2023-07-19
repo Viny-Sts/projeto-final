@@ -1,21 +1,5 @@
-document.addEventListener('DOMContentLoaded', function updateUserTable() {
-    listUsers();
-});
-
-function newGetRequest(url){
-    return new Request(url, {
-        method: "GET",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        }
-    });
-}
-
-function listUsers() {
-    let getRequest = newGetRequest("/userManager/list");
-
-    fetch(getRequest).then((response) => {
+document.addEventListener('DOMContentLoaded', () => {
+    fetch(newGetRequest("/userManager/list")).then((response) => {
         if (response.ok)
             return response.json();
         else
@@ -33,4 +17,4 @@ function listUsers() {
             row.insertCell().innerText = json.users[i].profile;
         }
     });
-}
+});
