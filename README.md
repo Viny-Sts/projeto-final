@@ -1,4 +1,6 @@
-# projeto-final
+# StormTrack
+
+a free, open-source and easy to use weather web service for everyone.
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
