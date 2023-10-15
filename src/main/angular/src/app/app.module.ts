@@ -11,6 +11,11 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { UserComponent } from './user/user.component';
 import { MainComponent } from './main/main.component';
+import { ActivityComponent } from './activity/activity.component';
+import { UserManagerComponent } from './user-manager/user-manager.component';
+import { ProfileManagerComponent } from './profile-manager/profile-manager.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,12 @@ import { MainComponent } from './main/main.component';
     NavbarComponent,
     LoginComponent,
     UserComponent,
-    MainComponent
+    MainComponent,
+    ActivityComponent,
+    UserManagerComponent,
+    ProfileManagerComponent,
+    ProfileComponent,
+    ForbiddenComponent
   ],
     imports: [
         BrowserModule,

@@ -1,5 +1,13 @@
 import { Router } from "@angular/router";
 
+export enum MainOptions {
+  main,
+  activity,
+  profile,
+  profileManager,
+  userManager,
+}
+
 export class NewRequest {
     newGetRequest(url: string) : Request {
         return new Request(url, {

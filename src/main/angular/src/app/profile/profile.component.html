@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row mt-3">
+    <h1>Register a new profile</h1>
+    <p>Insert the name and the permissions of the new profile below</p>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md">
+      <label class="form-label" for="profile-name">Profile Name</label> <br>
+      <input class="form-control-sm" id="profile-name" type="text" placeholder="Insert the profile name."> <br>
+    </div>
+    <div class="col-md">
+      <input class="form-control-sm" id="main-access" type="checkbox">
+      <label class="form-label" for="main-access">Main Access</label> <br>
+
+      <input class="form-control-sm" id="activity-access" type="checkbox">
+      <label class="form-label" for="activity-access">Activity Access</label> <br>
+    </div>
+    <div class="col-md">
+      <input class="form-control-sm" id="user-management" type="checkbox">
+      <label class="form-label" for="user-management">User Management</label> <br>
+
+      <input class="form-control-sm" id="profile-management" type="checkbox">
+      <label class="form-label" for="profile-management">Profile Management</label> <br>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col text-end">
+      <button class="btn btn-success" onclick="addProfile()">Add profile</button>
+    </div>
+  </div>
+</div>

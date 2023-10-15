@@ -1,14 +1,29 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+
+import {Change, MainOptions} from "../../util";
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
+
 export class MainComponent {
   apiKey : string = 'a46706d71d48b5c4c10020f410925b4f';
 
   city : string = '';
+
+  current : MainOptions = MainOptions.main;
+
+  change : Change = new Change();
+
+  mainOptionsButton(option : MainOptions) {
+    if (option == this.current) {
+      option = MainOptions.main;
+    }
+
+    this.current = option;
+  }
 
   getOpenWeatherData() {
     this.city = (document.getElementById("city") as HTMLInputElement).value;
@@ -107,4 +122,6 @@ export class MainComponent {
   clearFields() {
     (document.getElementById("city") as HTMLInputElement).value = "";
   }
+
+  protected readonly MainOptions = MainOptions;
 }

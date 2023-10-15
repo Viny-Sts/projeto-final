@@ -1,22 +1,37 @@
 <div class="container">
     <div class="row mt-3">
-        <h1 class="display-5">Welcome to StormTrack</h1>
-        <p>Just insert the city name below, and we'll show you weather-related data</p>
+      <div class="col">
+          <h1 class="display-5">Welcome to StormTrack</h1>
+          <p>Your number one place for trusty weather data</p>
+      </div>
+      <div class="col text-end">
+        <a class="btn btn-outline-info mt-3 m-1" (click)="mainOptionsButton(MainOptions.activity)">Activity</a>
+        <a class="btn btn-outline-light mt-3 m-1" (click)="mainOptionsButton(MainOptions.userManager)">User Manager</a>
+        <a class="btn btn-outline-light mt-3 m-1" (click)="mainOptionsButton(MainOptions.profileManager)">Profile Manager</a>
+      </div>
     </div>
-    <div class="row mt-3">
-<!--        {#if mainAccess}-->
-        <div class="col">
-            <label class="form-label" for="city">City</label>
-            <input class="form-control" id="city" type="text" placeholder="Search for a city's name here."> <br>
+  <div>
+    <app-activity *ngIf="current == MainOptions.activity"></app-activity>
+    <app-profile *ngIf="current == MainOptions.profile"></app-profile>
+    <app-profile-manager *ngIf="current == MainOptions.profileManager"></app-profile-manager>
+    <app-user-manager *ngIf="current == MainOptions.userManager"></app-user-manager>
+  </div>
+  <div class="row mt-3" *ngIf="current == MainOptions.main">
+    <div class="col">
+      <h1 class="display-5">City Tracker</h1>
+      <p>Just insert the city name and choose what kind of weather data you want (current or future data) we'll take care of the rest!</p>
 
-            <button class="btn btn-success mt-3" (click)="getOpenWeatherData()" type="button">Get Current Data</button>
-            <button class="btn btn-success mt-3" (click)="getFutureOpenWeatherData()" type="button">Get Future Data</button>
-            <button class="btn btn-secondary mt-3" (click)="clearFields()" type="button">Clear field</button>
-        </div>
-        <div class="col">
-            <div id="weatherPanel">
-            </div>
-        </div>
-<!--        {/if}-->
+      <button class="btn btn-success mt-3 m-1" (click)="getOpenWeatherData()" type="button">Get Current Data</button>
+      <button class="btn btn-success mt-3 m-1" (click)="getFutureOpenWeatherData()" type="button">Get Future Data</button>
     </div>
+    <div class="col">
+      <label class="form-label" for="city">City</label>
+      <input class="form-control" id="city" type="text" placeholder="Search for a city's name here."> <br>
+      <button class="btn btn-secondary" (click)="clearFields()" type="button">Clear field</button>
+    </div>
+    <div class="col">
+      <div id="weatherPanel">
+      </div>
+    </div>
+  </div>
 </div>
