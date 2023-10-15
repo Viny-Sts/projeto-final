@@ -6,8 +6,11 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import {NgOptimizedImage} from "@angular/common";
+import { NgOptimizedImage } from "@angular/common";
 import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { UserComponent } from './user/user.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -15,14 +18,19 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     AboutComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    UserComponent,
+    MainComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgOptimizedImage
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgOptimizedImage,
+        FormsModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

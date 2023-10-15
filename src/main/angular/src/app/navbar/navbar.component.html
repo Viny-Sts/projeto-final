@@ -4,25 +4,25 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" (click)="changePage('/')">StormTrack</a>
+    <a class="navbar-brand" (click)="change.page('/')">StormTrack</a>
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-center">
 
 <!--        {#if mainAccess}-->
         <li class="nav-item">
-          <a class="nav-link" (click)="changePage('/main')">Go back to main</a>
+          <a class="nav-link" (click)="change.page('/main')">Go back to main</a>
         </li>
 <!--        {/if}-->
 
         <li class="nav-item">
-          <a class="nav-link" (click)="changePage('/login')">Sign in</a>
+          <a class="nav-link" (click)="change.page('/login')">Sign in</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="changePage('/signup')">Sign up</a>
+          <a class="nav-link" (click)="change.page('/signup')">Sign up</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="changePage('/about')">About</a>
+          <a class="nav-link" (click)="change.page('/about')">About</a>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mt-2 mt-lg-0">

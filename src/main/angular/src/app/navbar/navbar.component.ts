@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Change } from '../../util';
 
 @Component({
   selector: 'app-navbar',
@@ -8,14 +8,5 @@ import { Router } from '@angular/router';
 })
 
 export class NavbarComponent {
-  constructor(private router: Router) { }
-
-  changePage(url : string) {
-    this.router.navigate([url]).then(() => {
-      //alert("ggwp");
-
-    }).catch(error => {
-      console.error('Something went wrong. ', error);
-    });
-  }
+  change : Change = new Change();
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NewRequest } from '../../request';
+import { Change, NewRequest } from '../../util';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,12 @@ import { NewRequest } from '../../request';
 
 export class LoginComponent {
   loginForm: FormGroup;
+
+  change : Change = new Change();
   request : NewRequest = new NewRequest();
+
+  email: string = '';
+  password: string = '';
 
   constructor(private formBuilder: FormBuilder) {
     this.loginForm = this.formBuilder.group({
@@ -20,46 +25,27 @@ export class LoginComponent {
   }
 
   checkInput() {
-    if ((document.getElementById("email") as HTMLInputElement).value === "" &&
-        (document.getElementById("password") as HTMLInputElement).value === "") {
-      alert("Email and password fields are blank");
+    if (this.loginForm.invalid) {
+      alert("Please fill in both email and password fields.");
 
-      return false;
+      return;
     }
 
-    else if ((document.getElementById("email") as HTMLInputElement).value === "") {
-      alert("Email field is blank");
+    fetch(this.request.newPostRequest("http://localhost:8080/login/auth", JSON.stringify({
+      "email": (document.getElementById("email") as HTMLInputElement).value,
+      "password": (document.getElementById("password") as HTMLInputElement).value
 
-      return false;
-    }
+    }))).then((response) => {
+      if (response.ok)
+        return response.json();
+      else
+        throw new Error("An error has occurred" + response.status);
 
-    else if ((document.getElementById("password") as HTMLInputElement).value === "") {
-      alert("Password field is blank");
+    }).then(json => {
+      alert(json.message);
 
-      return false;
-    }
-
-    return true;
-  }
-
-  login() {
-    if (this.checkInput()) {
-      fetch(this.request.newPostRequest("http://localhost:8080/login/auth", JSON.stringify({
-        "email": (document.getElementById("email") as HTMLInputElement).value,
-        "password": (document.getElementById("password") as HTMLInputElement).value
-
-      }))).then((response) => {
-        if (response.ok)
-          return response.json();
-        else
-          throw new Error("An error has occurred" + response.status);
-
-      }).then(json => {
-        alert(json.message);
-
-        window.location.href = window.location.origin + json.url;
-      });
-    }
+      this.change.page(json.url);
+    });
   }
 
   clearFields() {

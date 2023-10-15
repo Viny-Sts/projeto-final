@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row mt-3">
+        <h1 class="display-5">Welcome to StormTrack</h1>
+        <p>Just insert the city name below, and we'll show you weather-related data</p>
+    </div>
+    <div class="row mt-3">
+<!--        {#if mainAccess}-->
+        <div class="col">
+            <label class="form-label" for="city">City</label>
+            <input class="form-control" id="city" type="text" placeholder="Search for a city's name here."> <br>
+
+            <button class="btn btn-success mt-3" (click)="getOpenWeatherData()" type="button">Get Current Data</button>
+            <button class="btn btn-success mt-3" (click)="getFutureOpenWeatherData()" type="button">Get Future Data</button>
+            <button class="btn btn-secondary mt-3" (click)="clearFields()" type="button">Clear field</button>
+        </div>
+        <div class="col">
+            <div id="weatherPanel">
+            </div>
+        </div>
+<!--        {/if}-->
+    </div>
+</div>
