@@ -35,13 +35,10 @@ export class Change {
     router: Router = new Router();
 
     page(url : string) {
-        if (url != this.router.url) {
-            this.router.navigate([url]).then(() => {
-                //alert("ggwp");
+        this.router.navigateByUrl(url).then(() => {
 
-            }).catch(error => {
-                console.error('Something went wrong. ', error);
-            });
-        }
+        }).catch(error => {
+            console.error('Something went wrong. ', error);
+        });
     }
 }
